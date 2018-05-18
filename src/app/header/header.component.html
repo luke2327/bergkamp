@@ -1,0 +1,47 @@
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">tymX</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Exchange</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Forum</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Notice</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign-up</a>
+        </li>
+        <li ngbDropdown class="nav-item">
+        <a ngbDropdownToggle class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Language
+        </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">English</a>
+          <a class="dropdown-item" href="#">Korean</a>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </nav>
+</header>
