@@ -26,7 +26,16 @@
   - Header, Footer 모듈 살짝 개편
     - Header, Footer Component를 하나 아래로.. -> UI 작업은 모듈의 html 에서 하지않고 component의 html에서 하게 바꿔둠..
   - 변수를 app.const.ts에서 통합관리하려했지만 angular2+버전에선 global variable를 굳이 쓰지말라고 함..그래서 현재 고민중(정말 필요한 변수만 쓸 예정)
-
+ 3. Feature_B113 appsync 모듈 개발
+  - (참고 : https://github.com/aws-samples/aws-mobile-appsync-chat-starter-angular)
+  - appsync call 스타일도 최대한 비슷하게 개발함
+  - apollo-angular, apollo-cache-inmemory, apollo-client, aws-appsync, graphql, graphql-tag 설치
+  - aws-appsync 디렉터리 생성
+   - types : 햄님이 준 정보 저장
+   - query : 쿼리구문
+   - subscription : subscription 구문
+   - mutation : mutate 구문
+   - service : 복수의 component에서 불려지기 편한 구조로 생성(using observable)
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

@@ -1,0 +1,124 @@
+query GetAllSnapshot {
+    getAllSnapshot {
+        id
+        ut
+        price
+        low24
+        high24
+        open24
+        volume24
+        changepct24
+    }
+}
+query GetHistory1m($id: ID!, $asending: Boolean!, $ut: Int!, $limit: Int!) {
+    getHistory1m(id: $id, asending: $asending, ut: $ut, limit: $limit) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
+
+query GetHistory1h($id: ID!, $asending: Boolean!, $ut: Int!, $limit: Int!) {
+    getHistory1h(id: $id, asending: $asending, ut: $ut, limit: $limit) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
+
+mutation PutSnapshot($id: ID!, $ut: Int!, $low24: Float!, $high24: Float!,
+                     $open24: Float!, $volume24: Float!, $changepct24: Float!) {
+    putSnapshot(id: $id, ut: $ut, low24: $low24, high24: $high24,
+                open24: $open24, volume24: $volume24,
+                changepct24: $changepct24) {
+        id
+        ut
+        low24
+        high24
+        open24
+        volume24
+        changepct24
+    }
+}
+mutation PutHistory1m($id: ID!, $ut: Int!, $low: Float!, $high: Float!,
+                      $open: Float!, $close: Float!, $volume: Float!) {
+    putHistory1m(id: $id, ut: $ut, low: $low, high: $high,
+                 open: $open, close: $close, volume: $volume) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
+mutation PutHistory1h($id: ID!, $ut: Int!, $low: Float!, $high: Float!,
+                      $open: Float!, $close: Float!, $volume: Float!) {
+    putHistory1h(id: $id, ut: $ut, low: $low, high: $high,
+                 open: $open, close: $close, volume: $volume) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
+
+subscription SubscribeAllSnapshot {
+    subscribeAllSnapshot {
+        id
+        ut
+        price
+        low24
+        high24
+        open24
+        volume24
+        changepct24
+    }
+}
+
+subscription SubscribeSnapshot($id: ID!) {
+    subscribeSnapshot(id: $id) {
+        id
+        ut
+        price
+        low24
+        high24
+        open24
+        volume24
+        changepct24
+    }
+}
+subscription SubscribeHistory1m($id: ID!) {
+    subscribeHistory1m(id: $id) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
+subscription SubscribeHistory1h($id: ID!) {
+    subscribeHistory1h(id: $id) {
+        id
+        ut
+        low
+        high
+        open
+        close
+        volume
+    }
+}
