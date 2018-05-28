@@ -11,7 +11,6 @@ export class HeaderMainComponent implements OnInit {
   constructor(private translate: TranslateService) { }
 
   ngOnInit() {
-    
-  }
 
+  }
 }

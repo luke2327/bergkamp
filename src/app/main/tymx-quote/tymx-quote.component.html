@@ -1,0 +1,14 @@
+<div class="row area-tymx-quotes nopadding">
+  <a *ngFor="let value of quotesValues" class="col-3 area-tymx-quote nopadding" href="#">
+    <div class="tymx-div-id">
+      <span class="align-middle">{{ value.pair }}</span>
+    </div>
+    <div class="tymx-price">
+      <span [appRealTimeColor]="priceDiff(value.pair, value.price)" class="align-middle">{{ significantFig(value.price) }}</span>
+    </div>
+    <div class="tymx-price-change">
+      <span [appRealTimeColor]="value.changepct24" class="align-middle">{{ value.changepct24.toFixed(2) }}%</span>
+    </div>
+  </a>
+  <a class="col-3 area-tymx-quote nopadding" href="#"></a>
+</div>

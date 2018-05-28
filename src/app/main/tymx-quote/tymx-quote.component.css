@@ -1,0 +1,35 @@
+.area-tymx-quotes {
+  height: 200px;
+  width: 1400px !important;
+  margin-top: 75px !important;
+  background-color: #ffffff;
+}
+.area-tymx-quote {
+  height: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ebebeb;
+}
+.tymx-div-id {
+  position : absolute;
+  margin-top : 35px;
+  padding-left: 35px;
+  font-size: 20px;
+  color: #585858;
+}
+.tymx-price {
+  position : absolute;
+  margin-top : 70px;
+  height : 60px;
+  padding-left: 35px;
+  font-size: 30px;
+  color: #000000;
+}
+.tymx-price-change {
+  position : absolute;
+  margin-top : 130px;
+  height : 50px;
+  padding-left: 35px;
+  font-size: 23px;
+  color: #000000;
+}

@@ -15,6 +15,7 @@ import { MainModule } from './main/main.module';
 
 //커스텀 컴포넌트 선언
 import { MainComponent } from './main/main.component';
+import { RealTimeColorDirective } from './directive/real-time-color.directive';
 //라우팅 설정
 const routes: Routes = [
   {path: '', component: MainComponent}
@@ -28,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     NgbModule.forRoot(),
