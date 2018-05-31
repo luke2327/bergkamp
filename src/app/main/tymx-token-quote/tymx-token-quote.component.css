@@ -1,0 +1,101 @@
+.area-tymx-token-quotes {
+  height: 100%;
+  background-color: #ffffff;
+}
+.area-token-quotes-tab {
+  height: 60px;
+}
+.token-quote-tab {
+  width: 85px;
+  height: 100%;
+  padding-top: 15px;
+}
+.tab-active {
+  border-bottom: 2px solid #3078ff;
+}
+.area-token-quotes-list {
+  width: 100%;
+  height: 660px !important;
+}
+.token-quote-table-header{
+  height: 60px;
+}
+.title-pair {
+  width: 310px;
+  padding-left: 30px;
+  padding-top: 15px;
+}
+.title-price {
+  width: 175px;
+  padding-top: 15px;
+}
+.title-change {
+  width: 100px;
+  padding-top: 15px;
+}
+.title-volume {
+  width: 195px;
+  padding-top: 15px;
+}
+.title-sports {
+  width: 105px;
+  padding-top: 15px;
+}
+.token-quote-list {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #ebebeb;
+  text-decoration: none;
+}
+.token-quote-list > .favorite {
+  width: 60px;
+}
+
+.favorite > .favorite-button {
+  width : 18px;
+  height : 18px;
+  margin-left : 21px;
+  margin-top : 21px;
+  background : url("/assets/img/web_team_favorite_tab_mouse.png") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.favorite > .favorite-button-checked {
+  width : 18px;
+  height : 18px;
+  margin-left : 21px;
+  margin-top : 21px;
+  background : url("/assets/img/web_team_favorite_tab_mouse.png") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.token-quote-list > .token-img {
+  width: 25px;
+  height: 25px;
+  margin-top: 17.5px;
+}
+.token-quote-list > .token-name {
+  width: 210px;
+  margin-left: 15px;
+  padding-top: 15px;
+}
+.token-quote-list > .price {
+  width: 175px;
+  padding-top: 15px;
+}
+.token-quote-list > .change {
+  width: 100px;
+  padding-top: 15px;
+}
+.token-quote-list > .volume {
+  width: 195px;
+  padding-top: 15px;
+}
+.token-quote-list > .sports {
+  width: 105px;
+  padding-top: 15px;
+}

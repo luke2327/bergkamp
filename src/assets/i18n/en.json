@@ -7,5 +7,20 @@
   "W0006" : "Login",
   "W0007" : "Sign-up",
   "W0008" : "Wallet",
-  "W0009" : "Account"
+  "W0009" : "Account",
+  "W0010" : "Pair",
+  "W0011" : "Price",
+  "W0012" : "Change",
+  "W0013" : "Volume",
+  "W0014" : "Sports",
+  "W0015" : "Football",
+  "W0016" : "Terms and conditions",
+  "W0017" : "Privacy Policy",
+  "W0018" : "API",
+  "W0019" : "Home",
+  "W0020" : "Market",
+  "W0021" : "Trades",
+  "W0022" : "Wallet",
+  "W0023" : "Account",
+  "W0024" : "more.."
 }

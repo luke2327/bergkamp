@@ -3,7 +3,7 @@ export const AppSyncConfig = {
   region: "us-west-2",
   auth: {
     type: "API_KEY",
-    apiKey: "da2-pxswaedronf3re5kf36gzqust4",
+    apiKey: "da2-joi3eflr65e73gd7o5ckxrytae",
   }
 }
 export const AppSyncOptions = {

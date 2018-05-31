@@ -1,0 +1,32 @@
+<div class="area-tymx-token-quotes">
+  <div class="row area-token-quotes-tab">
+    <!--TODO 추후에 tab과 데이터 구성을 조절하는 형태로 바꿔야.. -->
+    <div class="token-quote-tab tab-active text-center">TMX</div>
+    <div class="token-quote-tab text-center">TMX</div>
+    <div class="token-quote-tab text-center">TMX</div>
+  </div>
+  <div class="row area-token-quotes-list">
+    <div class="pre-scrollable scrollable">
+      <div class="row token-quote-table-header">
+        <div class="title-pair">{{ 'W0010' | translate }}</div>
+        <div class="title-price text-center">{{ 'W0011' | translate }}</div>
+        <div class="title-change text-center">{{ 'W0012' | translate }}</div>
+        <div class="title-volume text-center">{{ 'W0013' | translate }}</div>
+        <div class="title-sports text-center">{{ 'W0014' | translate }}</div>
+      </div>
+      <!-- TODO 여기서 나중에는 for문으로 처리할곳임 위치만 잡아둠-->
+      <a class="row token-quote-list" *ngFor="let value of quotesValues" href="#">
+        <div class="favorite">
+          <input type="button" class="favorite-button">
+        </div>
+        <img class="token-img"/>
+        <div class="token-name align-middle">{{ value.pair }}</div>
+        <div class="price text-center">{{ significantFig(value.price) }}</div>
+        <div [appRealTimeColor]="value.changepct24" class="change text-center">{{ value.changepct24.toFixed(2) }}%</div>
+        <div class="volume text-center">{{ value.volume24 }}</div>
+        <div class="sports text-center">{{ 'W0015' | translate }}</div>
+      </a>
+    </div>
+  </div>
+
+</div>

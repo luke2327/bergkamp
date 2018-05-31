@@ -36,6 +36,11 @@
    - subscription : subscription 구문
    - mutation : mutate 구문
    - service : 복수의 component에서 불려지기 편한 구조로 생성(using observable)
+  4. Feature_B133 데스크탑 첫 페이지 레이아웃 개발
+   - Feature_B113 내용 UI와 연결하는 간략한 테스트류 개발(main/quotes)
+   - Directive로 실시간 시세반영 색깔변경로직 구현
+   - appsync v10 alpha2 버전 적용
+   - UI 디자인 가이드 css 적용(영역 배분, font, image 등등)
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

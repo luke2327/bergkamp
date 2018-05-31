@@ -1,3 +1,27 @@
 <main role="main">
-  <div role="main" class="main">hello</div>
+  <div role="main" class="main main-body">
+    <!-- tymx 가격 -->
+    <div>
+      <app-tymx-quote></app-tymx-quote>
+    </div>
+    <!-- notice -->
+    <div>
+      <app-main-notice></app-main-notice>
+    </div>
+
+    <div class="row area-main-divide noppading">
+      <div class="col-8 nopadding">
+        <!-- tymx 토큰가격 -->
+        <app-tymx-token-quote></app-tymx-token-quote>
+      </div>
+      <div class="col-4 nopadding">
+
+        <app-sports-info></app-sports-info>
+      </div>
+    </div>
+    <!-- 앱설치 -->
+    <div>
+      <app-app-install></app-app-install>
+    </div>
+  </div>
 </main>

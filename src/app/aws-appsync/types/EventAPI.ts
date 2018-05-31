@@ -1,47 +1,35 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
-export type GetAllSnapshotQuery = {
-  getAllSnapshot:  Array< {
-    id: string,
-    ut: number,
-    price: number,
-    low24: number,
-    high24: number,
-    open24: number,
-    volume24: number,
-    changepct24: number,
-  } | null > | null,
-};
-
-export type GetHistory1mQueryVariables = {
+export type GetSnapshotQueryVariables = {
   id: string,
-  asending: boolean,
-  ut: number,
-  limit: number,
 };
 
-export type GetHistory1mQuery = {
-  getHistory1m:  Array< {
+export type GetSnapshotQuery = {
+  getSnapshot:  {
     id: string,
-    ut: number,
-    low: number,
-    high: number,
-    open: number,
-    close: number,
-    volume: number,
-  } | null > | null,
+    pairs:  Array< {
+      pair: string,
+      type: string,
+      price: number,
+      low24: number,
+      high24: number,
+      open24: number,
+      volume24: number,
+      changepct24: number,
+    } | null > | null,
+  } | null,
 };
 
-export type GetHistory1hQueryVariables = {
+export type GetHistoryQueryVariables = {
   id: string,
-  asending: boolean,
-  ut: number,
-  limit: number,
+  asending?: boolean | null,
+  ut?: number | null,
+  limit?: number | null,
 };
 
-export type GetHistory1hQuery = {
-  getHistory1h:  Array< {
+export type GetHistoryQuery = {
+  getHistory:  Array< {
     id: string,
     ut: number,
     low: number,
@@ -52,40 +40,33 @@ export type GetHistory1hQuery = {
   } | null > | null,
 };
 
-export type PutSnapshotMutationVariables = {
+export type PutDummySnapshotMutationVariables = {
   id: string,
-  ut: number,
-  low24: number,
-  high24: number,
-  open24: number,
-  volume24: number,
-  changepct24: number,
 };
 
-export type PutSnapshotMutation = {
-  putSnapshot:  {
+export type PutDummySnapshotMutation = {
+  putDummySnapshot:  {
     id: string,
-    ut: number,
-    low24: number,
-    high24: number,
-    open24: number,
-    volume24: number,
-    changepct24: number,
+    pairs:  Array< {
+      pair: string,
+      type: string,
+      price: number,
+      low24: number,
+      high24: number,
+      open24: number,
+      volume24: number,
+      changepct24: number,
+    } | null > | null,
   } | null,
 };
 
-export type PutHistory1mMutationVariables = {
+export type PutDummyHistoryMutationVariables = {
   id: string,
   ut: number,
-  low: number,
-  high: number,
-  open: number,
-  close: number,
-  volume: number,
 };
 
-export type PutHistory1mMutation = {
-  putHistory1m:  {
+export type PutDummyHistoryMutation = {
+  putDummyHistory:  {
     id: string,
     ut: number,
     low: number,
@@ -93,41 +74,6 @@ export type PutHistory1mMutation = {
     open: number,
     close: number,
     volume: number,
-  } | null,
-};
-
-export type PutHistory1hMutationVariables = {
-  id: string,
-  ut: number,
-  low: number,
-  high: number,
-  open: number,
-  close: number,
-  volume: number,
-};
-
-export type PutHistory1hMutation = {
-  putHistory1h:  {
-    id: string,
-    ut: number,
-    low: number,
-    high: number,
-    open: number,
-    close: number,
-    volume: number,
-  } | null,
-};
-
-export type SubscribeAllSnapshotSubscription = {
-  subscribeAllSnapshot:  {
-    id: string,
-    ut: number,
-    price: number,
-    low24: number,
-    high24: number,
-    open24: number,
-    volume24: number,
-    changepct24: number,
   } | null,
 };
 
@@ -138,44 +84,55 @@ export type SubscribeSnapshotSubscriptionVariables = {
 export type SubscribeSnapshotSubscription = {
   subscribeSnapshot:  {
     id: string,
+    pairs:  Array< {
+      pair: string,
+      type: string,
+      price: number,
+      low24: number,
+      high24: number,
+      open24: number,
+      volume24: number,
+      changepct24: number,
+    } | null > | null,
+  } | null,
+};
+
+export type SubscribeHistorySubscriptionVariables = {
+  id: string,
+};
+
+export type SubscribeHistorySubscription = {
+  subscribeHistory:  {
+    id: string,
     ut: number,
+    low: number,
+    high: number,
+    open: number,
+    close: number,
+    volume: number,
+  } | null,
+};
+
+export type SnapshotDataFragment = {
+  id: string,
+  pairs:  Array< {
+    pair: string,
+    type: string,
     price: number,
     low24: number,
     high24: number,
     open24: number,
     volume24: number,
     changepct24: number,
-  } | null,
+  } | null > | null,
 };
 
-export type SubscribeHistory1mSubscriptionVariables = {
+export type HistoryDataFragment = {
   id: string,
-};
-
-export type SubscribeHistory1mSubscription = {
-  subscribeHistory1m:  {
-    id: string,
-    ut: number,
-    low: number,
-    high: number,
-    open: number,
-    close: number,
-    volume: number,
-  } | null,
-};
-
-export type SubscribeHistory1hSubscriptionVariables = {
-  id: string,
-};
-
-export type SubscribeHistory1hSubscription = {
-  subscribeHistory1h:  {
-    id: string,
-    ut: number,
-    low: number,
-    high: number,
-    open: number,
-    close: number,
-    volume: number,
-  } | null,
+  ut: number,
+  low: number,
+  high: number,
+  open: number,
+  close: number,
+  volume: number,
 };

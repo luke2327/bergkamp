@@ -1,45 +1,64 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">TymX</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'W0001' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'W0002' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">{{ 'W0003' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">{{ 'W0004' | translate }}</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'W0005' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'W0006' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'W0007' | translate }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'link_forum' | translate }}</a>
-      </li>
-      <li ngbDropdown class="nav-item">
-        <a ngbDropdownToggle class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ langCodeObj.get(translate.currentLang) }}
-        </a>
-        <div ngbDropdownMenu aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" (click)="translate.use('en')" href="#">English</a>
-          <a class="dropdown-item" (click)="translate.use('ko')" href="#">한국어</a>
-        </div>
-      </li>
-    </ul>
+<header>
+  <div class="header-body">
+    <div class="navbar navbar-expand nopadding">
+      <a class="navbar-brand tymx-brand nopadding" href="#">
+        <img class="tymx-logo" src="../../assets/img/web_navi_logo.png" alt="tymx"/>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="header-nav-about header-nav">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0001' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-exchange header-nav">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0002' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-shop header-nav">
+            <a href="#">
+              <font class="header-nav-font-disabled">{{ 'W0003' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-forum header-nav">
+            <a href="#">
+              <font class="header-nav-font-disabled">{{ 'W0004' | translate }}</font>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="header-nav-notice header-nav">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0005' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-singup header-nav text-center">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0007' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-login header-nav text-center">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0006' | translate }}</font>
+            </a>
+          </li>
+          <li class="header-nav-wallet header-nav">
+            <a href="#">
+              <font class="header-nav-font">{{ 'W0008' | translate }}</font>
+            </a>
+          </li>
+          <li ngbDropdown class="header-nav-lang header-nav">
+            <a ngbDropdownToggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <font class="header-nav-font">{{ langCodeObj.get(translate.currentLang) }}</font>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+              <div class="dropdown-item" (click)="translate.use('en')" href="#">English</div>
+              <div class="dropdown-item" (click)="translate.use('ko')" href="#">한국어</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  </nav>
+</header>
