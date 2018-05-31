@@ -19,9 +19,9 @@ export class MainComponent implements OnInit {
     // this.appsync.currentMessage.subscribe(message => this.message = message);
     this.snapshotService.startObserver();
 
-    this.historyService.queryObservable.subscribe((value) => {
-      console.log(value);
-    });
+    // this.historyService.queryObservable.subscribe((value) => {
+    //   console.log(value);
+    // });
   }
 
 }

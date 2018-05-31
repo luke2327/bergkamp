@@ -1,5 +1,6 @@
 <div class="row area-tymx-quotes nopadding">
-  <a *ngFor="let value of quotesValues" class="col-3 area-tymx-quote nopadding" href="#">
+  <a *ngFor="let value of quotesValues" class="col-3 area-tymx-quote nopadding"
+    [routerLink]="['/trade', value.pair.toLowerCase().replace('/','-')]">
     <div class="tymx-div-id">
       <span class="align-middle">{{ value.pair }}</span>
     </div>

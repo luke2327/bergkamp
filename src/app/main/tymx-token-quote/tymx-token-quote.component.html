@@ -15,7 +15,8 @@
         <div class="title-sports text-center">{{ 'W0014' | translate }}</div>
       </div>
       <!-- TODO 여기서 나중에는 for문으로 처리할곳임 위치만 잡아둠-->
-      <a class="row token-quote-list" *ngFor="let value of quotesValues" href="#">
+      <a class="row token-quote-list" *ngFor="let value of quotesValues"
+        [routerLink]="['/trade', value.pair.toLowerCase().replace('/','-')]">
         <div class="favorite">
           <input type="button" class="favorite-button">
         </div>

@@ -9,6 +9,7 @@ export type GetSnapshotQuery = {
   getSnapshot:  {
     id: string,
     pairs:  Array< {
+      __typename: "Pair",
       pair: string,
       type: string,
       price: number,
@@ -48,6 +49,7 @@ export type PutDummySnapshotMutation = {
   putDummySnapshot:  {
     id: string,
     pairs:  Array< {
+      __typename: "Pair",
       pair: string,
       type: string,
       price: number,
@@ -85,6 +87,7 @@ export type SubscribeSnapshotSubscription = {
   subscribeSnapshot:  {
     id: string,
     pairs:  Array< {
+      __typename: "Pair",
       pair: string,
       type: string,
       price: number,
@@ -116,6 +119,7 @@ export type SubscribeHistorySubscription = {
 export type SnapshotDataFragment = {
   id: string,
   pairs:  Array< {
+    __typename: string,
     pair: string,
     type: string,
     price: number,

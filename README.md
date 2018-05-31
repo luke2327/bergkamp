@@ -41,6 +41,10 @@
    - Directive로 실시간 시세반영 색깔변경로직 구현
    - appsync v10 alpha2 버전 적용
    - UI 디자인 가이드 css 적용(영역 배분, font, image 등등)
+  5. Feature_B121 차트 구현
+   - tradingview 모듈 추가
+   - tradingview 모듈중 udf-compatible-datafeed 수정
+   - 차트 구현(trade 모듈 추가)
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home
