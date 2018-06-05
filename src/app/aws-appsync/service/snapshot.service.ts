@@ -23,7 +23,7 @@ export class SnapshotService {
       this.appsync.hc().then(client => {
         const observable : ObservableQuery<GetSnapshotQuery> = client.watchQuery({
           query: GetSnapshot,
-          variables : { id : 'all_sample' },
+          variables : { id_ : 'all_sample' },
           fetchPolicy: 'network-only'
         });
         //getAllSnapshot 을 우선 가져온다.
@@ -35,16 +35,16 @@ export class SnapshotService {
           }
         });
         //subscription
-        observable.subscribeToMore({
-          document: SubscribeSnapshot,
-          variables : { id : 'all_sample' },
-          updateQuery: (prev: GetSnapshotQuery, {subscriptionData}) => {
-            console.log('subscribeToMore - updateQuery:', subscriptionData);
-
-            observer.next(subscriptionData.data.subscribeSnapshot.pairs);
-            return null;
-          }
-        });
+        // observable.subscribeToMore({
+        //   document: SubscribeSnapshot,
+        //   variables : { id_ : 'all_sample' },
+        //   updateQuery: (prev: GetSnapshotQuery, {subscriptionData}) => {
+        //     console.log('subscribeToMore - updateQuery:', subscriptionData);
+        //
+        //     observer.next(subscriptionData.data.subscribeSnapshot.pairs);
+        //     return null;
+        //   }
+        // });
       });
     });
   }

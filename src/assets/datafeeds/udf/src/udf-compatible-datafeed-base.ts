@@ -107,27 +107,29 @@ export class UDFCompatibleDatafeedBase implements IExternalDatafeed, IDatafeedQu
 		this._dataPulseProvider = new DataPulseProvider(this._historyProvider, updateFrequency);
 		this._quotesPulseProvider = new QuotesPulseProvider(this._quotesProvider);
 
-		this._configurationReadyPromise = this._requestConfiguration()
-			.then((configuration: UdfCompatibleConfiguration | null) => {
-
-				configuration = {
-					"supports_search":true,
-					"supports_group_request":false,
-					"supports_marks":true,
-					"supports_timescale_marks":true,
-					"supports_time":true,
-					"exchanges":[],
-					"symbols_types":[],
-					"supported_resolutions":["1","60"]
-				};
-				this._setupWithConfiguration(configuration);
-			});
+		// this._configurationReadyPromise = this._requestConfiguration()
+		// 	.then((configuration: UdfCompatibleConfiguration | null) => {
+		//
+		//
+		// 	});
+		this._configuration  = {
+			"supports_search":true,
+			"supports_group_request":false,
+			"supports_marks":true,
+			"supports_timescale_marks":true,
+			"supports_time":true,
+			"exchanges":[],
+			"symbols_types":[],
+			"supported_resolutions":["1","60"]
+		};
+		this._setupWithConfiguration(this._configuration);
 	}
 
 	public onReady(callback: OnReadyCallback): void {
-		this._configurationReadyPromise.then(() => {
-			callback(this._configuration);
-		});
+		// this._configurationReadyPromise.then(() => {
+		// 	callback(this._configuration);
+		// });
+		callback(this._configuration);
 	}
 
 	public getQuotes(symbols: string[], onDataCallback: QuotesCallback, onErrorCallback: (msg: string) => void): void {
@@ -244,15 +246,15 @@ export class UDFCompatibleDatafeedBase implements IExternalDatafeed, IDatafeedQu
 		console.log("getBarsCustom");
 	}
 	public subscribeBars(symbolInfo: LibrarySymbolInfo, resolution: ResolutionString, onTick: SubscribeBarsCallback, listenerGuid: string, onResetCacheNeededCallback: () => void): void {
-		this._dataPulseProvider.subscribeBars(symbolInfo, resolution, onTick, listenerGuid);
+		// this._dataPulseProvider.subscribeBars(symbolInfo, resolution, onTick, listenerGuid);
 	}
 
 	public unsubscribeBars(listenerGuid: string): void {
-		this._dataPulseProvider.unsubscribeBars(listenerGuid);
+		// this._dataPulseProvider.unsubscribeBars(listenerGuid);
 	}
 
 	protected _requestConfiguration(): Promise<UdfCompatibleConfiguration | null> {
-		
+
 		return this._send<UdfCompatibleConfiguration>('config')
 			.catch((reason?: string | Error) => {
 				logMessage(`UdfCompatibleDatafeed: Cannot get datafeed configuration - use default, error=${getErrorMessage(reason)}`);

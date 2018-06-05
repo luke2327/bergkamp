@@ -45,6 +45,11 @@
    - tradingview 모듈 추가
    - tradingview 모듈중 udf-compatible-datafeed 수정
    - 차트 구현(trade 모듈 추가)
+  6. Feature_B137 initialize api 구현
+   - rest-api 디렉터리내부에 구현
+   - service에서 observable 패턴으로 구현
+   - initialize api가 수행한후 main module이 실행되는 형태로 구현 -> app.component.onInit() 에다 구현하면됨.
+
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

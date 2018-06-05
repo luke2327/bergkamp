@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 // 외부 모듈 선언
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -48,7 +48,8 @@ const routes: Routes = [
     FooterModule,
     HeaderModule,
     MainModule,
-    TradeModule
+    TradeModule,
+    HttpModule
   ],
   exports: [
     HttpClientModule,

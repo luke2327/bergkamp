@@ -1,5 +1,5 @@
 fragment SnapshotData on Snapshot {
-  id
+  id_
   pairs {
     __typename
     pair
@@ -13,7 +13,7 @@ fragment SnapshotData on Snapshot {
   }
 }
 fragment HistoryData on History {
-  id
+  id_
   ut
   low
   high
@@ -22,35 +22,35 @@ fragment HistoryData on History {
   volume
 }
 
-query GetSnapshot($id: ID!) {
-    getSnapshot(id: $id) {
+query GetSnapshot($id_: ID!) {
+    getSnapshot(id_: $id_) {
         ...SnapshotData
     }
 }
-query GetHistory($id: ID!, $asending: Boolean, $ut: Int, $limit: Int) {
-    getHistory(id: $id, asending: $asending, ut: $ut, limit: $limit) {
+query GetHistory($id_: ID!, $asending: Boolean, $ut: Int, $limit: Int) {
+    getHistory(id_: $id_, asending: $asending, ut: $ut, limit: $limit) {
         ...HistoryData
     }
 }
 
-mutation PutDummySnapshot($id: ID!) {
-    putDummySnapshot(id: $id) {
+mutation PutDummySnapshot($id_: ID!) {
+    putDummySnapshot(id_: $id_) {
         ...SnapshotData
     }
 }
-mutation PutDummyHistory($id: ID!, $ut: Int!) {
-    putDummyHistory(id: $id, ut: $ut) {
+mutation PutDummyHistory($id_: ID!, $ut: Int!) {
+    putDummyHistory(id_: $id_, ut: $ut) {
         ...HistoryData
     }
 }
 
-subscription SubscribeSnapshot($id: ID!) {
-    subscribeSnapshot(id: $id) {
+subscription SubscribeSnapshot($id_: ID!) {
+    subscribeSnapshot(id_: $id_) {
         ...SnapshotData
     }
 }
-subscription SubscribeHistory($id: ID!) {
-    subscribeHistory(id: $id) {
+subscription SubscribeHistory($id_: ID!) {
+    subscribeHistory(id_: $id_) {
         ...HistoryData
     }
 }

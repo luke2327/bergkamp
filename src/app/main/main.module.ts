@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { AppsyncService } from '../aws-appsync/service/appsync.service';
 import { SnapshotService } from '../aws-appsync/service/snapshot.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
+import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
+import { GeolocationService } from '../rest-api/service/geolocation.service';
 import { QuotesComponent } from './quotes/quotes.component';
 import { TymxQuoteComponent } from './tymx-quote/tymx-quote.component';
 import { TymxTokenQuoteComponent } from './tymx-token-quote/tymx-token-quote.component';
@@ -26,7 +28,9 @@ import { RealTimeColorDirective } from '../directive/real-time-color.directive';
   providers: [
     AppsyncService,
     SnapshotService,
-    HistoryService
+    HistoryService,
+    SampleNoticeService,
+    GeolocationService
   ],
   declarations: [RealTimeColorDirective, MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]
 })

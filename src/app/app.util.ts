@@ -5,3 +5,11 @@ export function getLang(): string {
 export function setLang(lang: string): void {
   browserLang = lang;
 }
+//country 코드류 처리
+let browserCountry: string = 'US';
+export function getCountry(): string {
+  return browserLang;
+}
+export function setCountry(country: string): void {
+  browserCountry = country;
+}
