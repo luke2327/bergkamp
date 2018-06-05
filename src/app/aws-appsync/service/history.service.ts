@@ -11,39 +11,42 @@ export class HistoryService {
 
   queryObservable;
 
-  constructor(private appsync: AppsyncService) {
-
+  constructor(private appsync: AppsyncService) {}
+  startObserver(): void {
     this.queryObservable = new Observable((observer) => {
 
       this.appsync.hc().then(client => {
         //TODO 일단 id값 하나에 대해서 테스트해본후
         //그래프작업시 이부분은 수정하자
-        const observable : ObservableQuery<GetHistoryQuery> = client.watchQuery({
+        let now:number = Date.now();
+        console.log(now);
+        const observable: ObservableQuery<GetHistoryQuery> = client.watchQuery({
           query: GetHistory,
-          variables : { id : 'ETH/USDT', asending : false, ut: 1526910390, limit: 100 },
+          variables : { id : 'ETH/USDT,1m', asending : true, ut: 1726910390, limit: 100 },
           fetchPolicy: 'network-only'
         });
         //getAllSnapshot 을 우선 가져온다.
         observable.subscribe(({data}) => {
           if (data) {
-            console.log('GetHistory');
+            // alert(data.getHistory[0]);
+            console.log(data.getHistory[0]);
+            console.log(data.getHistory[1]);
             // 정보를 전달
             observer.next(data);
           }
         });
         //subscription
-        observable.subscribeToMore({
-          document: SubscribeHistory,
-          variables : { id : 'HAM/TEST'},
-          updateQuery: (prev: GetHistoryQuery, {subscriptionData}) => {
-            console.log('subscribeToMore - updateQuery:', subscriptionData);
-            //데이터는 observer로 알려주고 따로 리턴하진 않는다.
-            observer.next(subscriptionData);
-            return null;
-          }
-        });
+        // observable.subscribeToMore({
+        //   document: SubscribeHistory,
+        //   variables : { id : 'ETH/USDT,1m'},
+        //   updateQuery: (prev: GetHistoryQuery, {subscriptionData}) => {
+        //     console.log('subscribeToMore - updateQuery:', subscriptionData);
+        //     //데이터는 observer로 알려주고 따로 리턴하진 않는다.
+        //     observer.next(subscriptionData);
+        //     return null;
+        //   }
+        // });
       });
     });
   }
-
 }

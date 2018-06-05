@@ -12,20 +12,22 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
 import { MainModule } from './main/main.module';
-
+import { TradeModule } from './trade/trade.module';
 //커스텀 컴포넌트 선언
-import { MainComponent } from './main/main.component';
 import { RealTimeColorDirective } from './directive/real-time-color.directive';
-//라우팅 설정
-const routes: Routes = [
-  {path: '', component: MainComponent}
-];
-
+import { MainComponent } from './main/main.component';
+import { TradeComponent } from './trade/trade.component';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+//라우팅 설정
+const routes: Routes = [
+  {path: '', component: MainComponent},
+  {path: 'trade/:id', component: TradeComponent}
+];
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     FooterModule,
     HeaderModule,
-    MainModule
+    MainModule,
+    TradeModule
   ],
   exports: [
     HttpClientModule,

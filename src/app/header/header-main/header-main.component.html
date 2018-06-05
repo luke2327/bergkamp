@@ -49,12 +49,12 @@
             </a>
           </li>
           <li ngbDropdown class="header-nav-lang header-nav">
-            <a ngbDropdownToggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a ngbDropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <font class="header-nav-font">{{ langCodeObj.get(translate.currentLang) }}</font>
             </a>
             <div ngbDropdownMenu aria-labelledby="navbarDropdown">
-              <div class="dropdown-item" (click)="translate.use('en')" href="#">English</div>
-              <div class="dropdown-item" (click)="translate.use('ko')" href="#">한국어</div>
+              <a class="dropdown-item" (click)="setLanguage('en')" routerLink = '/'>English</a>
+              <a class="dropdown-item" (click)="setLanguage('ko')">한국어</a>
             </div>
           </li>
         </ul>

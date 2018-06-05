@@ -1,6 +1,7 @@
 fragment SnapshotData on Snapshot {
   id
   pairs {
+    __typename
     pair
     type
     price
