@@ -8,7 +8,7 @@ export function setLang(lang: string): void {
 //country 코드류 처리
 let browserCountry: string = 'US';
 export function getCountry(): string {
-  return browserLang;
+  return browserCountry;
 }
 export function setCountry(country: string): void {
   browserCountry = country;
