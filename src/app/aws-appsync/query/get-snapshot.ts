@@ -1,13 +1,14 @@
 import gql from 'graphql-tag';
 export default gql`
-query GetSnapshot($id: ID!) {
-  getSnapshot(id: $id) {
+query GetSnapshot($id_: ID!) {
+  getSnapshot(id_: $id_) {
     ...SnapshotData
   }
 }
 fragment SnapshotData on Snapshot {
-  id
+  id_
   pairs {
+    __typename
     pair
     type
     price

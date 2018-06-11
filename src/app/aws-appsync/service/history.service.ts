@@ -22,30 +22,29 @@ export class HistoryService {
         console.log(now);
         const observable: ObservableQuery<GetHistoryQuery> = client.watchQuery({
           query: GetHistory,
-          variables : { id : 'ETH/USDT,1m', asending : true, ut: 1726910390, limit: 100 },
+          variables : { id_ : 'ETH/USDT,1m' },
           fetchPolicy: 'network-only'
         });
         //getAllSnapshot 을 우선 가져온다.
         observable.subscribe(({data}) => {
           if (data) {
-            // alert(data.getHistory[0]);
-            console.log(data.getHistory[0]);
-            console.log(data.getHistory[1]);
+
             // 정보를 전달
             observer.next(data);
           }
         });
-        //subscription
-        // observable.subscribeToMore({
-        //   document: SubscribeHistory,
-        //   variables : { id : 'ETH/USDT,1m'},
-        //   updateQuery: (prev: GetHistoryQuery, {subscriptionData}) => {
-        //     console.log('subscribeToMore - updateQuery:', subscriptionData);
-        //     //데이터는 observer로 알려주고 따로 리턴하진 않는다.
-        //     observer.next(subscriptionData);
-        //     return null;
-        //   }
-        // });
+        // subscription
+        observable.subscribeToMore({
+          document: SubscribeHistory,
+          variables : { id_ : 'ETH/USDT,1m'},
+          updateQuery: (prev: GetHistoryQuery, {subscriptionData}) => {
+            console.log('subscribeToMore - updateQuery:', subscriptionData);
+            //데이터는 observer로 알려주고 따로 리턴하진 않는다.
+            console.log("hello");
+            observer.next(subscriptionData);
+            return null;
+          }
+        });
       });
     });
   }

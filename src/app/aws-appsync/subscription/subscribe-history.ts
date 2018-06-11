@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 export default gql`
-subscription SubscribeHistory($id: ID!) {
-  subscribeHistory(id: $id) {
+subscription SubscribeHistory($id_: ID!) {
+  subscribeHistory(id_: $id_) {
     ...HistoryData
   }
 }
 fragment HistoryData on History {
-  id
+  id_
   ut
   low
   high

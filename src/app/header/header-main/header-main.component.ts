@@ -20,7 +20,8 @@ export class HeaderMainComponent implements OnInit {
 
   setLanguage(lang: string): void {
     if(getLang() == lang){
-
+      //TODO 만약 언어가 같은걸 선택했다면 무언가 설정값을 바꿔줄게 있을지
+      // 혹은 리프레시할게 있을지 찾아보자.
     }else{
       setLang(lang);
       this.translate.use(lang);

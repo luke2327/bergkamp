@@ -19,10 +19,7 @@ import {
 import {
   UDFCompatibleDatafeed
 } from '../../../assets/datafeeds/udf/src/udf-compatible-datafeed';
-import {
-  TestHistory1m,
-  TestHistory1h
-} from '../../app.const';
+
 import { getLang } from '../../app.util';
 
 @Component({
@@ -128,6 +125,7 @@ export class ChartComponent implements OnInit {
       symbol: this.symbolId,
       datafeed: this.datafeedCustom,
       interval: this._interval,
+      timezone: 'Asia/Seoul',
       container_id: this._containerId,
       library_path: this._libraryPath,
       locale: getLanguageCode() || 'en',
@@ -159,7 +157,7 @@ export class ChartComponent implements OnInit {
 export class CustomUDFCompatibleDatafeed extends UDFCompatibleDatafeed {
   private _service: HistoryService;
   private _customInterval: string;
-  private historys: any;
+  private historys: any = [];
   public constructor(historyService: HistoryService, datafeedURL: string, updateFrequency: number = 10 * 1000) {
 		super(datafeedURL, updateFrequency);
     this._service = historyService;
@@ -175,37 +173,43 @@ export class CustomUDFCompatibleDatafeed extends UDFCompatibleDatafeed {
     const meta: HistoryMetadata = {
       noData: false,
     };
-    //TODO 우선 데이터 문제로 막아놓는다.
-    // this._service.startObserver();
-    // this._service.queryObservable.subscribe((value) => {
-    //   console.log(value.getHistory);
-    //   let results = value.getHistory;
-    //   const result:GetBarsResult = {
-    //     bars: bars,
-    //     meta: meta
-    //   }
-    //   // console.log(bars);
-    //   onResult(result.bars, result.meta);
-    // });
-    if(resolution=='1') {
-      this.historys = TestHistory1m.data.getHistory;
-    } else {
-      this.historys = TestHistory1h.data.getHistory;
-    }
-    let length: number = this.historys.length;
-    for(var i = length-1; i >=0; i--) {
-      let entry: any = this.historys[i];
-      let t:number = entry.ut * 1000;
-      const barValue: Bar = {
-        time: t,
-        close: entry.close,
-        open: entry.open,
-        high: entry.high,
-        low: entry.low,
-        volume: entry.volume
-      };
-      bars.push(barValue);
-    }
-    onResult(bars, meta);
+    this._service.startObserver();
+    this._service.queryObservable.subscribe((value) => {
+      console.log(value.getHistory);
+      let results = value.getHistory;
+      const result:GetBarsResult = {
+        bars: bars,
+        meta: meta
+      }
+      console.log('raul');
+      console.log(results);
+      if(this.historys.length == 0){
+        if(resolution=='1') {
+          this.historys = results;
+        } else {
+          this.historys = results;
+        }
+        let length: number = this.historys.length;
+        for(var i = length-1; i >=0; i--) {
+          let entry: any = this.historys[i];
+          let t:number = entry.ut * 1000;
+          const barValue: Bar = {
+            time: t,
+            close: entry.close,
+            open: entry.open,
+            high: entry.high,
+            low: entry.low,
+            volume: entry.volume
+          };
+          bars.push(barValue);
+        }
+        console.log(bars);
+        console.log(bars);
+        onResult(bars, meta);
+      }
+
+    });
+
+
 	}
 }

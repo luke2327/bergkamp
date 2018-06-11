@@ -1,13 +1,14 @@
 import gql from 'graphql-tag';
 export default gql`
-subscription SubscribeSnapshot($id: ID!) {
-  subscribeSnapshot(id: $id) {
-    ...SnapshotData
+subscription SubscribeHistory($id_: ID!) {
+  subscribeHistory(id_: $id_) {
+    ...HistoryData
   }
 }
 fragment SnapshotData on Snapshot {
-  id
+  id_
   pairs {
+    __typename
     pair
     type
     price

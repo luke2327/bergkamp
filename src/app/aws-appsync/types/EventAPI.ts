@@ -2,12 +2,12 @@
 //  This file was automatically generated and should not be edited.
 
 export type GetSnapshotQueryVariables = {
-  id: string,
+  id_: string,
 };
 
 export type GetSnapshotQuery = {
   getSnapshot:  {
-    id: string,
+    id_: string,
     pairs:  Array< {
       __typename: "Pair",
       pair: string,
@@ -23,7 +23,7 @@ export type GetSnapshotQuery = {
 };
 
 export type GetHistoryQueryVariables = {
-  id: string,
+  id_: string,
   asending?: boolean | null,
   ut?: number | null,
   limit?: number | null,
@@ -31,7 +31,7 @@ export type GetHistoryQueryVariables = {
 
 export type GetHistoryQuery = {
   getHistory:  Array< {
-    id: string,
+    id_: string,
     ut: number,
     low: number,
     high: number,
@@ -42,12 +42,12 @@ export type GetHistoryQuery = {
 };
 
 export type PutDummySnapshotMutationVariables = {
-  id: string,
+  id_: string,
 };
 
 export type PutDummySnapshotMutation = {
   putDummySnapshot:  {
-    id: string,
+    id_: string,
     pairs:  Array< {
       __typename: "Pair",
       pair: string,
@@ -63,13 +63,13 @@ export type PutDummySnapshotMutation = {
 };
 
 export type PutDummyHistoryMutationVariables = {
-  id: string,
+  id_: string,
   ut: number,
 };
 
 export type PutDummyHistoryMutation = {
   putDummyHistory:  {
-    id: string,
+    id_: string,
     ut: number,
     low: number,
     high: number,
@@ -80,12 +80,12 @@ export type PutDummyHistoryMutation = {
 };
 
 export type SubscribeSnapshotSubscriptionVariables = {
-  id: string,
+  id_: string,
 };
 
 export type SubscribeSnapshotSubscription = {
   subscribeSnapshot:  {
-    id: string,
+    id_: string,
     pairs:  Array< {
       __typename: "Pair",
       pair: string,
@@ -101,12 +101,12 @@ export type SubscribeSnapshotSubscription = {
 };
 
 export type SubscribeHistorySubscriptionVariables = {
-  id: string,
+  id_: string,
 };
 
 export type SubscribeHistorySubscription = {
   subscribeHistory:  {
-    id: string,
+    id_: string,
     ut: number,
     low: number,
     high: number,
@@ -117,7 +117,7 @@ export type SubscribeHistorySubscription = {
 };
 
 export type SnapshotDataFragment = {
-  id: string,
+  id_: string,
   pairs:  Array< {
     __typename: string,
     pair: string,
@@ -132,7 +132,7 @@ export type SnapshotDataFragment = {
 };
 
 export type HistoryDataFragment = {
-  id: string,
+  id_: string,
   ut: number,
   low: number,
   high: number,
