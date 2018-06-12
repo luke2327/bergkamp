@@ -33,7 +33,6 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
           if(this.quotesBeforePrices.get(entry.pair) === undefined){
             this.quotesBeforePrices.set(entry.pair, entry.price);
           }
-
         }
       }
     });
@@ -41,7 +40,6 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
   //이전가격과의 차이를 리턴해준다.
   priceDiff(pair, price): number {
     try {
-      console.log('start!'+ pair);
       let diff = price - this.quotesBeforePrices.get(pair);
       this.quotesBeforePrices.set(pair, price);
       return diff;

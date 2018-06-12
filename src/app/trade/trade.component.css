@@ -1,0 +1,19 @@
+.trade-body {
+  position: relative;
+  margin-top : 75px;
+  height: 2000px;
+}
+.trade-pair-info {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 350px;
+  height: 585px;
+}
+.trade-chart {
+  position: absolute;
+  width: 750px;
+  height: 524px;
+  left: 360px;
+  top: 0px;
+}

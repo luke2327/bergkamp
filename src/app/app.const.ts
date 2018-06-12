@@ -14,5 +14,6 @@ export const AppSyncOptions = {
   }
 }
 export const RestUrlGeoLoc: string = 'http://geoip.nekudo.com/api/';
-export const RestUrlBase: string = 'https://288ro8h2i2.execute-api.us-west-2.amazonaws.com/apidev/info/';
-export const RestUrlNotice: string = 'notice/';
+export const RestUrlBase: string = 'https://288ro8h2i2.execute-api.us-west-2.amazonaws.com/apidev/';
+export const RestUrlNotice: string = 'info/notice/';
+export const RestUrlFavorite: string = 'user/favorite/';

@@ -1,0 +1,29 @@
+.pair-info-card {
+  width : 348px;
+  height : 505px;
+}
+.card-padding {
+  padding: 1px;
+}
+.favorite > .favorite-button {
+  width : 15px;
+  height : 15px;
+  margin-left : 15px;
+  margin-top : 10px;
+  background : url("/assets/img/trading_market_list_favorite_off.png") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.favorite > .favorite-button-checked {
+  width : 15px;
+  height : 15px;
+  margin-left : 15px;
+  margin-top : 10px;
+  background : url("/assets/img/trading_market_list_favorite_on.png") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
