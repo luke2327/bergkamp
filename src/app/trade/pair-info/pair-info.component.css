@@ -2,6 +2,15 @@
   width : 348px;
   height : 505px;
 }
+.mat-tab-border {
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  top: 0px;
+  border-radius: 30px;
+  border: 1px solid;
+  color: #e0e0e8;
+}
 .card-padding {
   padding: 1px;
 }

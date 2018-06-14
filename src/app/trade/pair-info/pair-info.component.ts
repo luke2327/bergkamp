@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
+import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 import { MatTableDataSource, MatSort, MatTable } from '@angular/material';
 import { MatTabChangeEvent } from '@angular/material';
@@ -29,10 +29,9 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
   //table 객체
   @ViewChild('table') table: MatTable<any>;
 
-  constructor(private snapshotService: SnapshotService,
+  constructor(private snapshotDataService: SnapshotDataService,
     private getFavoriteService: GetFavoriteService,
     private putFavoriteService: PutFavoriteService) {
-    this.snapshotService.startObserver();
     this.quotesBeforePrices = new Map<string, number>();
     this.quotesValuesByBase = new Map<string, any>();
     this.baseIds = new Map<string, number>();
@@ -41,7 +40,8 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
   ngAfterViewInit(){
     //일단 요약류 정보를 가져오자
-    this.snapshotService.queryObservable.subscribe((value) => {
+    this.snapshotDataService.queryObservable.subscribe((value) => {
+      console.log('this value&&&&');
       this.quotesValues = [];
       let index = 0;
       for(let entry of value){
@@ -51,10 +51,12 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
         if(this.quotesBeforePrices.get(entry.pair) === undefined){
           this.quotesBeforePrices.set(entry.pair, entry.price);
         }
+        this.quotesValuesByBase = new Map<string, any>();
       }
       this.baseLists = this.getBaseLists();
       this.getQuotesValuesByBase();
       this.dataSource = this.quotesValuesByBase.get(this.baseLists[0]);
+      // this.table.renderRows();
     });
     //favorite도 불러오자
     //요약류 정보와 async하게 동작하고

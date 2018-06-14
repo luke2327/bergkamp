@@ -1,0 +1,29 @@
+<div class="coin-info" *ngIf="isValidCoinInfo">
+  <img class="coin-info-img"/>
+  <p class="coin-team-name">Manchester United</p>
+  <p class="coin-name">{{ coinInfo.pair }}</p>
+  <div class="coin-detail">
+    <ul>
+      <li>Football/England/PremierLeague</li>
+      <li>
+        <a class="coin-more-info" href="#">more info</a>
+      </li>
+    </ul>
+  </div>
+  <div class="last-price">
+    <p class="title">Last Price</p>
+    <p [appRealTimeColor]="diffPrice" class="price">{{ coinInfo.price }}</p>
+    <p [appRealTimeColor]="diffPrice" class="price-dollar">$10.3456</p>
+  </div>
+  <div class="price-change-24">
+    <p class="title">24H Change</p>
+    <p [appRealTimeColor]="coinInfo.changepct24" class="diff">{{ significantFig(coinInfo.changepct24, 2) }}%</p>
+  </div>
+</div>
+<div class="coin-info-24h" *ngIf="isValidCoinInfo">
+  <ul>
+    <li>24H High : <span>{{ coinInfo.high24 }}</span></li>
+    <li>24H Low : <span>{{ coinInfo.low24 }}</span></li>
+    <li>24H Volume : <span>{{ coinInfo.volume24 }}</span></li>
+  </ul>
+</div>

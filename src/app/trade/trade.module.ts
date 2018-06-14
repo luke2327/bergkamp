@@ -42,8 +42,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import { TradeFavoriteButtonDirective } from '../directive/trade-favorite-button.directive';
-
+import { CoinInfoComponent } from './coin-info/coin-info.component';
+import { DirectiveModule } from '../directive/directive.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -57,13 +57,14 @@ import { TradeFavoriteButtonDirective } from '../directive/trade-favorite-button
     MatCheckboxModule,
     MatTableModule,
     MatSortModule,
-    CdkTableModule
+    CdkTableModule,
+    DirectiveModule
   ],
   declarations: [
-    TradeFavoriteButtonDirective,
     TradeComponent,
     ChartComponent,
-    PairInfoComponent
+    PairInfoComponent,
+    CoinInfoComponent
   ]
 })
 export class TradeModule { }

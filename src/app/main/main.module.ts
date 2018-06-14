@@ -4,6 +4,7 @@ import { MainComponent } from './main.component';
 import { RouterModule } from '@angular/router';
 import { AppsyncService } from '../aws-appsync/service/appsync.service';
 import { SnapshotService } from '../aws-appsync/service/snapshot.service';
+import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
 import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
 import { GeolocationService } from '../rest-api/service/geolocation.service';
@@ -18,7 +19,7 @@ import { AppInstallComponent } from './app-install/app-install.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
-import { RealTimeColorDirective } from '../directive/real-time-color.directive';
+import { DirectiveModule } from '../directive/directive.module';
 @NgModule({
   imports: [
     NgbModule.forRoot(),
@@ -26,6 +27,7 @@ import { RealTimeColorDirective } from '../directive/real-time-color.directive';
     RouterModule,
     HttpClientModule,
     TranslateModule,
+    DirectiveModule
   ],
   providers: [
     AppsyncService,
@@ -34,8 +36,10 @@ import { RealTimeColorDirective } from '../directive/real-time-color.directive';
     SampleNoticeService,
     GeolocationService,
     GetFavoriteService,
-    PutFavoriteService
+    PutFavoriteService,
+    SnapshotDataService
   ],
-  declarations: [RealTimeColorDirective, MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]
+  exports: [],
+  declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]
 })
 export class MainModule { }
