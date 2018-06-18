@@ -12,7 +12,7 @@ export class RealTimeColorDirective {
 
   @Input('appRealTimeColor') changeValue: number;
 
-  ngOnInit() {
+  ngOnChanges(changes: any) {
     try {
       if(this.changeValue > 0){
         this.el.nativeElement.style.color = "#16a277";

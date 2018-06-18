@@ -16,4 +16,9 @@
   height: 524px;
   left: 360px;
   top: 0px;
+  border-radius: 10px;
+}
+.trade-app-coin-info {
+  width: 750px;
+  height: 130px;
 }

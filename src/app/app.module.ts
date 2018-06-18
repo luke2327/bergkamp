@@ -51,8 +51,8 @@ import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
 import { MainModule } from './main/main.module';
 import { TradeModule } from './trade/trade.module';
+import { DirectiveModule } from './directive/directive.module';
 //커스텀 컴포넌트 선언
-import { RealTimeColorDirective } from './directive/real-time-color.directive';
 import { MainComponent } from './main/main.component';
 import { TradeFavoriteButtonDirective } from './directive/trade-favorite-button.directive';
 import { TradeComponent } from './trade/trade.component';
@@ -92,7 +92,8 @@ const routes: Routes = [
     HeaderModule,
     MainModule,
     TradeModule,
-    HttpModule
+    HttpModule,
+    DirectiveModule
   ],
   exports: [
     HttpClientModule,
@@ -129,7 +130,7 @@ const routes: Routes = [
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

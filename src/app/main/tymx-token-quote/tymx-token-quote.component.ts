@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
+import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
+import { significantFig } from '../../app.util';
 @Component({
   selector: 'app-tymx-token-quote',
   templateUrl: './tymx-token-quote.component.html',
@@ -9,8 +11,8 @@ import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 export class TymxTokenQuoteComponent implements OnInit, AfterViewInit {
 
   quotesValues: Array<SnapshotDataFragment> = [];
-
-  constructor(private snapshotService: SnapshotService) {
+  significantFig = significantFig;
+  constructor(private snapshotService: SnapshotService, private snapshotDataService:SnapshotDataService) {
   }
 
   ngOnInit() {
@@ -18,7 +20,8 @@ export class TymxTokenQuoteComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(){
 
-    this.snapshotService.queryObservable.subscribe((value) => {
+    this.snapshotDataService.queryObservable.subscribe((value) => {
+      console.log('this');
       this.quotesValues = [];
       for(let entry of value){
         if(entry.type != 'BASE'){
@@ -27,23 +30,5 @@ export class TymxTokenQuoteComponent implements OnInit, AfterViewInit {
       }
       console.log(this.quotesValues);
     });
-  }
-  //유효숫자 리턴
-  //기획사항 : 10보자 작으면 소수점 8자리까지
-  //아닐경우 10억보다 크면 소숫점X, 그외는 유효숫자만큼
-  //TODO 동일한 함수가 tymx-quote.component.ts에 있음
-  //추후 기획에 따라 합쳐놓을지 나눌지 결정하자.
-  significantFig(price): number {
-  let decimalPoint: number = 8;
-  if(price < 10) {
-    decimalPoint = 8;
-  } else {
-    decimalPoint = 9 - (Math.floor(Math.log10(price)) + 1);
-    if(decimalPoint < 0){
-      decimalPoint = 0;
-    }
-  }
-
-  return price.toFixed(decimalPoint);
   }
 }
