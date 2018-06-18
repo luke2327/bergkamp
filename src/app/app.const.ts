@@ -17,3 +17,13 @@ export const RestUrlGeoLoc: string = 'http://geoip.nekudo.com/api/';
 export const RestUrlBase: string = 'https://288ro8h2i2.execute-api.us-west-2.amazonaws.com/apidev/';
 export const RestUrlNotice: string = 'info/notice/';
 export const RestUrlFavorite: string = 'user/favorite/';
+
+export const enum BidAskTableType {
+  BidOnly = 0,
+  AskOnly = 1,
+  BidAndAsk = 2
+}
+export const enum BidAskType {
+  Bid = 0,
+  Ask = 1
+}

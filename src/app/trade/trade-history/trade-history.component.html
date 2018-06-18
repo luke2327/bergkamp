@@ -1,0 +1,13 @@
+<div class="trade-history-title">
+  <p>Trade history</p>
+</div>
+<div class="row nopadding trade-history-header">
+  <div class="col-4 nopadding table-time">Time</div>
+  <div class="col-4 nopadding table-price">Price(TMX)</div>
+  <div class="col-4 nopadding table-amount">Amount(TMX)</div>
+</div>
+<div class="row nopadding trade-history-table" *ngFor="let value of sampleData.history">
+  <p class="col-4 nopadding time">{{ value.time }}</p>
+  <p class="col-4 nopadding price" [appRealTimeColor]="getType(value.type)">{{ value.price }}</p>
+  <p class="col-4 nopadding amount">{{ value.amount }}</p>
+</div>

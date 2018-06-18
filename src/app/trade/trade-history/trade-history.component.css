@@ -1,0 +1,46 @@
+.trade-history-title {
+  height: 38px;
+  border-bottom: 1px solid #e0e0e8;
+  font-size: 13px;
+  font-weight: bold;
+  color: black;
+  padding-left: 15px;
+  padding-top: 8px;
+}
+.trade-history-header {
+  height: 31px;
+  border-bottom: 1px solid #e0e0e8;
+  font-size: 11px;
+  color: #585858;
+  padding-top: 6px !important;
+}
+.table-time {
+  text-align: left;
+  padding-left: 15px !important;
+}
+.table-price {
+  text-align: center;
+}
+.table-amount {
+  text-align: right;
+  padding-right: 15px !important;
+}
+.trade-history-table {
+  height: 31px;
+  border-top: 1px solid #f4f4f4;
+  font-size: 11px;
+  padding-top: 6px !important;
+}
+.time {
+  text-align: left;
+  padding-left: 15px !important;
+  color: #afb2be;
+}
+.price {
+  text-align: center;
+}
+.amount {
+  text-align: right;
+  padding-right: 15px !important;
+  color: #585858;
+}

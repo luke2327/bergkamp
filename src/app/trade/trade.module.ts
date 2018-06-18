@@ -44,6 +44,8 @@ import {
 } from '@angular/material';
 import { CoinInfoComponent } from './coin-info/coin-info.component';
 import { DirectiveModule } from '../directive/directive.module';
+import { BidAskTableComponent } from './bid-ask-table/bid-ask-table.component';
+import { TradeHistoryComponent } from './trade-history/trade-history.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { DirectiveModule } from '../directive/directive.module';
     TranslateModule,
     MatCardModule,
     MatTabsModule,
+    MatDividerModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -64,7 +67,9 @@ import { DirectiveModule } from '../directive/directive.module';
     TradeComponent,
     ChartComponent,
     PairInfoComponent,
-    CoinInfoComponent
+    CoinInfoComponent,
+    BidAskTableComponent,
+    TradeHistoryComponent
   ]
 })
 export class TradeModule { }
