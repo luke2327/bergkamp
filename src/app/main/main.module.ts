@@ -7,6 +7,8 @@ import { SnapshotService } from '../aws-appsync/service/snapshot.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
 import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
 import { GeolocationService } from '../rest-api/service/geolocation.service';
+import { GetFavoriteService } from '../rest-api/service/get-favorite.service';
+import { PutFavoriteService } from '../rest-api/service/put-favorite.service';
 import { QuotesComponent } from './quotes/quotes.component';
 import { TymxQuoteComponent } from './tymx-quote/tymx-quote.component';
 import { TymxTokenQuoteComponent } from './tymx-token-quote/tymx-token-quote.component';
@@ -30,7 +32,9 @@ import { RealTimeColorDirective } from '../directive/real-time-color.directive';
     SnapshotService,
     HistoryService,
     SampleNoticeService,
-    GeolocationService
+    GeolocationService,
+    GetFavoriteService,
+    PutFavoriteService
   ],
   declarations: [RealTimeColorDirective, MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]
 })

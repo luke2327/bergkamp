@@ -1,0 +1,43 @@
+<mat-tab-group class="pair-info-tab" [disableRipple]="true"
+  [@.disabled]="true" (selectedTabChange)="tabChanged($event)">
+  <mat-tab *ngFor="let base of baseLists" label={{base}} ></mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <img class="tab-favorite" src="/assets/img/trading_market_tab_favorite.png"/>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+<!-- tab 내부로 table이 들어가면 sort가 안되는 문제때문에 tab은 모양만 내고 table은밖에서 동작하게 처리함-->
+<div class="card-padding">
+  <mat-card class="pair-info-card nopadding">
+    <mat-card-content>
+      <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+        <ng-container matColumnDef="pair">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Pair </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a class="row">
+              <div class="favorite">
+                <input [appTradeFavoriteButton]="isFavorite(element.pair)"
+                  type="button" class="favorite-button" (click)="setFavorite(element.pair)">
+              </div>
+              {{element.pair}}
+            </a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="changepct24">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> changepct24 </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.changepct24}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row class="nopadding" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>

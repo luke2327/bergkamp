@@ -49,6 +49,10 @@
    - rest-api 디렉터리내부에 구현
    - service에서 observable 패턴으로 구현
    - initialize api가 수행한후 main module이 실행되는 형태로 구현 -> app.component.onInit() 에다 구현하면됨.
+  7. Feature_B203 Favorite 요약류 구현
+   - angular material 적용
+   - favorite api 연동
+   - sortable table 구현
 
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
