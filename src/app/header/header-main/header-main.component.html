@@ -48,6 +48,11 @@
               <font class="header-nav-font">{{ 'W0008' | translate }}</font>
             </a>
           </li>
+          <li class="header-nav-noti header-nav">
+            <a (click) = "notiToggle()">
+              <font class="header-nav-font">Noti</font>
+            </a>
+          </li>
           <li ngbDropdown class="header-nav-lang header-nav">
             <a ngbDropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <font class="header-nav-font">{{ langCodeObj.get(translate.currentLang) }}</font>
@@ -62,3 +67,6 @@
     </div>
   </div>
 </header>
+<mat-card class="header-noti nopadding mat-elevation-z8" [appNotiVisibility]="isNoti">
+  <app-header-noti></app-header-noti>
+</mat-card>

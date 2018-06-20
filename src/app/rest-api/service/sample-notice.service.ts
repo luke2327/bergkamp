@@ -11,8 +11,7 @@ import { getLang, getCountry } from '../../app.util';
 //헤더정보를 처리하도록 한다.
 const httpOptions = {
   headers: new HttpHeaders({
-    'Accept' : 'application/x-www-form-urlencoded',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     'Locale' : getLang() + '-' + getCountry()
   })
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
@@ -15,12 +15,11 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
   //가격변동시 색깔표현을 위해 버퍼용 객체를 만든다.
   quotesBeforePrices: any;
   significantFig = significantFig;
-  constructor(private snapshotDataService: SnapshotDataService) {
+  constructor(private snapshotDataService: SnapshotDataService,
+    private changeDetectorRef:ChangeDetectorRef) {
     //quotesValues 객체를 그대로 가져가기보단 필요한 값을 map으로 관리
     this.quotesBeforePrices = new Map<string, number>();
   }
-
-
   ngOnInit() {}
   ngAfterViewInit(){
     //Lifecycle hook that is called after a component's view has been fully initialized.
@@ -37,6 +36,10 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
           }
         }
       }
+      //문제가 추가로 확인되어
+      //이 부분을 추가함
+      //https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked
+      this.changeDetectorRef.detectChanges();
     });
   }
   //이전가격과의 차이를 리턴해준다.

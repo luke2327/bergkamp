@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { DirectiveModule } from '../directive/directive.module';
+import { NotiToggleService } from '../service/noti-toggle.service';
 @NgModule({
   imports: [
     NgbModule.forRoot(),
@@ -37,7 +38,8 @@ import { DirectiveModule } from '../directive/directive.module';
     GeolocationService,
     GetFavoriteService,
     PutFavoriteService,
-    SnapshotDataService
+    SnapshotDataService,
+    NotiToggleService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

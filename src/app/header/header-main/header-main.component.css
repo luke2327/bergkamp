@@ -85,3 +85,12 @@
   padding-right: 25px;
   padding-top: 5px;
 }
+.header-noti {
+  position: absolute;
+  width : 280px;
+  max-height: 280px;
+  top: 105px;
+  right: 155px;
+  z-index: 1000;
+  border-radius: 10px;
+}

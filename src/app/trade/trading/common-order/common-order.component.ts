@@ -24,6 +24,7 @@ export class CommonOrderComponent implements OnInit {
   isLogin: boolean = true;
   isLimit: boolean = false;
   isBuy: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {

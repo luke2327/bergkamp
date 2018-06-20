@@ -21,6 +21,7 @@ footer {
   width: 1400px;
   margin-right: auto;
   margin-left: auto;
+  height: auto;
 }
 .nopadding {
   padding: 0 !important;
@@ -68,42 +69,66 @@ footer {
 .mat-tab-header {
   border-bottom: none!important;
 }
-.order-tab .mat-tab-header {
+.order-tab-default .mat-tab-header {
   border-bottom: none!important;
 }
-.order-tab .mat-tab-body-content {
+.order-tab-default .mat-tab-body-content {
   overflow: hidden;
 }
-.order-tab .mat-tab-labels {
+.order-tab-default .mat-tab-labels {
   /* border-bottom: 1px solid black !important; */
   height: 33px !important;
-  width: 314px !important;
   margin-top : 12px;
-  margin-left: 30px;
   border-bottom: 3px #f4f4f4 solid;
 }
-.order-tab .mat-tab-label-active {
+.order-tab-default .mat-tab-label-active {
   font-size: 17px;
   font-weight: bold;
   color: black !important;
 }
-.order-tab .mat-tab-label {
-  width: 157px !important;
+.order-tab-default .mat-tab-label {
   height: 33px !important;
   background-color: transparent !important;
   color: #afb2be;
   opacity: 1;
 }
-.order-tab .mat-tab-label-content {
+.order-tab-default .mat-tab-label-content {
   height : 33px !important;
   font-size: 17px;
   font-weight: bold;
 }
-.order-tab .mat-ink-bar, .order-tab .mat-ink-bar{
+.order-tab-default .mat-ink-bar, .order-tab-default .mat-ink-bar{
   background: #3078ff !important;
   height: 3px;
-  width: 157px !important;
   z-index: 10 !important;
+}
+.order-tab .mat-ink-bar, .order-tab .mat-ink-bar{
+  width: 157px !important;
+}
+.order-history-tab .mat-ink-bar, .order-history-tab .mat-ink-bar{
+  height: 3px;
+  width: 185px !important;
+}
+.order-tab .mat-ink-bar, .order-tab .mat-ink-bar{
+  width: 157px !important;
+}
+.order-tab .mat-tab-labels {
+  width: 314px !important;
+  margin-left: 30px;
+}
+.order-history-tab .mat-tab-labels {
+  width: 370px !important;
+  margin-left: 30px;
+}
+.order-tab .mat-tab-label {
+  width: 157px !important;
+}
+.order-history-tab .mat-tab-labels {
+  width: 370px !important;
+  margin-left: 30px;
+}
+.order-history-tab .mat-tab-label {
+  width: 185px !important;
 }
 /**angular material bug see : https://github.com/angular/material2/issues/7291" 개귀찮..;;*/
 .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
