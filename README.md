@@ -53,7 +53,15 @@
    - angular material 적용
    - favorite api 연동
    - sortable table 구현
-
+  8. Feature_B201 그래프 상단 요약정보 구현
+   - 디자인 가이드 적용.
+   - Directive 모듈 생성
+   - appsync류 service 개선
+   - 몇가지 코드류 개선
+  9. Feature_B203_1 호가 정보전달 및 GUI 개발
+   - 호가창 구현(animation 포함)
+   - 거래 내역 요약 구현
+   - 일단 GUI만 우선 구현함
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

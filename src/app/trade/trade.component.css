@@ -22,3 +22,18 @@
   width: 750px;
   height: 130px;
 }
+.bid-ask-table {
+  position: absolute;
+  right: 0px;
+  width: 280px;
+  height: 524px;
+  border-radius: 10px;
+}
+.trade-history {
+  position: absolute;
+  right: 0px;
+  top : 534px;
+  border-radius: 10px;
+  width: 280px;
+  height: 378px;
+}
