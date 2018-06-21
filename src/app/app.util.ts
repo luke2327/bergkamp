@@ -1,3 +1,4 @@
+import { SupportedLang } from './app.const';
 let browserLang: string = 'en';
 export function getLang(): string {
   return browserLang;
@@ -33,4 +34,12 @@ export function significantFig(price: number): number {
 export function significantFigByDP(price: number, decimalPoint: number): number {
   // console.log(price);
   return Number(price.toFixed(decimalPoint));
+}
+
+export function getSupportedLangMap(): any {
+  let obj = new Map();
+  for(let value of SupportedLang.langs) {
+    obj.set(value.langCode, value.langName);
+  }
+  return obj;
 }

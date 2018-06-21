@@ -27,3 +27,18 @@ export const enum BidAskType {
   Bid = 0,
   Ask = 1
 }
+//지원 언어
+export const SupportedLang = {
+  "langs" : [
+    {
+      "langCode" : "en",
+      "langName" : "English",
+      "img" : "/assets/img/web_navi_language_en.png"
+    },
+    {
+      "langCode" : "ko",
+      "langName" : "한국어",
+      "img" : "/assets/img/web_navi_language_ko.png"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-quotes',
   templateUrl: './quotes.component.html',
-  styleUrls: ['./quotes.component.css']
+  styleUrls: ['./quotes.component.sass']
 })
 //시세요약류 정보 관리 component example
 //TODO 아직 정확한 정보가 없으므로 추후 변경하도록 한다.

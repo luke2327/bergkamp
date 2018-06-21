@@ -3,7 +3,7 @@ import { CommonOrderHistoryComponent } from '../common-order-history/common-orde
 @Component({
   selector: 'app-open-order',
   templateUrl: '../common-order-history/common-order-history.component.html',
-  styleUrls: ['../common-order-history/common-order-history.component.css']
+  styleUrls: ['../common-order-history/common-order-history.component.sass']
 })
 export class OpenOrderComponent extends CommonOrderHistoryComponent implements OnInit {
 

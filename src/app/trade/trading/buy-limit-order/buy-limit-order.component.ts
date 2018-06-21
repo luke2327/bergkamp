@@ -3,7 +3,7 @@ import { CommonOrderComponent } from '../common-order/common-order.component';
 @Component({
   selector: 'app-buy-limit-order',
   templateUrl: '../common-order/common-order.component.html',
-  styleUrls: ['../common-order/common-order.component.css']
+  styleUrls: ['../common-order/common-order.component.sass']
 })
 export class BuyLimitOrderComponent extends CommonOrderComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { SampleNoticeService } from '../../rest-api/service/sample-notice.servic
 @Component({
   selector: 'app-main-notice',
   templateUrl: './main-notice.component.html',
-  styleUrls: ['./main-notice.component.css']
+  styleUrls: ['./main-notice.component.sass']
 })
 //carousel 구현 샘플만 간략히 해둔다
 //TODO 추후 실제데이터로 바꿔야함

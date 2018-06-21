@@ -43,23 +43,30 @@
               <font class="header-nav-font">{{ 'W0006' | translate }}</font>
             </a>
           </li>
-          <li class="header-nav-wallet header-nav">
+          <li *ngIf="isLogin" class="header-nav-wallet header-nav">
             <a href="#">
               <font class="header-nav-font">{{ 'W0008' | translate }}</font>
             </a>
           </li>
-          <li class="header-nav-noti header-nav">
+          <li *ngIf="isLogin" class="header-nav-noti header-nav">
             <a (click) = "notiToggle()">
               <font class="header-nav-font">Noti</font>
             </a>
           </li>
-          <li ngbDropdown class="header-nav-lang header-nav">
+          <li class="header-nav-lang header-nav">
+            <!--
             <a ngbDropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <font class="header-nav-font">{{ langCodeObj.get(translate.currentLang) }}</font>
             </a>
             <div ngbDropdownMenu aria-labelledby="navbarDropdown">
               <a class="dropdown-item" (click)="setLanguage('en')" routerLink = '/'>English</a>
               <a class="dropdown-item" (click)="setLanguage('ko')">한국어</a>
+            </div>
+            -->
+            <div class="lang-sel-box" (click) = "langToggle()">
+              <img class="national" src="/assets/img/web_navi_language_en.png"/>
+              <span>{{ langCodeObj.get(translate.currentLang) }}</span>
+              <img class="arrow right-div" src="/assets/img/web_navi_language_arrow_off.png"/>
             </div>
           </li>
         </ul>
@@ -70,3 +77,6 @@
 <mat-card class="header-noti nopadding mat-elevation-z8" [appNotiVisibility]="isNoti">
   <app-header-noti></app-header-noti>
 </mat-card>
+<div class="lang-popover" [appNotiVisibility]="isLang">
+  <app-lang-popover></app-lang-popover>
+</div>

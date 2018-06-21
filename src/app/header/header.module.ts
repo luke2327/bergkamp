@@ -43,6 +43,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { LangPopoverComponent } from './lang-popover/lang-popover.component';
 @NgModule({
   imports: [
     NgbModule,
@@ -55,6 +56,6 @@ import {
   exports: [
     HeaderComponent
   ],
-  declarations: [HeaderComponent, HeaderMainComponent, HeaderNotiComponent]
+  declarations: [HeaderComponent, HeaderMainComponent, HeaderNotiComponent, LangPopoverComponent]
 })
 export class HeaderModule { }
