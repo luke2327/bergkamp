@@ -1,0 +1,30 @@
+<!--
+tab 헤더만 구현하고
+나머진 하위 component에서 구현해 코드량을 줄인다
+--> 
+<div class="buy-order">
+  <div class="order-title">
+    <p>Buy Order</p>
+  </div>
+  <mat-tab-group class="order-tab" [disableRipple]="true" [@.disabled]="true">
+    <mat-tab label="Limit">
+      <app-buy-limit-order></app-buy-limit-order>
+    </mat-tab>
+    <mat-tab label="Market">
+      <app-buy-market-order></app-buy-market-order>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div class="sell-order">
+  <div class="order-title">
+    <p>Sell Order</p>
+  </div>
+  <mat-tab-group class="order-tab" [disableRipple]="true" [@.disabled]="true">
+    <mat-tab label="Limit">
+      <app-sell-limit-order></app-sell-limit-order>
+    </mat-tab>
+    <mat-tab label="Market">
+      <app-sell-market-order></app-sell-market-order>
+    </mat-tab>
+  </mat-tab-group>
+</div>

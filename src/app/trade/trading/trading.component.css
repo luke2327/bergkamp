@@ -1,0 +1,29 @@
+.buy-order {
+  position: absolute;
+  width: 376px;
+  height: 338px;
+  left: 0px;
+  top: 20px;
+  border-right: 1px solid #e0e0e8;
+}
+.sell-order {
+  position: absolute;
+  width: 375px;
+  height: 338px;
+  right: 0px;
+  top: 20px;
+}
+.order-title {
+  height: 25px;
+  padding-left: 30px;
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+}
+.order-title p {
+  padding: 0px;
+}
+.order-tab {
+  height: 318px;
+  
+}

@@ -37,3 +37,11 @@
   width: 280px;
   height: 378px;
 }
+.trading {
+  position: absolute;
+  width: 750px;
+  height: 378px;
+  top: 534px;
+  right: 290px;
+  border-radius: 10px;
+}

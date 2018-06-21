@@ -62,6 +62,9 @@
    - 호가창 구현(animation 포함)
    - 거래 내역 요약 구현
    - 일단 GUI만 우선 구현함
+  10. Feature_B204 매수/매도 정보전달및 GUI 개발
+   - 일단 gui만 구현한다
+   - 매수/매도 시장가/지정가 거래 ui는 비슷하므로 좀더 공통으로 구현할수 있도록 하자
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home
