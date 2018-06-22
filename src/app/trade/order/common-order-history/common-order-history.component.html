@@ -1,0 +1,27 @@
+<div class="row nopadding order-history-title">
+  <p class="col-date">Date</p>
+  <p class="col-pair">Pair</p>
+  <p class="col-type">Type</p>
+  <p class="col-order">Order</p>
+  <p class="col-price">Price</p>
+  <p class="col-amount">Amount</p>
+  <p class="col-filled">Filled</p>
+  <p class="col-total">Total</p>
+  <p *ngIf="isOpenOrders" class="col-cancel">Cancel</p>
+  <p *ngIf="!isOpenOrders" class="col-status">Status</p>
+</div>
+<div *ngFor="let value of sampleData.data" class="row nopadding order-history-row">
+  <p class="col-date">{{ value.date }}</p>
+  <p class="col-pair">{{ value.pair }}</p>
+  <p class="col-type">{{ value.type }}</p>
+  <p class="col-order" [appRealTimeColor]="getType(value.order)">{{ value.order }}</p>
+  <p class="col-price">{{ value.price }}</p>
+  <p class="col-amount">{{ value.amount }}</p>
+  <p class="col-filled">{{ value.filled }}</p>
+  <p class="col-total">{{ value.total }}</p>
+  <p *ngIf="isOpenOrders" class="col-cancel"><a href="#">Cancel</a></p>
+  <p *ngIf="!isOpenOrders" class="col-status">{{ value.status }}</p>
+</div>
+<div *ngIf="!isOpenOrders" class="see-all">
+  <a href="#">See All</a>
+</div>

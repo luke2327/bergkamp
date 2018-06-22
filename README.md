@@ -65,6 +65,10 @@
   10. Feature_B204 매수/매도 정보전달및 GUI 개발
    - 일단 gui만 구현한다
    - 매수/매도 시장가/지정가 거래 ui는 비슷하므로 좀더 공통으로 구현할수 있도록 하자
+  11. Feature_B205 App 거래화면 내거래
+   - 내거래 화면 구현
+   - 상단 거래내역 알람 구현
+   - Main쪽 사소한(?) 에러 수정
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

@@ -52,6 +52,10 @@ import { BuyLimitOrderComponent } from './trading/buy-limit-order/buy-limit-orde
 import { SellLimitOrderComponent } from './trading/sell-limit-order/sell-limit-order.component';
 import { SellMarketOrderComponent } from './trading/sell-market-order/sell-market-order.component';
 import { BuyMarketOrderComponent } from './trading/buy-market-order/buy-market-order.component';
+import { OrderComponent } from './order/order.component';
+import { OpenOrderComponent } from './order/open-order/open-order.component';
+import { OrderHistoryComponent } from './order/order-history/order-history.component';
+import { CommonOrderHistoryComponent } from './order/common-order-history/common-order-history.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -81,7 +85,11 @@ import { BuyMarketOrderComponent } from './trading/buy-market-order/buy-market-o
     BuyLimitOrderComponent,
     SellLimitOrderComponent,
     SellMarketOrderComponent,
-    BuyMarketOrderComponent
+    BuyMarketOrderComponent,
+    OrderComponent,
+    OpenOrderComponent,
+    OrderHistoryComponent,
+    CommonOrderHistoryComponent
   ]
 })
 export class TradeModule { }

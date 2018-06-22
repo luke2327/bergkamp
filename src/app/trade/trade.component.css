@@ -1,17 +1,18 @@
+
 .trade-body {
   position: relative;
+  height: auto;
   margin-top : 75px;
-  height: 2000px;
 }
 .trade-pair-info {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
+  display: inline-block;
   width: 350px;
-  height: 585px;
+  height: 524px;
 }
 .trade-chart {
   position: absolute;
+  float: right;
   width: 750px;
   height: 524px;
   left: 360px;
@@ -24,6 +25,7 @@
 }
 .bid-ask-table {
   position: absolute;
+  top: 0px;
   right: 0px;
   width: 280px;
   height: 524px;
@@ -38,10 +40,17 @@
   height: 378px;
 }
 .trading {
-  position: absolute;
+  position: relative;
   width: 750px;
   height: 378px;
-  top: 534px;
-  right: 290px;
+  margin-top: 10px !important;
+  left: 360px;
   border-radius: 10px;
+}
+.order {
+  position: relative;
+  width: 1040px;
+  margin-top : 10px !important;
+  border-radius: 10px;
+  left: 360px;
 }

@@ -26,7 +26,7 @@ export class MainNoticeComponent implements OnInit {
 
   ngOnInit() {
     this.sampleNoticeService.getSampleNotice().subscribe(data => {
-      for(let entry of data.notice) {
+      for(let entry of data.notices) {
         this.images.push(entry.image_link);
       }
     });
