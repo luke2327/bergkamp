@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trade-history',
   templateUrl: './trade-history.component.html',
-  styleUrls: ['./trade-history.component.css']
+  styleUrls: ['./trade-history.component.sass']
 })
 /*
 거래 히스토리 Component

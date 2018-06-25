@@ -1,0 +1,6 @@
+<div *ngFor="let value of supportedLang.langs" (click)="setLanguage(value.langCode)"
+  class="lang-sel-box">
+  <img class="national" src="{{ value.img }}"/>
+  <span>{{ value.langName }}</span>
+  <img class="arrow right-div" src="/assets/img/web_navi_language_check.png"/>
+</div>

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-common-order',
   templateUrl: './common-order.component.html',
-  styleUrls: ['./common-order.component.css']
+  styleUrls: ['./common-order.component.sass']
 })
 /*
 주문 공통 화면
@@ -24,7 +24,7 @@ export class CommonOrderComponent implements OnInit {
   isLogin: boolean = true;
   isLimit: boolean = false;
   isBuy: boolean = false;
-  
+
   constructor() { }
 
   ngOnInit() {

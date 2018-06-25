@@ -5,7 +5,7 @@ import { significantFigByDP } from '../../app.util';
 @Component({
   selector: 'app-coin-info',
   templateUrl: './coin-info.component.html',
-  styleUrls: ['./coin-info.component.css']
+  styleUrls: ['./coin-info.component.sass']
 })
 export class CoinInfoComponent implements OnInit, AfterViewInit {
   symbolId: string;

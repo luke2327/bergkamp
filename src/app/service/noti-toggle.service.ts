@@ -7,19 +7,19 @@ import { Subject } from 'rxjs/Subject';
 */
 @Injectable()
 export class NotiToggleService {
-  obervable: any;
+  observable: any;
   isOpen: boolean;
   constructor() {
-    this.obervable = new Subject();
+    this.observable = new Subject();
   }
 
-  toggle() {
+  toggle(): void {
     this.isOpen = !this.isOpen;
-    this.obervable.next(this.isOpen);
+    this.observable.next(this.isOpen);
   }
 
-  setOpen(open: boolean) {
+  setOpen(open: boolean): void {
     this.isOpen = open;
-    this.obervable.next(this.isOpen);
+    this.observable.next(this.isOpen);
   }
 }

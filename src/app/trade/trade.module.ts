@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TradeComponent } from './trade.component';
 import { ChartComponent } from './chart/chart.component';
@@ -58,6 +59,7 @@ import { OrderHistoryComponent } from './order/order-history/order-history.compo
 import { CommonOrderHistoryComponent } from './order/common-order-history/common-order-history.component';
 @NgModule({
   imports: [
+    RouterModule,
     CommonModule,
     BrowserAnimationsModule,
     TranslateModule,

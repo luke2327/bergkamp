@@ -19,7 +19,7 @@
             <a class="row">
               <div class="favorite">
                 <input [appTradeFavoriteButton]="isFavorite(element.pair)"
-                  type="button" class="favorite-button" (click)="setFavorite(element.pair)">
+                  type="button" class="favorite-button" (click)="setFavorite($event, element.pair)">
               </div>
               {{element.pair}}
             </a>

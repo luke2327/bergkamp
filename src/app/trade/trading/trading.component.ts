@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trading',
   templateUrl: './trading.component.html',
-  styleUrls: ['./trading.component.css']
+  styleUrls: ['./trading.component.sass']
 })
 /*
  주문 화면

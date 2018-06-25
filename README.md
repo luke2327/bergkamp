@@ -69,6 +69,10 @@
    - 내거래 화면 구현
    - 상단 거래내역 알람 구현
    - Main쪽 사소한(?) 에러 수정
+  12. Feature_B200_2 Css to Sass
+   - npm install node-sass --save-dev : node-sass 설치
+   - ng set defaults.styleExt sass : 기본 스타일 형식 sass로
+   - tymx-token-quote.component 를 pair-info.component를 상속받게 변경
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

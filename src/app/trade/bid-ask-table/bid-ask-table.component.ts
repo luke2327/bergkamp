@@ -3,7 +3,7 @@ import { BidAskTableType, BidAskType } from "../../app.const";
 @Component({
   selector: "app-bid-ask-table",
   templateUrl: "./bid-ask-table.component.html",
-  styleUrls: ["./bid-ask-table.component.css"]
+  styleUrls: ["./bid-ask-table.component.sass"]
 })
 /*
 호가창 구현

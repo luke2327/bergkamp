@@ -5,7 +5,7 @@ import { NotiToggleService } from '../service/noti-toggle.service';
 @Component({
   selector: 'app-trade',
   templateUrl: './trade.component.html',
-  styleUrls: ['./trade.component.css']
+  styleUrls: ['./trade.component.sass']
 })
 export class TradeComponent implements OnInit {
 

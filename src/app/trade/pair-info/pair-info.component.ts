@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 import { MatTableDataSource, MatSort, MatTable } from '@angular/material';
@@ -7,12 +7,13 @@ import { Sort } from '@angular/material';
 import { GetFavoriteService } from '../../rest-api/service/get-favorite.service';
 import { PutFavoriteService } from '../../rest-api/service/put-favorite.service';
 import { TradeFavoriteButtonDirective } from '../../directive/trade-favorite-button.directive';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pair-info',
   templateUrl: './pair-info.component.html',
-  styleUrls: ['./pair-info.component.css']
+  styleUrls: ['./pair-info.component.sass']
 })
-export class PairInfoComponent implements OnInit, AfterViewInit {
+export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   quotesValues: any = [];
   quotesBeforePrices: any;
@@ -23,7 +24,7 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
   favPairs: any = [];
   baseIds: any; //info 정보가 없으므로 우선은 id 저장용으로 만들어둠
   tabPosition: number = 0;
-
+  snapShotSubScription: any;
   //sort 할 객체
   @ViewChild(MatSort) sort: MatSort;
   //table 객체
@@ -31,7 +32,8 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
 
   constructor(private snapshotDataService: SnapshotDataService,
     private getFavoriteService: GetFavoriteService,
-    private putFavoriteService: PutFavoriteService) {
+    private putFavoriteService: PutFavoriteService,
+    private router:Router) {
     this.quotesBeforePrices = new Map<string, number>();
     this.quotesValuesByBase = new Map<string, any>();
     this.baseIds = new Map<string, number>();
@@ -40,7 +42,7 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
   ngAfterViewInit(){
     //일단 요약류 정보를 가져오자
-    this.snapshotDataService.queryObservable.subscribe((value) => {
+    this.snapShotSubScription = this.snapshotDataService.queryObservable.subscribe((value) => {
       console.log('this value&&&&');
       this.quotesValues = [];
       let index = 0;
@@ -66,6 +68,9 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
       // this.table.renderRows();
     });
 
+  }
+  ngOnDestroy() {
+    this.snapShotSubScription.unsubscribe();
   }
   //base 종류가 뭐가있는지 리스트로 반환
   getBaseLists(): any[] {
@@ -123,7 +128,9 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
   //favorite을 설정하자
   //toggle형태로 동작해줘야하고
   //api call이 들어가야함
-  setFavorite(pair: string): void {
+  setFavorite($event: MouseEvent, pair: string): void {
+    console.log("setFavorite");
+    event.stopPropagation();
     let id = this.baseIds.get(pair);
     let pairs = this.favPairs.slice();
     try {
@@ -140,6 +147,9 @@ export class PairInfoComponent implements OnInit, AfterViewInit {
         }
       });
     } catch (e) {}
+  }
+  routeTo(id: string): void {
+    this.router.navigate(['/trade', id]);
   }
   //favorite tab에 보여질 favorite 리스트를 호출하자
   getFavoriteList(): any[] {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header-noti',
   templateUrl: './header-noti.component.html',
-  styleUrls: ['./header-noti.component.css']
+  styleUrls: ['./header-noti.component.sass']
 })
 export class HeaderNotiComponent implements OnInit {
 

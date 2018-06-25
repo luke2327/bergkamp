@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
@@ -6,15 +6,16 @@ import { significantFig } from '../../app.util';
 @Component({
   selector: 'app-tymx-quote',
   templateUrl: './tymx-quote.component.html',
-  styleUrls: ['./tymx-quote.component.css']
+  styleUrls: ['./tymx-quote.component.sass']
 })
-export class TymxQuoteComponent implements OnInit, AfterViewInit {
+export class TymxQuoteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   color: string;
   quotesValues: Array<SnapshotDataFragment> = [];
   //가격변동시 색깔표현을 위해 버퍼용 객체를 만든다.
   quotesBeforePrices: any;
   significantFig = significantFig;
+  snapShotSubScription: any;
   constructor(private snapshotDataService: SnapshotDataService,
     private changeDetectorRef:ChangeDetectorRef) {
     //quotesValues 객체를 그대로 가져가기보단 필요한 값을 map으로 관리
@@ -26,7 +27,7 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
     //ngOnInit에서 구동할경우 expressionchangedafterithasbeencheckederror(에러명 졸라김..;;)
     //문제가 발생한다.
     //참고 : https://angular.io/api/core/AfterViewInit
-    this.snapshotDataService.queryObservable.subscribe((value) => {
+    this.snapShotSubScription = this.snapshotDataService.queryObservable.subscribe((value) => {
       this.quotesValues = [];
       for(let entry of value){
         if(entry.type == 'BASE'){
@@ -41,6 +42,12 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit {
       //https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked
       this.changeDetectorRef.detectChanges();
     });
+  }
+  //subscribe 내부에서 view 변경을 하는경우
+  //subscribe를 취소해주고 참조를 제거해줘야함
+  ngOnDestroy() {
+    this.snapShotSubScription.unsubscribe();
+    this.changeDetectorRef.detach();
   }
   //이전가격과의 차이를 리턴해준다.
   priceDiff(pair, price): number {
