@@ -10,6 +10,8 @@ import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
 import { GeolocationService } from '../rest-api/service/geolocation.service';
 import { GetFavoriteService } from '../rest-api/service/get-favorite.service';
 import { PutFavoriteService } from '../rest-api/service/put-favorite.service';
+import { OrderService } from '../rest-api/service/order.service';
+import { OrderDataService } from '../rest-api/service/order-data.service';
 import { QuotesComponent } from './quotes/quotes.component';
 import { TymxQuoteComponent } from './tymx-quote/tymx-quote.component';
 import { TymxTokenQuoteComponent } from './tymx-token-quote/tymx-token-quote.component';
@@ -23,6 +25,7 @@ import { DirectiveModule } from '../directive/directive.module';
 import { NotiToggleService } from '../service/noti-toggle.service';
 import { LangToggleService } from '../service/lang-toggle.service';
 import { SampleLoginService } from '../service/sample-login.service';
+import { TradePageStateService } from '../service/trade-page-state.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
@@ -81,7 +84,10 @@ import {
     SnapshotDataService,
     NotiToggleService,
     LangToggleService,
-    SampleLoginService
+    OrderService,
+    SampleLoginService,
+    OrderDataService,
+    TradePageStateService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

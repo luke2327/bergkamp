@@ -9,7 +9,7 @@ const httpOptions = {
     'Content-Type': 'application/json'
   })
 };
-
+//TODO favoriteservice class 내부에 get put을 두는게 더 깔끔할꺼 같아서 그렇게 바꿀예정
 @Injectable()
 export class GetFavoriteService {
 

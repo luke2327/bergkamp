@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonOrderHistoryComponent } from '../common-order-history/common-order-history.component';
+import { OrderService } from '../../../rest-api/service/order.service';
+import { OrderDataService } from '../../../rest-api/service/order-data.service';
 @Component({
   selector: 'app-order-history',
   templateUrl: '../common-order-history/common-order-history.component.html',
@@ -7,8 +9,8 @@ import { CommonOrderHistoryComponent } from '../common-order-history/common-orde
 })
 export class OrderHistoryComponent extends CommonOrderHistoryComponent implements OnInit {
 
-  constructor() {
-    super();
+  constructor(orderService:OrderService, orderDataService:OrderDataService) {
+    super(orderService, orderDataService);
     this.isOpenOrders = false;
     this.sampleData = {
       "data" : [

@@ -54,7 +54,9 @@
 }
 .col-cancel a {
   color: #3078ff;
+  cursor: pointer;
 }
+
 .col-status {
   width: 75px;
   text-align: right;
