@@ -15,23 +15,54 @@
   padding: 1px
 
 .favorite >
+  .favorite-button, .favorite-button-checked
+    width: 15px
+    height: 15px
+    margin-left: 15px
+    margin-top: 6px
+    background-size: cover !important
+    cursor: pointer
+    border: none
+    outline: none
   .favorite-button
-    width: 15px
-    height: 15px
-    margin-left: 15px
-    margin-top: 10px
+    // width: 15px
+    // height: 15px
+    // margin-left: 15px
+    // margin-top: 10px
     background: url("/assets/img/trading_market_list_favorite_off.png") no-repeat
-    background-size: cover
-    cursor: pointer
-    border: none
-    outline: none
+    // background-size: cover
+    // cursor: pointer
+    // border: none
+    // outline: none
   .favorite-button-checked
-    width: 15px
-    height: 15px
-    margin-left: 15px
-    margin-top: 10px
+    // width: 15px
+    // height: 15px
+    // margin-left: 15px
+    // margin-top: 10px
     background: url("/assets/img/trading_market_list_favorite_on.png") no-repeat
-    background-size: cover
-    cursor: pointer
-    border: none
-    outline: none
+    // background-size: cover
+    // cursor: pointer
+    // border: none
+    // outline: none
+
+
+// Modified by RB
+
+.mat-header-row
+  min-height: 40px
+
+.favorite[_ngcontent-c9] > .favorite-button[_ngcontent-c9]
+  margin-right: 10px !important
+  margin-bottom: 0px !important
+
+.below_pair
+  display: contents
+  font-size: 11px
+  font-weight: 400
+  color: #afb2be
+  line-height: 15px
+
+div.mat-tab-labels
+  div.mat-tab-label.mat-ripple.ng-star-inserted
+    height: 30px !important
+    padding-top: 3px !important
