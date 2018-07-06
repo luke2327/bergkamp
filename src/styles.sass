@@ -1,21 +1,23 @@
 /* You can add global styles to this file, and also import other style files
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"
 
-@import url('https://fonts.googleapis.com/css?family=Rubik')
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i')
 
 \:lang(en)
   font-family: 'Rubik', sans-serif
 
 body
   position: relative
-  background-color: #f6f6f6
+  background-color: #ffffff
 
 header
   background-color: #ffffff
-  height: 95px
+  height: 70px
+  border-bottom: 1px solid #ebebeb
 
 footer
   background-color: #ffffff
+  margin-top: 70px !important
 
 .main-body
   width: 100%
@@ -49,18 +51,13 @@ footer
     z-index: 999 !important
     min-width: 70px !important
     width: 70px !important
-    height: 35px !important
+    height: 30px !important
     opacity: 1
-  .mat-tab-label-content
-    padding-bottom: 5px !important
-  .mat-tab-label-active
-    color: white
 
 .mat-tab-group.pair-info-tab.mat-primary .mat-ink-bar, .mat-tab-nav-bar.pair-info-tab.mat-primary .mat-ink-bar
   background: #3078ff !important
   height: 30px !important
-  border-radius: 30px !important
-  margin-bottom: 5px !important
+  border-radius: 2px !important
   width: 70px !important
   z-index: 10 !important
 
@@ -139,3 +136,87 @@ footer
   width: 13px
   height: 13px
   margin-bottom: 3px
+
+////////////////////
+// Modified by RB //
+////////////////////
+
+.mat-ripple
+  height: 60px !important
+  width: 85px !important
+  min-width: 85px !important
+  font-size: 14px !important
+  font-weight: 500 !important
+  color: #afb2be !important
+  transition: color .5s cubic-bezier(0.52, 0.21, 0, 0.59) !important
+  background-color: #f5f5f5 !important
+  opacity: 1 !important
+
+.mat-tab-labels
+  background-color: #f5f5f5 !important
+
+.mat-tab-label:focus:not(.mat-tab-disabled), .mat-tab-label-active
+  color: white !important
+  transition: color .5s cubic-bezier(0.74, 0.63, 0.23, 0.44) !important
+  opacity: 1 !important
+
+.mat-ink-bar
+  background-color: #3078ff !important
+
+
+// pair-info
+
+.pair-info-card[_ngcontent-c9]
+  height: 478px !important
+
+mat-tab-group.pair-info-tab.mat-tab-group.mat-primary.ng-animate-disabled
+  mat-tab-header.mat-tab-header[ng-reflect-disable-ripple="true"]
+    div.mat-tab-label-container
+      margin-bottom: 10px
+      border: 1px solid #e0e0e8 !important
+      border-radius: 2px
+
+.mat-header-cell.ng-tns-c18-0.cdk-column-pair.mat-column-pair.ng-star-inserted
+  min-width: 150px
+  padding-left: 15px
+
+.mat-header-row[_ngcontent-c9]
+  padding: 0px !important
+
+.mat-header-row.ng-star-inserted
+  mat-header-cell:not(.cdk-column-pair)
+    .mat-sort-header-container
+      float: right
+  mat-header-cell
+    font-size: 11px !important
+    color: #585858 !important
+
+.mat-sort-header-arrow
+  margin: 0 10px 0 5px !important
+
+.nopadding.mat-row.ng-star-inserted
+  mat-cell
+    font-weight: 500
+    font-size: 13px
+    /**
+      1. 매직 넘버. 'mat-cell:not(.mat-column-pair)'의 left 값은 정렬 시키기 위해
+      찾은 임의의 값이다. 가능하다면, 적절하게 고쳐야 할 듯.
+      */
+  mat-cell:not(.mat-column-pair)
+    position: relative
+    left: -13px
+    text-align: right
+  mat-cell.mat-column-pair
+    a
+      line-height: 15px !important
+    min-width: 140px
+  mat-cell.mat-column-price
+    min-width: 110px
+  mat-cell.mat-column-changepct24
+    min-width: 90px
+    word-wrap: normal
+
+mat-card-content.mat-card-content
+  mat-table.mat-table[role="grid"]
+    mat-row.nopadding.mat-row.ng-star-inserted[role="row"]
+      border-bottom-color: #f4f4f4
