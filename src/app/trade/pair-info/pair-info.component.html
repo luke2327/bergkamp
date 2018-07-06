@@ -21,19 +21,21 @@
                 <input [appTradeFavoriteButton]="isFavorite(element.pair)"
                   type="button" class="favorite-button" (click)="setFavorite($event, element.pair)">
               </div>
-              {{element.pair}}
+              {{element.pair}}<br /><font class="below_pair">MANU/TMX</font>
             </a>
           </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> price </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+          <!-- <mat-cell *matCellDef="let element"> {{element.price}}</mat-cell> -->
+          <mat-cell *matCellDef="let element"> 0.00037260</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="changepct24">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> changepct24 </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.changepct24}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Change </mat-header-cell>
+          <!-- <mat-cell *matCellDef="let element"> {{element.changepct24}} </mat-cell> -->
+          <mat-cell *matCellDef="let element"> +14.29% </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
