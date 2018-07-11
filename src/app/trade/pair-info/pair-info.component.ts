@@ -4,8 +4,8 @@ import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 import { MatTableDataSource, MatSort, MatTable } from '@angular/material';
 import { MatTabChangeEvent } from '@angular/material';
 import { Sort } from '@angular/material';
-import { GetFavoriteService } from '../../rest-api/service/get-favorite.service';
-import { PutFavoriteService } from '../../rest-api/service/put-favorite.service';
+import { FavoriteService } from '../../rest-api/service/favorite.service';
+import { FavoriteDataService } from '../../rest-api/service/favorite-data.service';
 import { TradeFavoriteButtonDirective } from '../../directive/trade-favorite-button.directive';
 import { Router } from '@angular/router';
 @Component({
@@ -31,8 +31,8 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('table') table: MatTable<any>;
 
   constructor(private snapshotDataService: SnapshotDataService,
-    private getFavoriteService: GetFavoriteService,
-    private putFavoriteService: PutFavoriteService,
+    private favoriteService: FavoriteService,
+    private favoriteDataService: FavoriteDataService,
     private router:Router) {
     this.quotesBeforePrices = new Map<string, number>();
     this.quotesValuesByBase = new Map<string, any>();
@@ -43,7 +43,7 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(){
     //일단 요약류 정보를 가져오자
     this.snapShotSubScription = this.snapshotDataService.queryObservable.subscribe((value) => {
-      console.log('this value&&&&');
+
       this.quotesValues = [];
       let index = 0;
       for(let entry of value){
@@ -63,11 +63,23 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     //favorite도 불러오자
     //요약류 정보와 async하게 동작하고
     //어느것이 먼저들어오던지 상관없이 오류가 나지않도록 설계
-    this.getFavoriteService.getFavorite().subscribe(data => {
-      this.favPairs = data.pairs;
-      // this.table.renderRows();
-    });
+    //api 수정으로 변경함
+    this.favoriteService.getFavorite();
 
+    this.favoriteDataService.getFavoriteObservable.subscribe(data => {
+
+      this.favPairs = data.body.pairs;
+      if(this.favPairs == undefined) {
+        this.favPairs = [];
+      }
+    });
+    //favorite을 변경했을경우 여기에서 응답류를 처리한다.
+    this.favoriteDataService.putFavoriteObservable.subscribe(data => {
+      if(this.baseLists.length == this.tabPosition) {
+        this.dataSource = this.getFavoriteList();
+      }
+      this.favoriteService.getFavorite();
+    });
   }
   ngOnDestroy() {
     this.snapShotSubScription.unsubscribe();
@@ -129,7 +141,6 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
   //toggle형태로 동작해줘야하고
   //api call이 들어가야함
   setFavorite($event: MouseEvent, pair: string): void {
-    console.log("setFavorite");
     event.stopPropagation();
     let id = this.baseIds.get(pair);
     let pairs = this.favPairs.slice();
@@ -140,12 +151,8 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         pairs.push(id);
       }
-      this.putFavoriteService.putFavorite(pairs).subscribe(data => {
-        this.favPairs = pairs.slice();
-        if(this.baseLists.length == this.tabPosition) {
-          this.dataSource = this.getFavoriteList();
-        }
-      });
+      this.favPairs = pairs.slice();
+      this.favoriteService.putFavorite({'pairs': pairs});
     } catch (e) {}
   }
   routeTo(id: string): void {
