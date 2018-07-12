@@ -1,5 +1,5 @@
 .trade-history-title {
-  height: 38px;
+  height: 37px;
   border-bottom: 1px solid #e0e0e8;
   font-size: 13px;
   font-weight: bold;
@@ -8,11 +8,11 @@
   padding-top: 8px;
 }
 .trade-history-header {
-  height: 31px;
+  height: 30px;
   border-bottom: 1px solid #e0e0e8;
   font-size: 11px;
   color: #585858;
-  padding-top: 6px !important;
+  padding-top: 7px !important;
 }
 .table-time {
   text-align: left;
