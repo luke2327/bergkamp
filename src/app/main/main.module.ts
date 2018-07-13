@@ -8,8 +8,13 @@ import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.servic
 import { HistoryService } from '../aws-appsync/service/history.service';
 import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
 import { GeolocationService } from '../rest-api/service/geolocation.service';
-import { GetFavoriteService } from '../rest-api/service/get-favorite.service';
-import { PutFavoriteService } from '../rest-api/service/put-favorite.service';
+import { GeolocationDataService } from '../rest-api/service/geolocation-data.service';
+import { OrderService } from '../rest-api/service/order.service';
+import { OrderDataService } from '../rest-api/service/order-data.service';
+import { FavoriteService } from '../rest-api/service/favorite.service';
+import { FavoriteDataService } from '../rest-api/service/favorite-data.service';
+import { InfoService } from '../rest-api/service/info.service';
+import { InfoDataService } from '../rest-api/service/info-data.service';
 import { QuotesComponent } from './quotes/quotes.component';
 import { TymxQuoteComponent } from './tymx-quote/tymx-quote.component';
 import { TymxTokenQuoteComponent } from './tymx-token-quote/tymx-token-quote.component';
@@ -23,6 +28,7 @@ import { DirectiveModule } from '../directive/directive.module';
 import { NotiToggleService } from '../service/noti-toggle.service';
 import { LangToggleService } from '../service/lang-toggle.service';
 import { SampleLoginService } from '../service/sample-login.service';
+import { TradePageStateService } from '../service/trade-page-state.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
@@ -76,12 +82,18 @@ import {
     HistoryService,
     SampleNoticeService,
     GeolocationService,
-    GetFavoriteService,
-    PutFavoriteService,
+    GeolocationDataService,
     SnapshotDataService,
     NotiToggleService,
     LangToggleService,
-    SampleLoginService
+    OrderService,
+    SampleLoginService,
+    OrderDataService,
+    TradePageStateService,
+    FavoriteService,
+    FavoriteDataService,
+    InfoService,
+    InfoDataService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

@@ -137,6 +137,15 @@ footer
   .mat-tab-label
     width: 185px !important
 
+//[IE css 핵]
+//https://gist.github.com/vidaaudrey/c16774076391d09e7ec7dbb7ed7a3189
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+  .order-history-tab
+    #mat-tab-label-3-1
+      .mat-tab-label-content
+        position: relative
+        right: 11px
+
 /**angular material bug see : https://github.com/angular/material2/issues/7291" 개귀찮..;;
 
 .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition
@@ -170,7 +179,7 @@ footer
         color: #3078ff !important
         opacity: 1
       &:not(.mat-tab-disabled):focus
-        background-color: unset !important
+        background-color: #f5f5f5 !important
 
 .mat-tab-labels
   background-color: white !important

@@ -14,6 +14,8 @@ export function getCountry(): string {
 export function setCountry(country: string): void {
   browserCountry = country;
 }
+
+
 //유효숫자 리턴
 //기획사항 : 10보자 작으면 소수점 8자리까지
 //아닐경우 10억보다 크면 소숫점X, 그외는 유효숫자만큼

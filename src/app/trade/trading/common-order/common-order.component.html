@@ -2,7 +2,7 @@
   <ul class="row-ul">
     <li class="title">Balance</li>
     <li class="balance-box">
-      <div class="balance-info">10.234567</div>
+      <div class="balance-info">{{ balance }}</div>
     </li>
     <li class="unit">ETH</li>
   </ul>
@@ -11,12 +11,12 @@
   <ul class="row-ul">
     <li class="title">Price</li>
     <li *ngIf="isLimit" class="ctl-box">
-      <input type="button" class="minus-button"/>
-      <input type="button" class="plus-button"/>
-      <div class="price-info">10.234567</div>
+      <input type="button" class="minus-button" (click) = "changePrice(false)"/>
+      <input type="button" class="plus-button" (click) = "changePrice(true)"/>
+      <input type="number" class="price-info" value = "{{ price }}"/>
     </li>
     <li *ngIf="!isLimit" class="balance-box">
-      <div class="price-info">Market Price</div>
+      <div class="market-price">Market Price</div>
     </li>
     <li class="unit">ETH</li>
   </ul>
@@ -25,33 +25,34 @@
   <ul class="row-ul">
     <li class="title">Amount</li>
     <li class="ctl-box">
-      <input type="button" class="minus-button"/>
-      <input type="button" class="plus-button"/>
-      <div class="amount-info">10.234567</div>
+      <input type="button" class="minus-button" (click) = "changeAmount(false)"/>
+      <input type="button" class="plus-button" (click) = "changeAmount(true)"/>
+
+      <input type="number" class="amount-info" value = "{{ amount }}"/>
     </li>
     <li class="unit">ETH</li>
   </ul>
 </div>
 <div class="row nopadding amount-buttons">
   <ul class="row-ul non-title">
-    <li><input type="button" value="25%" class="quarter-button amount-button"/></li>
-    <li><input type="button" value="50%" class="half-button amount-button"/></li>
-    <li><input type="button" value="MAX" class="max-button amount-button"/></li>
+    <li><input type="button" value="25%" (click) = "changeAmountByRatio(.25)" class="quarter-button amount-button"/></li>
+    <li><input type="button" value="50%" (click) = "changeAmountByRatio(.5)" class="half-button amount-button"/></li>
+    <li><input type="button" value="MAX" (click) = "changeAmountByRatio(1)" class="max-button amount-button"/></li>
   </ul>
 </div>
 <div class="row nopadding row-order">
   <ul class="row-ul">
     <li class="title-total">Total</li>
     <li class="total-info">
-      <div>10.234567</div>
+      <div>{{ price * amount }}</div>
     </li>
     <li class="unit unit_le">ETH</li>
   </ul>
 </div>
 <p class="fee">* Fees: 0.006%</p>
-<input *ngIf="isLogin&&isBuy" type="button" value="Buy TMX" class="buy-button"/>
-<input *ngIf="!isLogin&&!isBuy" type="button" value="Sell TMX" class="sell-button"/>
-<div *ngIf="isLogin" class="login-or-signup nopadding">
+<input *ngIf="isLogin&&isBuy" type="button" value="Buy TMX" class="buy-button" (click)="orderCoin()"/>
+<input *ngIf="isLogin&&!isBuy" type="button" value="Sell TMX" class="sell-button" (click)="orderCoin()"/>
+<div *ngIf="!isLogin" class="login-or-signup nopadding">
   <ul>
     <li><a class="login" href="#">Log In</a></li>
     <li>or</li>
