@@ -50,8 +50,8 @@
 </div>
 <p class="fee">* Fees: 0.006%</p>
 <input *ngIf="isLogin&&isBuy" type="button" value="Buy TMX" class="buy-button"/>
-<input *ngIf="isLogin&&!isBuy" type="button" value="Sell TMX" class="sell-button"/>
-<div *ngIf="!isLogin" class="login-or-signup nopadding">
+<input *ngIf="!isLogin&&!isBuy" type="button" value="Sell TMX" class="sell-button"/>
+<div *ngIf="isLogin" class="login-or-signup nopadding">
   <ul>
     <li><a class="login" href="#">Log In</a></li>
     <li>or</li>
