@@ -3,8 +3,6 @@ import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 import { significantFig } from '../../app.util';
-import { GetFavoriteService } from '../../rest-api/service/get-favorite.service';
-import { PutFavoriteService } from '../../rest-api/service/put-favorite.service';
 import { PairInfoComponent } from '../../trade/pair-info/pair-info.component';
 @Component({
   selector: 'app-tymx-token-quote',

@@ -10,16 +10,16 @@
   <p *ngIf="isOpenOrders" class="col-cancel">Cancel</p>
   <p *ngIf="!isOpenOrders" class="col-status">Status</p>
 </div>
-<div *ngFor="let value of sampleData.data" class="row nopadding order-history-row">
-  <p class="col-date">{{ value.date }}</p>
+<div *ngFor="let value of orderData" class="row nopadding order-history-row">
+  <p class="col-date">{{ value.ct }}</p>
   <p class="col-pair">{{ value.pair }}</p>
-  <p class="col-type">{{ value.type }}</p>
-  <p class="col-order" [appRealTimeColor]="getType(value.order)">{{ value.order }}</p>
+  <p class="col-type">{{ value.order_type }}</p>
+  <p class="col-order" [appRealTimeColor]="getType(value.bidask)">{{ value.bidask }}</p>
   <p class="col-price">{{ value.price }}</p>
-  <p class="col-amount">{{ value.amount }}</p>
-  <p class="col-filled">{{ value.filled }}</p>
-  <p class="col-total">{{ value.total }}</p>
-  <p *ngIf="isOpenOrders" class="col-cancel"><a href="#">Cancel</a></p>
+  <p class="col-amount">{{ value.original_volume }}</p>
+  <p class="col-filled">{{ value.original_volume - value.volume }}</p>
+  <p class="col-total">{{ value.original_volume * value.price }}</p>
+  <p *ngIf="isOpenOrders" class="col-cancel"><a (click) = "cancelOrder(value.id)">Cancel</a></p>
   <p *ngIf="!isOpenOrders" class="col-status">{{ value.status }}</p>
 </div>
 <div *ngIf="!isOpenOrders" class="see-all">
