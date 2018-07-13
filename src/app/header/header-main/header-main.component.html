@@ -94,9 +94,11 @@
     </div>
   </div>
 </header>
-<mat-card class="header-noti nopadding mat-elevation-z8" [appNotiVisibility]="isNoti">
-  <app-header-noti></app-header-noti>
-</mat-card>
+<div class="header-helper-div">
+  <mat-card class="header-noti nopadding mat-elevation-z8" [appNotiVisibility]="isNoti">
+    <app-header-noti></app-header-noti>
+  </mat-card>
+</div>
 <div class="lang-popover" [appNotiVisibility]="isLang">
   <app-lang-popover></app-lang-popover>
 </div>
