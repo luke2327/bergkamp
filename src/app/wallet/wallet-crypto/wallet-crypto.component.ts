@@ -76,20 +76,22 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
           }
         }
       }
+      this.initSorting();
+      this.sortingTable(4);
     });
   }
   //sorting state 초기화
   initSorting() {
-    this.sorting = new Array<SortingWallet>(5);
-    let index = 0;
-    for(let entry of this.sorting) {
-      entry = new SortingWallet();
-      entry.id = index;
+    this.sorting = [];
+    for(let i = 0; i< 5; i++) {
+      let entry = new SortingWallet();
+      entry.id = i;
       entry.sortingType = SortingOrder;
       entry.sortingState = 0;
-      index ++;
+      this.sorting.push(entry);
     }
     this.sorting[0].sortingType = SortingOrderName;
+
   }
   sortingTable(position: number) {
     for(let entry of this.sorting) {
@@ -99,11 +101,67 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
         entry.sortingState = 0;
       }
     }
+
+    if(this.sorting[position].sortingState == 0) {
+      //아무것도 선택되지 않았을때는 BTC 가격으로 sorting
+      this.sortingCrypto(4, 'desc');
+    } else {
+      let sortingState = this.sorting[position].sortingState;
+      this.sortingCrypto(position, this.sorting[position].sortingType[sortingState]);
+    }
   }
 
-  sortingCrypto() {
+  sortingCrypto(position: number, sortType: string) {
+    //네가지 array를 각각 sorting 해준다.
+    this.balanceBase.sort((a, b) => {
+      let isAsc = sortType == 'asc';
+      switch (position) {
+        case 0: return compare(a.name, b.name, isAsc);
+        case 1: return compare(a.total, b.total, isAsc);
+        case 2: return compare(a.available, b.available, isAsc);
+        case 3: return compare(a.inOrder, b.inOrder, isAsc);
+        case 4: return compare(a.byBtc, b.byBtc, isAsc);
+        default: return 0;
+      }
+    });
 
+    this.balanceNoneBase.sort((a, b) => {
+      let isAsc = sortType == 'asc';
+      switch (position) {
+        case 0: return compare(a.name, b.name, isAsc);
+        case 1: return compare(a.total, b.total, isAsc);
+        case 2: return compare(a.available, b.available, isAsc);
+        case 3: return compare(a.inOrder, b.inOrder, isAsc);
+        case 4: return compare(a.byBtc, b.byBtc, isAsc);
+        default: return 0;
+      }
+    });
+
+    this.cryptoBase.sort((a, b) => {
+      let isAsc = sortType == 'asc';
+      switch (position) {
+        case 0: return compare(a.name, b.name, isAsc);
+        case 1: return compare(a.total, b.total, isAsc);
+        case 2: return compare(a.available, b.available, isAsc);
+        case 3: return compare(a.inOrder, b.inOrder, isAsc);
+        case 4: return compare(a.byBtc, b.byBtc, isAsc);
+        default: return 0;
+      }
+    });
+
+    this.cryptoNoneBase.sort((a, b) => {
+      let isAsc = sortType == 'asc';
+      switch (position) {
+        case 0: return compare(a.name, b.name, isAsc);
+        case 1: return compare(a.total, b.total, isAsc);
+        case 2: return compare(a.available, b.available, isAsc);
+        case 3: return compare(a.inOrder, b.inOrder, isAsc);
+        case 4: return compare(a.byBtc, b.byBtc, isAsc);
+        default: return 0;
+      }
+    });
   }
+
 
   toggleIsBalance() {
     this.isBalance = !this.isBalance;
@@ -211,4 +269,7 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
     return rowModel;
   }
 
+}
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

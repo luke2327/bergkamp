@@ -3,13 +3,29 @@
     value="checkbox"
     [appToggleCheckbox]="isBalance"
     (click) = "toggleIsBalance()"/>
-
+  <p>Possessions</p>
+  <a><img/>Transaction History</a>
   <div class="row table-header">
-    <div class="coin col-1">COIN</div>
-    <div class="total col-1">TOTAL</div>
-    <div class="available col-1">AVAILABLE</div>
-    <div class="inorder col-1">INORDER</div>
-    <div class="btcvalue col-1">BTCVALUE</div>
+    <div class="coin col-1" (click) = "sortingTable(0)">
+      <p>COIN</p>
+      <span [appSortingState]="sorting[0].sortingType[sorting[0].sortingState]">{{ sorting[0].sortingState }}</span>
+    </div>
+    <div class="total col-1" (click) = "sortingTable(1)">
+      <p>TOTAL</p>
+      <span [appSortingState]="sorting[1].sortingType[sorting[1].sortingState]">{{ sorting[1].sortingState }}</span>
+    </div>
+    <div class="available col-1" (click) = "sortingTable(2)">
+      <p>AVAILABLE</p>
+      <span [appSortingState]="sorting[2].sortingType[sorting[2].sortingState]">{{ sorting[2].sortingState }}</span>
+    </div>
+    <div class="inorder col-1" (click) = "sortingTable(3)">
+      <p>INORDER</p>
+      <span [appSortingState]="sorting[3].sortingType[sorting[3].sortingState]">{{ sorting[3].sortingState }}</span>
+    </div>
+    <div class="btcvalue col-1" (click) = "sortingTable(4)">
+      <p>BTCVALUE</p>
+      <span [appSortingState]="sorting[4].sortingType[sorting[4].sortingState]">{{ sorting[4].sortingState }}</span>
+    </div>
   </div>
 
   <div *ngIf="isBalance; then isBalanceTemp else isNotBalanceTemp"></div>
@@ -30,7 +46,9 @@
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <div *ngIf="row.tradeVisible">
-          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +68,9 @@
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <div *ngIf="row.tradeVisible">
-          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -74,7 +94,9 @@
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <div *ngIf="row.tradeVisible">
-          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -95,7 +117,9 @@
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
         <div *ngIf="row.tradeVisible">
-          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
         </div>
       </div>
     </div>

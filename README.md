@@ -76,6 +76,9 @@
   13. Feature_B209 Rest-api 연동및 방식 수정
    - order쪽 rest-api 연동
    - 호출과 응답을 분리
+  14. Feature_B221 Wallet main 개발
+   - wallet main page 개발
+   - wallet rest-api 연동
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

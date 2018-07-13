@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SnapshotService } from '../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.service';
 import { NotiToggleService } from '../service/noti-toggle.service';
@@ -7,8 +7,8 @@ import { NotiToggleService } from '../service/noti-toggle.service';
   templateUrl: './trade.component.html',
   styleUrls: ['./trade.component.sass']
 })
-export class TradeComponent implements OnInit {
-
+export class TradeComponent implements OnInit, OnDestroy {
+  snapshopSubscription: any;
   constructor(private snapshotService: SnapshotService,
               private snapshotDataService: SnapshotDataService,
               private notiToggleService:NotiToggleService) { }
@@ -17,9 +17,12 @@ export class TradeComponent implements OnInit {
     //이전페이지에서 noti창이 열려있었다면 닫아준다.
     this.notiToggleService.setOpen(false);
     this.snapshotService.startObserver();
-    this.snapshotService.queryObservable.subscribe((value) => {
+    this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {
       this.snapshotDataService.setSnapshot(value);
     });
   }
 
+  ngOnDestroy() {
+    this.snapshopSubscription.unsubscribe();
+  }
 }
