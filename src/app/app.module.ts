@@ -52,10 +52,12 @@ import { HeaderModule } from './header/header.module';
 import { MainModule } from './main/main.module';
 import { TradeModule } from './trade/trade.module';
 import { DirectiveModule } from './directive/directive.module';
+import { WalletModule } from './wallet/wallet.module';
 //커스텀 컴포넌트 선언
 import { MainComponent } from './main/main.component';
 import { TradeFavoriteButtonDirective } from './directive/trade-favorite-button.directive';
 import { TradeComponent } from './trade/trade.component';
+import { WalletComponent } from './wallet/wallet.component';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,7 +67,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 //라우팅 설정
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'trade/:id', component: TradeComponent}
+  {path: 'trade/:id', component: TradeComponent},
+  {path: 'wallet', component: WalletComponent}
 ];
 
 @NgModule({
@@ -93,7 +96,8 @@ const routes: Routes = [
     MainModule,
     TradeModule,
     HttpModule,
-    DirectiveModule
+    DirectiveModule,
+    WalletModule
   ],
   exports: [
     HttpClientModule,

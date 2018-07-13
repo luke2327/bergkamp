@@ -11,6 +11,8 @@ import { GeolocationService } from '../rest-api/service/geolocation.service';
 import { GeolocationDataService } from '../rest-api/service/geolocation-data.service';
 import { OrderService } from '../rest-api/service/order.service';
 import { OrderDataService } from '../rest-api/service/order-data.service';
+import { WalletService } from '../rest-api/service/wallet.service';
+import { WalletDataService } from '../rest-api/service/wallet-data.service';
 import { FavoriteService } from '../rest-api/service/favorite.service';
 import { FavoriteDataService } from '../rest-api/service/favorite-data.service';
 import { InfoService } from '../rest-api/service/info.service';
@@ -93,7 +95,9 @@ import {
     FavoriteService,
     FavoriteDataService,
     InfoService,
-    InfoDataService
+    InfoDataService,
+    WalletService,
+    WalletDataService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

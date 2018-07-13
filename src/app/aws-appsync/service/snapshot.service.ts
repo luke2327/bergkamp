@@ -17,7 +17,30 @@ export class SnapshotService {
     //call까지 같이 있으면 여러군데서 subscribe하는 경우 동시에 실행되어버린다.
     // console.log("service start");
   }
+  startQuery(): void {
+    console.log('startQuery');
+    //query 동작만한다.
+    this.queryObservable = new Observable((observer) => {
+      this.appsync.hc().then(client => {
+        const observable : ObservableQuery<GetSnapshotQuery> = client.watchQuery({
+          query: GetSnapshot,
+          variables : { id_ : 'all_sample' },
+          fetchPolicy: 'network-only'
+        });
+        //getAllSnapshot 을 우선 가져온다.
+        observable.subscribe(({data}) => {
+          if (data) {
+            console.log('getSnapshot');
+            // 정보를 전달
+            observer.next(data.getSnapshot.pairs);
+          }
+        });
+      });
+    });
+  }
+
   startObserver(): void {
+    console.log('startObserver');
     //call 동작은 이곳으로 옮김
     this.queryObservable = new Observable((observer) => {
       this.appsync.hc().then(client => {

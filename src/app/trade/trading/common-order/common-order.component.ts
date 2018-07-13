@@ -106,6 +106,8 @@ export class CommonOrderComponent implements OnInit, AfterViewInit {
   }
 
   changeAmountByRatio(ratio: number): void {
+    //TODO 매도시에는 이걸로 쓰면 안됨
+    //추후수정예정
     if(this.price != 0) {
       this.amount = (this.balance/this.price) * ratio;
       this.amount -= this.amount % this.amountMinUnit;

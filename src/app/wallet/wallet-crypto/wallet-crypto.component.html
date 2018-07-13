@@ -1,0 +1,103 @@
+<mat-card>
+  <input type="button" class="checkbox"
+    value="checkbox"
+    [appToggleCheckbox]="isBalance"
+    (click) = "toggleIsBalance()"/>
+
+  <div class="row table-header">
+    <div class="coin col-1">COIN</div>
+    <div class="total col-1">TOTAL</div>
+    <div class="available col-1">AVAILABLE</div>
+    <div class="inorder col-1">INORDER</div>
+    <div class="btcvalue col-1">BTCVALUE</div>
+  </div>
+
+  <div *ngIf="isBalance; then isBalanceTemp else isNotBalanceTemp"></div>
+  <ng-template #isNotBalanceTemp>
+    <div *ngFor="let row of cryptoBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a>Deposit</a>
+      </div>
+      <div class="col-1">
+        <a>WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let row of cryptoNoneBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a>Deposit</a>
+      </div>
+      <div class="col-1">
+        <a>WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #isBalanceTemp>
+    <div *ngFor="let row of balanceBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a>Deposit</a>
+      </div>
+      <div class="col-1">
+        <a>WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let row of balanceNoneBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a>Deposit</a>
+      </div>
+      <div class="col-1">
+        <a>WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <a *ngFor="let trade of row.trade">{{ trade }}</a>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</mat-card>
