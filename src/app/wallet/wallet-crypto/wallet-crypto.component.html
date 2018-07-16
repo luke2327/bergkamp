@@ -1,0 +1,127 @@
+<mat-card>
+  <input type="button" class="checkbox"
+    value="checkbox"
+    [appToggleCheckbox]="isBalance"
+    (click) = "toggleIsBalance()"/>
+  <p>Possessions</p>
+  <a><img/>Transaction History</a>
+  <div class="row table-header">
+    <div class="coin col-1" (click) = "sortingTable(0)">
+      <p>COIN</p>
+      <span [appSortingState]="sorting[0].sortingType[sorting[0].sortingState]">{{ sorting[0].sortingState }}</span>
+    </div>
+    <div class="total col-1" (click) = "sortingTable(1)">
+      <p>TOTAL</p>
+      <span [appSortingState]="sorting[1].sortingType[sorting[1].sortingState]">{{ sorting[1].sortingState }}</span>
+    </div>
+    <div class="available col-1" (click) = "sortingTable(2)">
+      <p>AVAILABLE</p>
+      <span [appSortingState]="sorting[2].sortingType[sorting[2].sortingState]">{{ sorting[2].sortingState }}</span>
+    </div>
+    <div class="inorder col-1" (click) = "sortingTable(3)">
+      <p>INORDER</p>
+      <span [appSortingState]="sorting[3].sortingType[sorting[3].sortingState]">{{ sorting[3].sortingState }}</span>
+    </div>
+    <div class="btcvalue col-1" (click) = "sortingTable(4)">
+      <p>BTCVALUE</p>
+      <span [appSortingState]="sorting[4].sortingType[sorting[4].sortingState]">{{ sorting[4].sortingState }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="isBalance; then isBalanceTemp else isNotBalanceTemp"></div>
+  <ng-template #isNotBalanceTemp>
+    <div *ngFor="let row of cryptoBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
+      </div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let row of cryptoNoneBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
+      </div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #isBalanceTemp>
+    <div *ngFor="let row of balanceBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
+      </div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let row of balanceNoneBase" class="row table-body">
+      <div class="coin col-1">{{ row.name }}<br>{{ row.abbre }}</div>
+      <div class="total col-1">{{ row.total }}</div>
+      <div class="available col-1">{{ row.available }}</div>
+      <div class="inorder col-1">{{ row.inOrder }}</div>
+      <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
+      </div>
+      <div class="col-1">
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
+      </div>
+      <div class="col-1">
+        <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <button *ngIf="row.trade.length == 0" class="not-active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
+        <div *ngIf="row.tradeVisible">
+          <div *ngFor="let trade of row.trade">
+            <a [routerLink]="['/trade', trade.toLowerCase().replace('/','-')]">{{ trade }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</mat-card>

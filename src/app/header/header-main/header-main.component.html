@@ -48,7 +48,7 @@
             </a>
           </li>
           <li *ngIf="!isLogin" class="header-nav-wallet header-nav-items header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/wallet']">
               <font class="header-nav-font">{{ 'W0008' | translate }}</font>
             </a>
           </li>

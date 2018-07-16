@@ -26,7 +26,6 @@ export class OrderService {
   postOrder(jsonBody: any): void {
     this.http.post(RestUrlBase+RestUrlOrder, jsonBody, this.httpOptions)
       .subscribe(data => {
-      console.log('this is good!!!');
       this.orderDataService.setPostOrder(data);
     });
   }

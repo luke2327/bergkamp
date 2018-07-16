@@ -10,6 +10,7 @@ export class NotiVisibilityDirective {
   constructor(private el: ElementRef) { }
 
   ngOnChanges(changes: any) {
+    console.log(this.isOpen);
     this.el.nativeElement.style.display = this.isOpen? "block": "none";
   }
 }

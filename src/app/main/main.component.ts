@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { AppsyncService } from '../aws-appsync/service/appsync.service';
 import GetSnapshot from '../aws-appsync/query/get-snapshot';
 import AWSAppSyncClient from 'aws-appsync';
@@ -11,7 +11,9 @@ import { HistoryService } from '../aws-appsync/service/history.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
+
+  snapshopSubscription: any;
 
   constructor(private snapshotService: SnapshotService,
               private historyService: HistoryService,
@@ -22,7 +24,7 @@ export class MainComponent implements OnInit {
     //수정완료 이곳에서 snapshot 정보를 부르고 snapshotDataService에 data를 보낸다.
     //하위 component는 이 데이터만 가져다 쓴다.
     this.snapshotService.startObserver();
-    this.snapshotService.queryObservable.subscribe((value) => {
+    this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {
       this.snapshotDataService.setSnapshot(value);
     });
     // this.historyService.queryObservable.subscribe((value) => {
@@ -30,4 +32,7 @@ export class MainComponent implements OnInit {
     // });
   }
 
+  ngOnDestroy() {
+    this.snapshopSubscription.unsubscribe();
+  }
 }

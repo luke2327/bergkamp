@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderMainComponent } from './header-main/header-main.component';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { WalletComponent } from './wallet.component';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
-import { HeaderNotiComponent } from './header-noti/header-noti.component';
-import { DirectiveModule } from '../directive/directive.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatAutocompleteModule,
@@ -43,21 +38,24 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import { LangPopoverComponent } from './lang-popover/lang-popover.component';
-import { RouterModule } from '@angular/router';
+import { DirectiveModule } from '../directive/directive.module';
+import { WalletHeaderComponent } from './wallet-header/wallet-header.component';
+import { WalletCryptoComponent } from './wallet-crypto/wallet-crypto.component';
 @NgModule({
   imports: [
-    NgbModule,
+    RouterModule,
     CommonModule,
-    HttpClientModule,
     TranslateModule,
-    DirectiveModule,
     MatCardModule,
-    RouterModule
+    MatTabsModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    CdkTableModule,
+    DirectiveModule
   ],
-  exports: [
-    HeaderComponent
-  ],
-  declarations: [HeaderComponent, HeaderMainComponent, HeaderNotiComponent, LangPopoverComponent]
+  declarations: [WalletComponent, WalletHeaderComponent, WalletCryptoComponent]
 })
-export class HeaderModule { }
+export class WalletModule { }

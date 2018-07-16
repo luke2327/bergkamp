@@ -22,6 +22,12 @@ export const RestUrlFavorite: string = 'user/favorite';
 export const RestUrlOrder: string = 'order/';
 export const RestUrlOrderMy: string = 'order/my';
 export const RestTransactionMy: string = 'transaction/my';
+export const RestUrlWBCryptoAll: string = 'wallet/balance/crypto/all';
+export const RestUrlWBCrypto: string = 'wallet/balance/crypto/';
+export const RestUrlWAMCrypto: string = 'wallet/address/my/crypto/';
+export const RestUrlWAFCrypto: string = 'wallet/address/facorite/crypto/';
+export const RestUrlWWCrypto: string = 'wallet/withdrawal/crypto/';
+export const RestUrlWBCCryptoAll: string = 'wallet/bank_statement/crypto/all';
 export const enum BidAskTableType {
   BidOnly = 0,
   AskOnly = 1,
@@ -69,3 +75,33 @@ export interface RequestOptions {
   headers?: HttpHeaders | { [header: string]: string | Array<string> };
   observe?: any;
 }
+export class RowModel {
+  id: number;
+  name: string;
+  abbre: string;
+  type: string;
+  total: number;
+  available: number;
+  inOrder: number;
+  byBtc: number;
+  byUsd: number;
+  trade: string[];
+  tradeVisible: boolean;
+}
+export class SortingWallet {
+  id: number;
+  sortingType: string[];
+  sortingState: number;
+}
+
+export const SortingOrder: string[] = [
+  'default',
+  'desc',
+  'asc'
+];
+
+export const SortingOrderName: string[] = [
+  'default',
+  'asc',
+  'desc'
+]
