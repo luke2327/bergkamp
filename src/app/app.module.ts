@@ -53,11 +53,15 @@ import { MainModule } from './main/main.module';
 import { TradeModule } from './trade/trade.module';
 import { DirectiveModule } from './directive/directive.module';
 import { WalletModule } from './wallet/wallet.module';
+import { WalletDepositModule } from './wallet-deposit/wallet-deposit.module';
+import { WalletWithdrawModule } from './wallet-withdraw/wallet-withdraw.module';
 //커스텀 컴포넌트 선언
 import { MainComponent } from './main/main.component';
 import { TradeFavoriteButtonDirective } from './directive/trade-favorite-button.directive';
 import { TradeComponent } from './trade/trade.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
+import { WalletWithdrawComponent } from './wallet-withdraw/wallet-withdraw.component';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
@@ -68,7 +72,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'trade/:id', component: TradeComponent},
-  {path: 'wallet', component: WalletComponent}
+  {path: 'wallet', component: WalletComponent},
+  {path: 'wallet/deposit/:id', component: WalletDepositComponent},
+  {path: 'wallet/withdrawal/:id', component: WalletWithdrawComponent}
 ];
 
 @NgModule({
@@ -97,7 +103,9 @@ const routes: Routes = [
     TradeModule,
     HttpModule,
     DirectiveModule,
-    WalletModule
+    WalletModule,
+    WalletDepositModule,
+    WalletWithdrawModule
   ],
   exports: [
     HttpClientModule,

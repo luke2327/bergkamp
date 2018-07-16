@@ -37,10 +37,10 @@
       <div class="inorder col-1">{{ row.inOrder }}</div>
       <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
       <div class="col-1">
-        <a>Deposit</a>
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
       </div>
       <div class="col-1">
-        <a>WithDrawal</a>
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
       </div>
       <div class="col-1">
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
@@ -59,10 +59,10 @@
       <div class="inorder col-1">{{ row.inOrder }}</div>
       <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
       <div class="col-1">
-        <a>Deposit</a>
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
       </div>
       <div class="col-1">
-        <a>WithDrawal</a>
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
       </div>
       <div class="col-1">
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
@@ -85,10 +85,10 @@
       <div class="inorder col-1">{{ row.inOrder }}</div>
       <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
       <div class="col-1">
-        <a>Deposit</a>
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
       </div>
       <div class="col-1">
-        <a>WithDrawal</a>
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
       </div>
       <div class="col-1">
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>
@@ -108,10 +108,10 @@
       <div class="inorder col-1">{{ row.inOrder }}</div>
       <div class="btcvalue col-1">{{ row.byBtc }}<br>$ {{ row.byUsd }}</div>
       <div class="col-1">
-        <a>Deposit</a>
+        <a [routerLink]="['/wallet/deposit', row.abbre.toLowerCase()]">Deposit</a>
       </div>
       <div class="col-1">
-        <a>WithDrawal</a>
+        <a [routerLink]="['/wallet/withdrawal', row.abbre.toLowerCase()]">WithDrawal</a>
       </div>
       <div class="col-1">
         <button *ngIf="row.trade.length > 0" class="active" (click)="toggleTradeDropdown(row.id, !row.tradeVisible)">Trade</button>

@@ -19,7 +19,7 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
   snapshotPairs: any;
 
   totalPriceByBTC: number;
-  totalPriceBYUSDT: number;
+  totalPriceByUSDT: number;
 
   constructor(private snapshotDataService: SnapshotDataService,
     private walletService: WalletService,
@@ -27,7 +27,7 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.totalPriceByBTC = 0;
-    this.totalPriceBYUSDT = 0;
+    this.totalPriceByUSDT = 0;
     this.cryptoMap = new Map();
   }
 
@@ -54,7 +54,7 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
         let total = this.cryptoMap.get(entry.crypto).amount + this.cryptoMap.get(entry.crypto).processing;
 
         this.totalPriceByBTC += this.getPairRatio(numerator, 'BTC');
-        this.totalPriceBYUSDT += this.getPairRatio(numerator, 'USDT');
+        this.totalPriceByUSDT += this.getPairRatio(numerator, 'USDT');
 
       }
     });

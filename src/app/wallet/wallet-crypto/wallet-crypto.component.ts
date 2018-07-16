@@ -52,6 +52,11 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
       this.snapshotPairs = value;
     });
     this.walletDataService.getBalanceCryptoAllSub.subscribe(data => {
+      this.balanceBase = [];
+      this.balanceNoneBase = [];
+      this.cryptoBase = [];
+      this.cryptoNoneBase = [];
+
       this.balance = data.body.balance;
       //정보를 다 가져왔다
       //row에 들어갈 정보를 만들어주자
