@@ -9,7 +9,7 @@ import {
   RestUrlWAMCrypto,
   RestUrlWAFCrypto,
   RestUrlWWCrypto,
-  RestUrlWBCCryptoAll,
+  RestUrlWBCCrypto,
   RequestOptions
 } from '../../app.const';
 import { WalletDataService } from '../service/wallet-data.service';
@@ -116,14 +116,14 @@ export class WalletService {
     });
   }
 
-  getBankStatementCryptoAll(): void {
+  getBankStatementCrypto(crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
       ,observe : 'response'
     };
-    this.http.get(RestUrlBase+RestUrlWBCCryptoAll+crypto, this.httpOptions)
+    this.http.get(RestUrlBase+RestUrlWBCCrypto+crypto, this.httpOptions)
       .subscribe(data => {
       this.walletDataService.setGetBankStatementCryptoAllSub(data);
     });

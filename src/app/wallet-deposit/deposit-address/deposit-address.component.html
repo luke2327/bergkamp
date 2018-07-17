@@ -1,0 +1,15 @@
+<div>
+  <p>ETH</p>
+  <p>Deposit Address</p>
+</div>
+<input [(ngModel)]="cryptoAddress" type="text" #inputTarget readonly="readonly"/>
+<div>
+  <div *ngIf='copied' >Copied</div>
+  <input type='button' value="copy address" [ngxClipboard]="inputTarget" (click)="copyAddress()"/>
+</div>
+<ul>
+  <li>QR Code</li>
+<ul>
+<div>
+  <qr-code *ngIf='cryptoAddress' [value]="cryptoAddress" [size]="150"></qr-code>
+</div>

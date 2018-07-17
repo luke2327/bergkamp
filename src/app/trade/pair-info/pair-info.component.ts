@@ -6,7 +6,6 @@ import { MatTabChangeEvent } from '@angular/material';
 import { Sort } from '@angular/material';
 import { FavoriteService } from '../../rest-api/service/favorite.service';
 import { FavoriteDataService } from '../../rest-api/service/favorite-data.service';
-import { TradeFavoriteButtonDirective } from '../../directive/trade-favorite-button.directive';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-pair-info',

@@ -25,9 +25,19 @@ export const RestTransactionMy: string = 'transaction/my';
 export const RestUrlWBCryptoAll: string = 'wallet/balance/crypto/all';
 export const RestUrlWBCrypto: string = 'wallet/balance/crypto/';
 export const RestUrlWAMCrypto: string = 'wallet/address/my/crypto/';
-export const RestUrlWAFCrypto: string = 'wallet/address/facorite/crypto/';
+export const RestUrlWAFCrypto: string = 'wallet/address/favorite/crypto/';
 export const RestUrlWWCrypto: string = 'wallet/withdrawal/crypto/';
 export const RestUrlWBCCryptoAll: string = 'wallet/bank_statement/crypto/all';
+export const RestUrlWBCCrypto: string = 'wallet/bank_statement/crypto/'
+export const enum DirectiveToggleType {
+  Visibility = 0,
+  Opened = 1,
+  Checked = 2,
+  Favorite = 3,
+  SortingState = 4,
+  State = 5,
+  Valid = 6
+}
 export const enum BidAskTableType {
   BidOnly = 0,
   AskOnly = 1,
@@ -54,6 +64,12 @@ export const enum OrderType {
 export const enum OrderHistoryType {
   OpenOrder = 0,
   OrderHistory = 1
+}
+export const enum TransactionHistoryType {
+  Deposit = 0,
+  DepositAll = 1,
+  Withdraw = 2,
+  WithdrawAll = 3
 }
 //지원 언어
 export const SupportedLang = {

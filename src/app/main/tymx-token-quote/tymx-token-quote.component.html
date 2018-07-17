@@ -50,7 +50,8 @@
       <a class="row token-quote-list" *ngFor="let value of dataSource"
         (click) = "routeTo(value.pair.toLowerCase().replace('/','-'))">
         <div class="favorite">
-          <input type="button" (click)="setFavorite($event, value.pair)" class="favorite-button" [appTradeFavoriteButton]="isFavorite(value.pair)">
+          <input type="button" (click)="setFavorite($event, value.pair)"
+            class="favorite-button" [appToggle]='3' [isOn]="isFavorite(value.pair)">
         </div>
         <img class="token-img"/>
         <div class="token-name align-middle">{{ value.pair }}</div>

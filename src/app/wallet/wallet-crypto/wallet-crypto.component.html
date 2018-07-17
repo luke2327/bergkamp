@@ -1,30 +1,30 @@
 <mat-card>
   <input type="button" class="checkbox"
     value="checkbox"
-    [appToggleCheckbox]="isBalance"
+    [appToggle]='2' [isOn]="isBalance"
     (click) = "toggleIsBalance()"/>
   <p>Possessions</p>
   <a><img/>Transaction History</a>
   <div class="row table-header">
     <div class="coin col-1" (click) = "sortingTable(0)">
       <p>COIN</p>
-      <span [appSortingState]="sorting[0].sortingType[sorting[0].sortingState]">{{ sorting[0].sortingState }}</span>
+      <span [appToggle]='4' [state]="sorting[0].sortingType[sorting[0].sortingState]">{{ sorting[0].sortingState }}</span>
     </div>
     <div class="total col-1" (click) = "sortingTable(1)">
       <p>TOTAL</p>
-      <span [appSortingState]="sorting[1].sortingType[sorting[1].sortingState]">{{ sorting[1].sortingState }}</span>
+      <span [appToggle]='4' [state]="sorting[1].sortingType[sorting[1].sortingState]">{{ sorting[1].sortingState }}</span>
     </div>
     <div class="available col-1" (click) = "sortingTable(2)">
       <p>AVAILABLE</p>
-      <span [appSortingState]="sorting[2].sortingType[sorting[2].sortingState]">{{ sorting[2].sortingState }}</span>
+      <span [appToggle]='4' [state]="sorting[2].sortingType[sorting[2].sortingState]">{{ sorting[2].sortingState }}</span>
     </div>
     <div class="inorder col-1" (click) = "sortingTable(3)">
       <p>INORDER</p>
-      <span [appSortingState]="sorting[3].sortingType[sorting[3].sortingState]">{{ sorting[3].sortingState }}</span>
+      <span [appToggle]='4' [state]="sorting[3].sortingType[sorting[3].sortingState]">{{ sorting[3].sortingState }}</span>
     </div>
     <div class="btcvalue col-1" (click) = "sortingTable(4)">
       <p>BTCVALUE</p>
-      <span [appSortingState]="sorting[4].sortingType[sorting[4].sortingState]">{{ sorting[4].sortingState }}</span>
+      <span [appToggle]='4' [state]="sorting[4].sortingType[sorting[4].sortingState]">{{ sorting[4].sortingState }}</span>
     </div>
   </div>
 

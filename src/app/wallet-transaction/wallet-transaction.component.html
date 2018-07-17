@@ -1,0 +1,15 @@
+
+<a>Balances</a>
+<p>></p>
+<a>Transaction History</a>
+<div>
+  <mat-tab-group
+    [disableRipple]="true" [@.disabled]="true" [selectedIndex]="selectedTab">
+    <mat-tab label="Deposit">
+      <app-deposit-history></app-deposit-history>
+    </mat-tab>
+    <mat-tab label="WithDrawal">
+      <app-withdraw-history></app-withdraw-history>
+    </mat-tab>
+  </mat-tab-group>
+</div>
