@@ -88,6 +88,8 @@
    - Feature_B223 코인별 입출금 화면및 로직도 추가함
    - 한 페이지라서 한번에 개발함
    - 출금화면쪽 로직이 복잡한데 쪼개는게 좋을지 냅두는게 좋을지는 쫌더 고민이 필요
+  16. Feature_B311 로그인 페이지
+   - js쪽 언어팩 적용(찾아보니 ng-translate 모듈로 됨(개좋음))
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home
