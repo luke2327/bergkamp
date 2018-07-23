@@ -2,6 +2,7 @@
 //여러개의 모델류 결합과정을 거쳐야함
 
 //walletcrypto에서 row model
+import { Observable } from 'rxjs/Observable';
 export class WalletCryptoRowModel {
   id: number;
   name: string;
@@ -58,4 +59,26 @@ export class WalletWithDrawalAddrModel {
   addr: string = '';
   nameErrMsg: string = '';
   addrErrMsg: string = '';
+}
+//login model
+export class LoginModel {
+  email: string = '';
+  pw: string = '';
+  emailErrMsg: string = '';
+  pwErrMsg: string = '';
+  isEmailInvalid: boolean = false;
+  isPwInvalid: boolean = false;
+}
+
+//2FA
+export class Auth2FaModel {
+  enableGoogle: boolean = true;
+  enableSms: boolean = true;
+  gAuthCode: string = '';
+  gAuthErr: boolean = false;
+  gAuthErrMsg: string = '';
+  smsAuthCode: string = '';
+  smsAuthErr: boolean = false;
+  smsAuthErrMsg: string = '';
+  smsSendCount = 0;
 }

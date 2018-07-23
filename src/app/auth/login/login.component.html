@@ -1,0 +1,20 @@
+<mat-card>
+  <p>{{ 'W0006' | translate }}</p>
+  <div>
+    <input *ngIf="viewModel.emailErrMsg.length > 0" type="text" placeholder="{{ viewModel.emailErrMsg }}" [(ngModel)]="viewModel.email"/>
+    <span>Email Img</span>
+  </div>
+  <div>
+    <input type="text" placeholder="{{ viewModel.pwErrMsg }}" [(ngModel)]="viewModel.pw"/>
+    <span>PW Img</span>
+  </div>
+  <input type="button" value="Login" (click) = "login()"/>
+  <div>
+    <p>{{ 'W0123' | translate }}</p>
+    <a>{{ 'W0124' | translate }}</a>
+  </div>
+  <div>
+    <p>{{ 'W0125' | translate }}</p>
+    <a>{{ 'W0007' | translate }}</a>
+  </div>
+</mat-card>

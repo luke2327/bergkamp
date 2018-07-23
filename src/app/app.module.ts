@@ -55,6 +55,7 @@ import { HeaderModule } from './header/header.module';
 import { MainModule } from './main/main.module';
 import { TradeModule } from './trade/trade.module';
 import { DirectiveModule } from './directive/directive.module';
+import { AuthModule } from './auth/auth.module';
 import { WalletModule } from './wallet/wallet.module';
 import { WalletDepositModule } from './wallet-deposit/wallet-deposit.module';
 import { WalletWithdrawModule } from './wallet-withdraw/wallet-withdraw.module';
@@ -66,6 +67,10 @@ import { WalletComponent } from './wallet/wallet.component';
 import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
 import { WalletWithdrawComponent } from './wallet-withdraw/wallet-withdraw.component';
 import { WalletTransactionComponent } from './wallet-transaction/wallet-transaction.component';
+import { LoginComponent } from './auth/login/login.component';
+import { Auth2faComponent } from './auth/auth-2fa/auth-2fa.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { TymxRouterService } from './service/tymx-router.service';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
@@ -80,7 +85,10 @@ const routes: Routes = [
   {path: 'wallet/deposit/:id', component: WalletDepositComponent},
   {path: 'wallet/withdrawal/:id', component: WalletWithdrawComponent},
   {path: 'wallet/transaction', component: WalletTransactionComponent},
-  {path: 'wallet/transaction/:id', component: WalletTransactionComponent}
+  {path: 'wallet/transaction/:id', component: WalletTransactionComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'login/auth', component: Auth2faComponent},
+  {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({
@@ -115,6 +123,7 @@ const routes: Routes = [
     WalletTransactionModule,
     MomentTimezoneModule,
     MomentModule,
+    AuthModule,
     QRCodeModule
   ],
   exports: [
@@ -154,7 +163,11 @@ const routes: Routes = [
     MatToolbarModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [TymxRouterService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private tymxRouterService: TymxRouterService) {
+
+  }
+}

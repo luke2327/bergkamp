@@ -1,4 +1,5 @@
 import { SupportedLang } from './app.const';
+
 let browserLang: string = 'en';
 export function getLang(): string {
   return browserLang;
@@ -14,7 +15,6 @@ export function getCountry(): string {
 export function setCountry(country: string): void {
   browserCountry = country;
 }
-
 
 //유효숫자 리턴
 //기획사항 : 10보자 작으면 소수점 8자리까지

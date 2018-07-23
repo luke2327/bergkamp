@@ -86,6 +86,9 @@ export const SupportedLang = {
     }
   ]
 }
+
+export const EmailRegEx = '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$';
+
 //http option에 대한 interface
 export interface RequestOptions {
   headers?: HttpHeaders | { [header: string]: string | Array<string> };

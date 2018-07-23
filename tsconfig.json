@@ -15,6 +15,11 @@
       "es2017",
       "dom",
       "esnext.asynciterable"
-    ]
-  }
+    ],
+    "types": ["node"]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
 }

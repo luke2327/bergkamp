@@ -6,33 +6,52 @@ import { ObservableQuery } from 'apollo-client';
 import { SnapshotService } from '../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
+import { UserLoginService } from "../aws-appsync/service/user-login.service";
+import { AwsService } from "../aws-appsync/service/aws.service";
+import { CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
+import * as AWS from "aws-sdk/global";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy, LoggedInCallback {
 
   snapshopSubscription: any;
-
+  idToken: any;
+  credentials: any;
   constructor(private snapshotService: SnapshotService,
               private historyService: HistoryService,
-              private snapshotDataService: SnapshotDataService) { }
+              private snapshotDataService: SnapshotDataService,
+              public cognitoService: CognitoService,
+              private userLoginService: UserLoginService,
+              private awsService: AwsService) { }
 
   ngOnInit() {
-    // this.appsync.currentMessage.subscribe(message => this.message = message);
-    //수정완료 이곳에서 snapshot 정보를 부르고 snapshotDataService에 data를 보낸다.
-    //하위 component는 이 데이터만 가져다 쓴다.
+    this.userLoginService.isAuthenticated(this);
+  }
+
+  ngOnDestroy() {
+    if(this.snapshopSubscription!=null)
+      this.snapshopSubscription.unsubscribe();
+  }
+  isLoggedIn(message: string, isLoggedIn: boolean) {
+    if(isLoggedIn) {
+      let mythis = this;
+      this.cognitoService.getIdToken({
+        callback() {
+
+        },
+        callbackWithParam(token: any) {
+          mythis.startSnapshot();
+        }
+      });
+    }
+  }
+  startSnapshot() {
     this.snapshotService.startObserver();
     this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {
       this.snapshotDataService.setSnapshot(value);
     });
-    // this.historyService.queryObservable.subscribe((value) => {
-    //   console.log(value);
-    // });
-  }
-
-  ngOnDestroy() {
-    this.snapshopSubscription.unsubscribe();
   }
 }
