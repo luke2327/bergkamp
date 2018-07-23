@@ -1,0 +1,60 @@
+<div>
+  <div class="row">
+    <p>ETH</p>
+    <p>Widthdrawal Address</p>
+  </div>
+  <div class="row">
+    <input type="text"
+      placeholder = "{{ viewModel.inputErrorMesage }}"
+      [appToggle] = "6" [isOn] = "viewModel.inputAddr.length > 0 || viewModel.inputAddrValid == 0"
+      [(ngModel)]="viewModel.inputAddr"/>
+    <input type="button" value="on" (click)="getAddrs()"/>
+  </div>
+  <!-- 주소리스트 -->
+  <div *ngIf="viewModel.isAddressList">
+    <p>Add ETH Withdrawal Address</p>
+    <div *ngFor="let row of addrListModel">
+      <div class="row">
+        <p class="col-1">{{ row.name }}</p>
+        <p class="col-4" (click)="setAddr(row.addr)">{{ row.addr }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <input type="button" value="+" (click)="addAddrDialog()"/>
+      <p>Add new address</p>
+    </div>
+  </div>
+  <!-- 주소추가 dialog -->
+  <div *ngIf="viewModel.isAddDialog">
+    <p>Add ETH Withdrawal Address</p>
+    <p>Address Label</p>
+    <input type="text" placeholder="{{ addrDialogModel.nameErrMsg }}" [(ngModel)] = "addrDialogModel.name"/>
+    <p>Address</p>
+    <input type="text" placeholder="{{ addrDialogModel.addrErrMsg }}" [(ngModel)] = "addrDialogModel.addr"/>
+    <input type="button" value="Cancel" (click) = "addAddrCancel()"/>
+    <input type="button" value="Add" (click) = "addAddrConfirm()"/>
+  </div>
+  <div class="row">
+    <p>Available</p>
+    <p>{{ viewModel.available }}</p>
+    <span>ETH</span>
+  </div>
+  <p>Limit {{ viewModel.limit }} ETH</p>
+  <div class="row">
+    <p>Amount</p>
+    <input type="button" value="MAX" (click)="amountMax()"/>
+    <input type="text" [(ngModel)]="viewModel.inputAmount" (input)="inputAmount($event.target.value)"/>
+    <span>ETH</span>
+  </div>
+  <div *ngIf="viewModel.isValidAmount">
+    <span>ErrImg</span>
+    <p>{{ viewModel.inputAmountErrMesage }}</p>
+  </div>
+  <p>*Fee {{ viewModel.fee }} ETH</p>
+  <div class="row">
+    <p>Amount received</p>
+    <p>{{ this.viewModel.amountReceived }}</p>
+    <span>ETH</span>
+  </div>
+  <input type="button"  (click)="withDrawal()" value="Withdraw"/>
+</div>

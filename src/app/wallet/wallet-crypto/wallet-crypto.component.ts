@@ -3,7 +3,8 @@ import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.ser
 import { WalletService } from '../../rest-api/service/wallet.service';
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { getLang } from '../../app.util';
-import { RowModel, SortingOrder, SortingOrderName, SortingWallet } from '../../app.const';
+import { SortingOrder, SortingOrderName, SortingWallet } from '../../app.const';
+import { WalletCryptoRowModel } from '../../app.model';
 @Component({
   selector: 'app-wallet-crypto',
   templateUrl: './wallet-crypto.component.html',
@@ -61,7 +62,7 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
       //정보를 다 가져왔다
       //row에 들어갈 정보를 만들어주자
       for(let crypto of this.cryptos) {
-        let rowModel:RowModel = this.buildRowModel(crypto);
+        let rowModel:WalletCryptoRowModel = this.buildRowModel(crypto);
         for (let balance of this.balance) {
           //balance정보가 있는지 확인
           if(rowModel.id == balance.crypto) {
@@ -240,8 +241,8 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
     }
   }
   /*정렬류 처리를 위해 object를 build해준다.*/
-  buildRowModel(crypto: any): RowModel {
-    let rowModel:RowModel = new RowModel();
+  buildRowModel(crypto: any): WalletCryptoRowModel {
+    let rowModel:WalletCryptoRowModel = new WalletCryptoRowModel();
     rowModel.id = crypto.id;
     rowModel.name = getLang() =='en'?
       JSON.parse(crypto.name).en : JSON.parse(crypto.name).ko;
@@ -261,7 +262,7 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
     return rowModel;
   }
   /*row model에 balance정보를 추가해준다*/
-  buildRowModelBalance(rowModel: RowModel, balance: any): RowModel {
+  buildRowModelBalance(rowModel: WalletCryptoRowModel, balance: any): WalletCryptoRowModel {
     let ratioUsd: number = this.getPairRatio(rowModel.abbre, 'USDT');
     let ratioBtc: number = this.getPairRatio(rowModel.abbre, 'BTC');
 

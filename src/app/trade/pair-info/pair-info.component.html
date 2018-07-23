@@ -18,7 +18,7 @@
           <mat-cell *matCellDef="let element">
             <a class="row">
               <div class="favorite">
-                <input [appTradeFavoriteButton]="isFavorite(element.pair)"
+                <input [appToggle]='3' [isOn]="isFavorite(element.pair)"
                   type="button" class="favorite-button" (click)="setFavorite($event, element.pair)">
               </div>
               {{element.pair}}<br /><font class="below_pair">MANU/TMX</font>

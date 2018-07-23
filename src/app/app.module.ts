@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QRCodeModule } from 'angular2-qrcode';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -46,6 +47,8 @@ import {
 } from '@angular/material';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MomentTimezoneModule } from 'angular-moment-timezone';
+import { MomentModule } from 'angular2-moment';
 //커스텀 모듈 선언
 import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
@@ -55,13 +58,14 @@ import { DirectiveModule } from './directive/directive.module';
 import { WalletModule } from './wallet/wallet.module';
 import { WalletDepositModule } from './wallet-deposit/wallet-deposit.module';
 import { WalletWithdrawModule } from './wallet-withdraw/wallet-withdraw.module';
+import { WalletTransactionModule } from './wallet-transaction/wallet-transaction.module';
 //커스텀 컴포넌트 선언
 import { MainComponent } from './main/main.component';
-import { TradeFavoriteButtonDirective } from './directive/trade-favorite-button.directive';
 import { TradeComponent } from './trade/trade.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
 import { WalletWithdrawComponent } from './wallet-withdraw/wallet-withdraw.component';
+import { WalletTransactionComponent } from './wallet-transaction/wallet-transaction.component';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
@@ -74,7 +78,9 @@ const routes: Routes = [
   {path: 'trade/:id', component: TradeComponent},
   {path: 'wallet', component: WalletComponent},
   {path: 'wallet/deposit/:id', component: WalletDepositComponent},
-  {path: 'wallet/withdrawal/:id', component: WalletWithdrawComponent}
+  {path: 'wallet/withdrawal/:id', component: WalletWithdrawComponent},
+  {path: 'wallet/transaction', component: WalletTransactionComponent},
+  {path: 'wallet/transaction/:id', component: WalletTransactionComponent}
 ];
 
 @NgModule({
@@ -105,7 +111,11 @@ const routes: Routes = [
     DirectiveModule,
     WalletModule,
     WalletDepositModule,
-    WalletWithdrawModule
+    WalletWithdrawModule,
+    WalletTransactionModule,
+    MomentTimezoneModule,
+    MomentModule,
+    QRCodeModule
   ],
   exports: [
     HttpClientModule,

@@ -79,6 +79,15 @@
   14. Feature_B221 Wallet main 개발
    - wallet main page 개발
    - wallet rest-api 연동
+  15. Feature_B222 코인별 입출금 화면
+   - history쪽 코드가 중복이 발생하므로
+   - 일단 transaction history부터 구현
+   - drective에 파편화된 코드 합침
+   - 날짜 모듈 적용(moment.js)
+   - qr 코드류 개발로직 생성(library로 그냥 하면됨)
+   - Feature_B223 코인별 입출금 화면및 로직도 추가함
+   - 한 페이지라서 한번에 개발함
+   - 출금화면쪽 로직이 복잡한데 쪼개는게 좋을지 냅두는게 좋을지는 쫌더 고민이 필요
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

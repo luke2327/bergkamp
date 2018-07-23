@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
     this.geolocationDataService.getGeolocationObservable.subscribe(data => {
       setCountry(data.country.code);
       this.infoService.getInfoAll(getLang()+"-"+getCountry());
+      localStorage.setItem('geoloc', JSON.stringify(data));
     });
     this.infoDataService.getInfoAllObservable.subscribe(data => {
       //일단 localstorage에 저장해두고쓰자..
