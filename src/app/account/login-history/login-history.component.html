@@ -1,3 +1,11 @@
-<p>
-  login-history works!
-</p>
+<p>Last Login History</p>
+<div class="row">
+  <p>Date</p>
+  <p>Type</p>
+  <p>IP</p>
+</div>
+<div *ngFor="let row of viewModels" class="row">
+  <p>{{ row.date }}</p>
+  <p>{{ row.type }}</p>
+  <p>{{ row.ip }}</p>
+</div>

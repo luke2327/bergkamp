@@ -62,6 +62,7 @@ import { DirectiveModule } from '../directive/directive.module';
     MatCheckboxModule,
     MatTableModule,
     MatSortModule,
+    MatSlideToggleModule,
     CdkTableModule,
     DirectiveModule,
   ],

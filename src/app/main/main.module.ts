@@ -8,6 +8,7 @@ import { AwsService } from '../aws-appsync/service/aws.service';
 import { CognitoService } from '../aws-appsync/service/cognito.service';
 import { UserLoginService } from '../aws-appsync/service/user-login.service';
 import { UserRegService } from '../aws-appsync/service/user-reg.service';
+import { UserParametersService } from '../aws-appsync/service/user-parameters.service';
 import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
 import { SampleNoticeService } from '../rest-api/service/sample-notice.service';
@@ -105,7 +106,8 @@ import {
     AwsService,
     CognitoService,
     UserLoginService,
-    UserRegService
+    UserRegService,
+    UserParametersService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

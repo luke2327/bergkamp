@@ -33,13 +33,19 @@ export class ToggleDirective {
           this.renderer.setElementClass(this.el.nativeElement, 'favorite-button-checked', this.isOn);
           this.renderer.setElementClass(this.el.nativeElement, 'favorite-button', !this.isOn);
         case DirectiveToggleType.SortingState :
-          this.renderer.setElementClass(this.el.nativeElement, 'sorting', this.state=='default');
-          this.renderer.setElementClass(this.el.nativeElement, 'sorting-ask', this.state=='ask');
-          this.renderer.setElementClass(this.el.nativeElement, 'sorting-desc', this.state=='desc');
-        case DirectiveToggleType.State :
-          for(let entry of this.stateList) {
-            this.renderer.setElementClass(this.el.nativeElement, this.state, this.state==entry);
+          if(this.state!=null){
+            this.renderer.setElementClass(this.el.nativeElement, 'sorting', this.state=='default');
+            this.renderer.setElementClass(this.el.nativeElement, 'sorting-ask', this.state=='ask');
+            this.renderer.setElementClass(this.el.nativeElement, 'sorting-desc', this.state=='desc');
           }
+
+        case DirectiveToggleType.State :
+          if(this.state!=null && this.stateList!=null){
+            for(let entry of this.stateList) {
+              this.renderer.setElementClass(this.el.nativeElement, this.state, this.state==entry);
+            }
+          }
+
         case DirectiveToggleType.Valid :
           this.renderer.setElementClass(this.el.nativeElement, 'valid', this.isOn);
           this.renderer.setElementClass(this.el.nativeElement, 'invalid', !this.isOn);
