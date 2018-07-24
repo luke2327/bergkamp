@@ -1,15 +1,20 @@
-<div>
-  <p>ETH</p>
-  <p>Deposit Address</p>
-</div>
-<input [(ngModel)]="cryptoAddress" type="text" #inputTarget readonly="readonly"/>
-<div>
-  <div *ngIf='copied' >Copied</div>
-  <input type='button' value="copy address" [ngxClipboard]="inputTarget" (click)="copyAddress()"/>
-</div>
-<ul>
-  <li>QR Code</li>
-<ul>
-<div>
-  <qr-code *ngIf='cryptoAddress' [value]="cryptoAddress" [size]="150"></qr-code>
-</div>
+<mat-card class="deposit-address nopadding">
+  <div class="wallet-kind">
+    <p>ETH&nbsp;<font>Deposit Address</font></p>
+  </div>
+  <input [(ngModel)]="cryptoAddress" type="text" #inputTarget readonly="readonly" />
+  <div class="dp-copy-content">
+    <div class="dp-copied" *ngIf='copied'>Copied</div>
+    <input type='button' value="Copy Address" [ngxClipboard]="inputTarget" (click)="copyAddress()" id="copy_address-id"/>
+    <label for="copy_address-id">Copy Address</label>
+  </div>
+  <div class="dp-qrcode-zone">
+    <div class="dp-qr-inner">
+      <canvas></canvas>
+      <p>QR Code</p>
+    </div>
+    <div class="qr-box">
+      <qr-code *ngIf='cryptoAddress' [value]="cryptoAddress" [size]="120"></qr-code>
+    </div>
+  </div>
+</mat-card>

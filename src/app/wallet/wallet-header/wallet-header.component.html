@@ -1,29 +1,7 @@
-<p class="wallet-title">
-  <canvas class="wallet-tt-cv"></canvas>
-  Balances
-  <!-- <font class="angle-barcket">&gt;</font>
-  Desposit
-  <font class="angle-barcket">&gt;</font>
-  ETH -->
-</p>
-
+<li class="title">Balances</li>
 <mat-card class="wallet-header noppadding">
-  <p class="wallet-estimateds">Estimateds Value</p>
-  <div class="wallet-bc-info">
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <p class="wt-price">{{ totalPriceByBTC }}</p>
-          </td>
-          <td>
-            <p class="wt-name">BTC</p>
-          </td>
-          <td>
-            <p class="wt-price-usd">({{ totalPriceByUSDT }} USD)</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <p>Estimateds Value</p>
+  <p>{{ totalPriceByBTC }}</p>
+  <p>BTC</p>
+  <p>({{ totalPriceByUSDT }} USD)</p>
 </mat-card>

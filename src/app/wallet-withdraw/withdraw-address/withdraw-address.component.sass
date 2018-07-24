@@ -1,0 +1,306 @@
+.wd-menu
+  height: 40px
+  line-height: 40px
+  border-radius: 2px
+  input[type="text"]
+    width: 500px
+    border: 1px solid #c4c8d7
+    border-top-left-radius: 2px
+    border-bottom-left-radius: 2px
+    padding-left: 15px
+    padding-right: 15px
+  input[type="button"]
+    width: 70px
+    display: none
+  label
+    width: 70px
+    background-color: #c4c8d7
+    margin: 0px !important
+    border-top-right-radius: 2px
+    border-bottom-right-radius: 2px
+    user-select: none
+    cursor: pointer
+    .l-menubar
+      width: 20px
+      height: 20px
+      margin-left: 20px
+      margin-right: 4px
+    .l-arrow
+      width: 13px
+      height: 13px
+
+.wd-address-list-box
+  position: absolute
+  margin-top: 15px
+  background-color: white
+  width: 570px
+  border: 1px solid #e0e0e8
+  border-radius: 2px
+  padding-left: 15px
+  padding-right: 15px
+  z-index: 1001
+  .wd-address-list
+    height: 40px
+    line-height: 40px
+    border-bottom: 1px solid #f4f4f4
+    .col-1
+      width: 150px
+      min-width: 150px
+      max-width: 150px
+      margin-right: 15px !important
+      font-size: 13px
+      font-weight: 400
+      color: #989bab
+      text-align: left
+    .col-4
+      font-size: 13px
+      font-weight: 400
+      color: #000
+      text-align: left
+      cursor: pointer
+  #wd-add-address-button
+    display: none
+  .wd-l-add-address
+    margin: 0px !important
+    height: 40px
+    line-height: 40px
+  .wd-add-address-msg
+    line-height: 40px
+    height: 40px
+    margin-left: 10px
+    margin-bottom: 0px !important
+    font-size: 15px
+    font-weight: 400
+    color: #000
+  .wd-add-button
+    width: 18px
+    height: 18px
+  div label
+    cursor: pointer
+  .row
+    height: 40px
+
+.wd-add-address-box
+  position: absolute
+  margin-top: 15px
+  background-color: white
+  width: 570px
+  height: 275px
+  border: 1px solid #e0e0e8
+  border-radius: 2px
+  padding-top: 25px
+  padding-left: 25px
+  padding-right: 25px
+  z-index: 1000
+  .head-msg
+    height: 30px
+    line-height: 30px
+    font-size: 15px
+    font-weight: 500
+    color: #000
+    margin-bottom: 10px
+  .address-label-msg
+    height: 20px
+    line-height: 20px
+    font-size: 13px
+    font-weight: 400
+    color: #c4c8d7
+    margin-bottom: 0px
+  .input-box
+    font-size: 13px
+    font-weight: 400
+    padding-left: 15px
+    padding-right: 15px
+    border-radius: 2px
+    margin-bottom: 20px
+    height: 40px
+  .address-label-input
+    width: 220px
+    border: 1px solid #c4c8d7
+    color: #000
+  .address-input
+    width: 520px
+    border: 1px solid #c4c8d7
+  #wd-cancel, #wd-add
+    display: none
+  #wd-cancel + label, #wd-add + label
+    width: 100px
+    height: 30px
+    font-size: 13px
+    font-weight: 400
+    border-radius: 2px
+    line-height: 30px
+    text-align: center
+    cursor: pointer
+    user-select: none
+  label[for="wd-cancel"]
+    background-color: white
+    border: 1px solid #000
+    color: #000
+    margin-right: 20px
+  label[for="wd-add"]
+    background-color: #3078ff
+    color: white
+.wd-av-msg
+  font-size: 15px
+  font-weight: 500
+  color: #c4c8d7
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    position: absolute !important
+.wd-below-detail
+  margin-top: 55px
+  .wd-available-box
+    width: 100%
+    height: 40px
+    position: relative
+    top: 9px
+    .wd-av-right
+      max-width: 570px
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+        position: relative !important
+        display: inline-block
+      position: absolute
+      width: 100%
+      text-align: right
+      float: right
+      display: flow-root
+      p
+        display: inline
+        margin-bottom: 0px !important
+        font-size: 18px
+        font-weight: 400
+        color: #000
+.wd-kind-msg
+  display: inline-block
+  background-color: #3078ff
+  width: 45px
+  height: 22px
+  position: relative
+  text-align: center
+  color: white
+  font-size: 13px
+  font-weight: 500
+  line-height: 22px
+  border-radius: 3px
+  bottom: 2px
+  margin-left: 5px
+      // span
+      //   float: right
+
+.wd-below-limit-msg
+  max-width: 570px
+  width: 100%
+  text-align: right
+  font-size: 13px
+  font-weight: 400
+  color: #3078ff
+  margin-bottom: 0px !important
+  height: 20px
+  line-height: 20px
+.wd-below-fee-msg
+  max-width: 570px
+  width: 100%
+  text-align: right
+  font-size: 13px
+  font-weight: 400
+  color: #757678
+  height: 30px
+  line-height: 30px
+  margin-bottom: 20px !important
+
+
+.wd-right
+  position: absolute
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    position: relative
+  width: 570px
+  text-align: right
+  height: 40px
+  line-height: 40px
+#wd-am-button
+  display: none
+label[for="wd-am-button"]
+  height: 40px
+  width: 70px
+  color: white
+  background-color: #3078ff
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  margin-bottom: 0px !important
+  position: relative
+  left: 3px
+  bottom: 1px
+  text-align: center
+  cursor: pointer
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    left: 4px
+    top: 1px
+.wd-am-input
+  width: 275px
+  padding-left: 15px
+  padding-right: 15px
+  height: 40px
+  border: 1px solid #c4c8d7
+  border-top-right-radius: 2px
+  border-bottom-right-radius: 2px
+  position: relative
+  text-align: right
+  font-size: 18px
+  font-weight: 400
+  color: #000
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    top: 3px
+.wd-amount-msg
+  height: 40px
+  line-height: 35px
+  margin-bottom: 0px
+.wd-amount-box
+  margin-top: 25px
+  margin-bottom: 25px
+  width: 100%
+
+.wd-amount-rcv-box
+  width: 100%
+  height: 65px
+  line-height: 40px
+  .wd-fee-mg
+    margin-left: 10px
+    margin-bottom: 15px
+    bottom: 4px
+  .wd-amount-rcv-msg
+    font-size: 15px
+    font-weight: 500
+    color: #000
+  .wd-fee-ps
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+      position: absolute
+      width: 455px
+  .wd-amount-rcv-v
+    font-size: 22px
+    font-weight: 500
+    color: #000
+#wd-m-button
+  display: none
+label[for="wd-m-button"]
+  width: 570px
+  height: 50px
+  line-height: 50px
+  border-radius: 2px
+  background-color: #000
+  font-size: 18px
+  font-weight: 400
+  color: white
+  text-align: center
+  cursor: pointer
+input[placeholder="Address VarificationFailed"], input[placeholder="Please input withdrawal address"][ng-reflect-model=""], input[placeholder="Address Varification Failed"][ng-reflect-model=""]
+  &::placeholder
+    color: #f14d4e
+    font-size: 13px
+    height: 40px
+  border: 1px solid #f14d4e !important
+input[class="ng-valid ng-dirty ng-touched valid"]
+  border: 1px solid #c4c8d7 !important
+input[placeholder="Required"]
+  &::placeholder
+    color: #c4c8d7
+// input[placeholder="Please input withdrawal address"][ng-reflect-model=""]
