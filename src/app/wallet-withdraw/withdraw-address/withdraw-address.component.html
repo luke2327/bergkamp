@@ -1,60 +1,85 @@
-<div>
-  <div class="row">
-    <p>ETH</p>
-    <p>Widthdrawal Address</p>
-  </div>
-  <div class="row">
-    <input type="text"
-      placeholder = "{{ viewModel.inputErrorMesage }}"
-      [appToggle] = "6" [isOn] = "viewModel.inputAddr.length > 0 || viewModel.inputAddrValid == 0"
-      [(ngModel)]="viewModel.inputAddr"/>
-    <input type="button" value="on" (click)="getAddrs()"/>
-  </div>
-  <!-- 주소리스트 -->
-  <div *ngIf="viewModel.isAddressList">
-    <p>Add ETH Withdrawal Address</p>
-    <div *ngFor="let row of addrListModel">
+<mat-card class="withdraw-address nopadding">
+  <div>
+    <div class="wallet-kind">
+      <p>ETH&nbsp;
+        <font>Withdrawal Address</font>
+      </p>
+    </div>
+    <div class="row wd-menu">
+      <input type="text" placeholder="{{ viewModel.inputErrorMesage }}" [appToggle]="6" [isOn]="viewModel.inputAddr.length > 0 || viewModel.inputAddrValid == 0" [(ngModel)]="viewModel.inputAddr" />
+      <input type="button" value="on" (click)="getAddrs()" id="wd-menu-button" />
+      <label for="wd-menu-button">
+      <img src="/assets/img/web_wallet_withdrawal_address_list.png" class="l-menubar">
+      <img src="/assets/img/web_wallet_withdrawal_address_arrow_top.png" class="l-arrow">
+    </label>
+    </div>
+    <!-- 주소리스트 -->
+    <div *ngIf="viewModel.isAddressList" class="wd-address-list-box">
+      <!-- <p>Add ETH Withdrawal Address</p> -->
+      <div *ngFor="let row of addrListModel">
+        <div class="row wd-address-list">
+          <p class="col-1 nopadding">{{ row.name }}</p>
+          <p class="col-4 nopadding" (click)="setAddr(row.addr)">{{ row.addr }}</p>
+        </div>
+      </div>
       <div class="row">
-        <p class="col-1">{{ row.name }}</p>
-        <p class="col-4" (click)="setAddr(row.addr)">{{ row.addr }}</p>
+        <input type="button" value="+" (click)="addAddrDialog()" id="wd-add-address-button" />
+        <label for="wd-add-address-button" class="wd-l-add-address">
+          <img src="/assets/img/web_wallet_withdrawal_address_list_add.png" class="wd-add-button">
+        </label>
+        <label for="wd-add-address-button">
+        <p class="wd-add-address-msg">Add new address</p>
+        </label>
       </div>
     </div>
-    <div class="row">
-      <input type="button" value="+" (click)="addAddrDialog()"/>
-      <p>Add new address</p>
+    <!-- 주소추가 dialog -->
+    <div *ngIf="viewModel.isAddDialog" class="wd-add-address-box">
+      <p class="head-msg">Add ETH Withdrawal Address</p>
+      <p class="address-label-msg">Address Label</p>
+      <input type="text" placeholder="{{ addrDialogModel.nameErrMsg }}" [(ngModel)]="addrDialogModel.name" class="address-label-input input-box"/>
+      <p class="address-label-msg">Address</p>
+      <input type="text" placeholder="{{ addrDialogModel.addrErrMsg }}" [(ngModel)]="addrDialogModel.addr" class="address-input input-box"/>
+      <input type="button" value="Cancel" (click)="addAddrCancel()" id="wd-cancel"/>
+      <label for="wd-cancel">Cancel</label>
+      <input type="button" value="Add" (click)="addAddrConfirm()" id="wd-add"/>
+      <label for="wd-add">Add</label>
+    </div>
+
+    <div class="wd-below-detail">
+      <div class="row wd-available-box">
+        <p class="wd-av-msg">Available</p>
+        <div class="wd-av-right">
+          <p>{{ viewModel.available }}</p>
+          <div class="wd-kind-msg">
+            <span>ETH</span>
+          </div>
+        </div>
+      </div>
+      <p class="wd-below-limit-msg">Limit {{ viewModel.limit }} ETH</p>
+
+      <div class="row wd-amount-box">
+        <p class="wd-av-msg wd-amount-msg">Amount</p>
+        <div class="wd-right">
+        <input type="button" value="MAX" (click)="amountMax()" id="wd-am-button"/>
+        <label for="wd-am-button">MAX</label>
+        <input type="text" [(ngModel)]="viewModel.inputAmount" (input)="inputAmount($event.target.value)" class="wd-am-input"/>
+        <span class="wd-kind-msg wd-ps">ETH</span>
+              </div>
+      </div>
+
+      <div *ngIf="viewModel.isValidAmount">
+        <span>ErrImg</span>
+        <p>{{ viewModel.inputAmountErrMesage }}</p>
+      </div>
+      <p class="wd-below-fee-msg">*Fee {{ viewModel.fee }} ETH</p>
+      <div class="row wd-amount-rcv-box">
+        <p class="wd-amount-rcv-msg">Amount received</p>
+        <div class="wd-right wd-fee-ps">
+        <p class="wd-amount-rcv-v">{{ this.viewModel.amountReceived }}<span class="wd-kind-msg wd-fee-mg">ETH</span></p>
+      </div>
+      </div>
+      <input type="button" (click)="withDrawal()" value="Withdraw" id="wd-m-button"/>
+      <label for="wd-m-button">Withdraw</label>
     </div>
   </div>
-  <!-- 주소추가 dialog -->
-  <div *ngIf="viewModel.isAddDialog">
-    <p>Add ETH Withdrawal Address</p>
-    <p>Address Label</p>
-    <input type="text" placeholder="{{ addrDialogModel.nameErrMsg }}" [(ngModel)] = "addrDialogModel.name"/>
-    <p>Address</p>
-    <input type="text" placeholder="{{ addrDialogModel.addrErrMsg }}" [(ngModel)] = "addrDialogModel.addr"/>
-    <input type="button" value="Cancel" (click) = "addAddrCancel()"/>
-    <input type="button" value="Add" (click) = "addAddrConfirm()"/>
-  </div>
-  <div class="row">
-    <p>Available</p>
-    <p>{{ viewModel.available }}</p>
-    <span>ETH</span>
-  </div>
-  <p>Limit {{ viewModel.limit }} ETH</p>
-  <div class="row">
-    <p>Amount</p>
-    <input type="button" value="MAX" (click)="amountMax()"/>
-    <input type="text" [(ngModel)]="viewModel.inputAmount" (input)="inputAmount($event.target.value)"/>
-    <span>ETH</span>
-  </div>
-  <div *ngIf="viewModel.isValidAmount">
-    <span>ErrImg</span>
-    <p>{{ viewModel.inputAmountErrMesage }}</p>
-  </div>
-  <p>*Fee {{ viewModel.fee }} ETH</p>
-  <div class="row">
-    <p>Amount received</p>
-    <p>{{ this.viewModel.amountReceived }}</p>
-    <span>ETH</span>
-  </div>
-  <input type="button"  (click)="withDrawal()" value="Withdraw"/>
-</div>
+</mat-card>
