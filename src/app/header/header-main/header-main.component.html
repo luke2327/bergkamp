@@ -54,8 +54,8 @@
           </li>
           <li *ngIf="isLogin" class="header-nav-line"></li>
           <li *ngIf="isLogin" class="header-nav-account header-nav-items header-nav cap">
-            <a (click) = "notiToggle()">
-              <font class="header-nav-font">Account</font>
+            <a [routerLink]="['/account']">
+              <font class="header-nav-font">{{ 'W0009' | translate }}</font>
             </a>
           </li>
           <li *ngIf="isLogin" class="header-nav-line"></li>
