@@ -1,20 +1,24 @@
-<div class="row">
-  <p class="col-2">Date</p>
-  <p class="col-1">Coin</p>
-  <p class="col-1">Amount</p>
-  <p class="col-1">Status</p>
-  <p class="col-4">Detail</p>
-  <a *ngIf="seeAll" class="col-1" [routerLink]="['/wallet/transaction', routerId]">SeeAll</a>
-  <p class="col-1" (click)="reloadHistory()">Refresh</p>
-</div>
-<div class="row" *ngFor="let row of viewModel">
-  <p class="col-2">{{row.ct | amTz:"America/New_York" | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</p>
-  <p class="col-1">{{ row.abbre }}</p>
-  <p class="col-1">{{ row.amount }}</p>
-  <p class="col-1">{{ row.status }}</p>
-  <div class="col-4">
-    <p>Address: {{ row.counter_addr }}</p>
-    <p [appToggle]='0' [isOn] = 'row.txVisible'>TxID: {{ row.counter_addr }}</p>
+<mat-card class="wallet-common-history nopadding">
+<div class="row cm-h-box">
+  <p class="col-2 cm-h-date">Date</p>
+  <p class="col-1 cm-h-coin">Coin</p>
+  <p class="col-1 cm-h-amount">Amount</p>
+  <p class="col-1 cm-h-status">Status</p>
+  <p class="col-4 cm-h-detail cm-h-header">Detail</p>
+  <div class="cm-h-header-button">
+  <a id="cm-h-seeall" *ngIf="seeAll" class="col-1" [routerLink]="['/wallet/transaction', routerId]">SeeAll</a>
+  <p id="cm-h-refresh" class="col-1" (click)="reloadHistory()"><img src="/assets/img/web_wallet_deposit_list_refresh.png" class="ref-image" /></p>
   </div>
-  <span class="col-1" (click)="toggleOpen(row)" [appToggle]='1' [isOn] = 'row.txVisible'>Open</span>
 </div>
+<div class="row cm-h-list-box" *ngFor="let row of viewModel">
+  <p class="col-2 cm-h-date">{{row.ct | amTz:"America/New_York" | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</p>
+  <p class="col-1 cm-h-coin">{{ row.abbre }}</p>
+  <p class="col-1 cm-h-amount">{{ row.amount }}</p>
+  <p class="col-1 cm-h-status">{{ row.status }}</p>
+  <div class="col-4 cm-h-detail">
+    <p class="cm-h-address">Address: {{ row.counter_addr }}</p>
+      <p class="cm-h-ext cm-h-IE" [appToggle]='0' [isOn] = 'row.txVisible'>TxID: {{ row.counter_addr }}</p>
+  </div>
+  <div class="col-1 cm-h-toggle" (click)="toggleOpen(row)" [appToggle]='1' [isOn] = 'row.txVisible'></div>
+</div>
+</mat-card>
