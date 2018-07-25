@@ -426,13 +426,15 @@ mat-card.wallet-crypto
     min-width: 185px
     background: #f4f4f4 !important
     background-color: #f4f4f4 !important
-    border: 1px solid #e0e0e8
+    border-left: 1px solid #e0e0e8
+    border-right: 1px solid #e0e0e8
+    border-top: 1px solid #e0e0e8
     font-size: 15px
     &[id="mat-tab-label-0-0"]
       border-right: none !important
     &[class*="mat-tab-label-active"]
       color: black
-      border-bottom: none !important
+      // border-bottom: none !important
     &:focus
       background-color: white !important
     &[aria-selected="true"]
@@ -440,27 +442,32 @@ mat-card.wallet-crypto
       color: #000
       background-color: white !important
       background: white !important
-  .mat-tab-body[class="mat-tab-body ng-tns-c13-0 ng-star-inserted"]
+  .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-0"]
+    .wallet-common-history
+      .cm-h-box
+        .cm-h-coin
+          border-top: 1px solid #e0e0e9
+  .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-1"]
+    .wallet-common-history
+      .cm-h-box
+        .cm-h-date
+          border-top: 1px solid #e0e0e8
 
   .mat-ink-bar
     width: 185px
     left: 185px
     display: none
 
-app-wallet-deposit
+
+//deposit & withdrawal history handle
+app-wallet-deposit, app-wallet-withdraw
   .wallet-modulate
     .wallet-common-history
       div[class*="cm-h-box"]
         .cm-h-date, .cm-h-coin
           border-top: 1px solid #e0e0e8
 
-app-wallet-withdraw
-  .wallet-modulate
-    .wallet-common-history
-      div[class*="cm-h-box"]
-        .cm-h-date, .cm-h-coin
-          border-top: 1px solid #e0e0e8
-
+//Deposit Note
 .dn-header
   height: 30px
   margin-bottom: 15px
@@ -551,7 +558,7 @@ app-wallet-withdraw
       height: 40px
       background: #3078ff
 
-////deposit-note
+////deposit-note basic info
 .deposit-note
   width: 725px
   height: 440px
@@ -562,7 +569,7 @@ app-wallet-withdraw
     position: relative
     left: 649px
 
-////withdraw-address
+////withdraw-address basic info
 .withdraw-address
   padding-top: 30px !important
   padding-left: 40px !important
