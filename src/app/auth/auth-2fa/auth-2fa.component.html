@@ -1,0 +1,29 @@
+<p>{{ 'W0114' | translate }}</p>
+<mat-tab-group [disableRipple]="true"
+  [@.disabled]="true">
+  <mat-tab *ngIf="viewModel.enableGoogle" label="{{ 'W0115' | translate }}">
+    <div>
+      <p>{{ 'W0116' | translate }}</p>
+      <input type="text" [(ngModel)] = "viewModel.gAuthCode" (input)="inputGoogleAuth($event.target.value)"/>
+      <div *ngIf="viewModel.gAuthErr">
+        <span>ErrImg</span>
+        <p>{{ viewModel.gAuthErrMsg }}</p>
+      </div>
+      <input type="button" value="{{ 'W0117' | translate }}" (click) = "authGoogle()"/>
+    </div>
+  </mat-tab>
+  <mat-tab *ngIf="viewModel.enableSms" label="{{ 'W0118' | translate }}">
+    <div>
+      <p>{{ 'W0119' | translate }}</p>
+      <p *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
+      <input *ngIf="viewModel.smsSendCount <= 0"
+        type="button" value="{{ 'W0120' | translate }}" (click) = "sendSmsAuth()"/>
+      <input type="text" [(ngModel)] = "viewModel.smsAuthCode" (input)="inputSmsAuth($event.target.value)"/>
+      <div *ngIf="viewModel.smsAuthErr">
+        <span>ErrImg</span>
+        <p>{{ viewModel.smsAuthErrMsg }}</p>
+      </div>
+      <input type="button" value="{{ 'W0117' | translate }}" (click) = "authSms()"/>
+    </div>
+  </mat-tab>
+</mat-tab-group>

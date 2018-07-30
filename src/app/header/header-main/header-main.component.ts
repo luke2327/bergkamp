@@ -5,12 +5,15 @@ import { Router } from "@angular/router";
 import { NotiToggleService } from '../../service/noti-toggle.service';
 import { SampleLoginService } from '../../service/sample-login.service';
 import { LangToggleService } from '../../service/lang-toggle.service';
+import { UserLoginService } from "../../aws-appsync/service/user-login.service";
+import { LoggedInCallback } from "../../aws-appsync/service/cognito.service";
+
 @Component({
   selector: 'app-header-main',
   templateUrl: './header-main.component.html',
   styleUrls: ['./header-main.component.sass']
 })
-export class HeaderMainComponent implements OnInit, AfterViewInit {
+export class HeaderMainComponent implements OnInit, AfterViewInit, LoggedInCallback {
   //TODO 슬슬 이 멍청한 변수선언 코드를 고칠때가 온듯..
   private langCodeObj: any;
   isNoti: boolean = false;
@@ -18,10 +21,12 @@ export class HeaderMainComponent implements OnInit, AfterViewInit {
   isLogin: boolean = false;
   constructor(private translate: TranslateService,
       private router: Router,
-      private notiToggleService:NotiToggleService,
-      private langToggleService:LangToggleService,
-      private sampleLoginService:SampleLoginService) {
+      private notiToggleService: NotiToggleService,
+      private langToggleService: LangToggleService,
+      private sampleLoginService: SampleLoginService,
+      private userLoginService: UserLoginService) {
     this.langCodeObj = getSupportedLangMap();
+    this.userLoginService.isAuthenticated(this);
   }
 
   ngOnInit() {
@@ -32,15 +37,17 @@ export class HeaderMainComponent implements OnInit, AfterViewInit {
     this.notiToggleService.observable.subscribe(data => {
       this.isNoti = data;
     });
-    this.sampleLoginService.observable.subscribe(data => {
-      this.isLogin = data;
-    });
+    // this.sampleLoginService.observable.subscribe(data => {
+    //   this.isLogin = data;
+    // });
     this.langToggleService.observable.subscribe(data => {
       this.isLang = data;
     });
   }
   ngAfterViewInit(){
-
+    this.userLoginService.loginSubject.subscribe(data => {
+      this.isLogin = data;
+    });
   }
   setLanguage(lang: string): void {
     if(getLang() == lang){
@@ -62,5 +69,16 @@ export class HeaderMainComponent implements OnInit, AfterViewInit {
   langToggle(): void {
     this.langToggleService.toggle();
     this.notiToggleService.setOpen(false);
+  }
+
+  logout() {
+    console.log("logout!!!");
+    this.userLoginService.logout();
+    this.userLoginService.isAuthenticated(this);
+  }
+
+  isLoggedIn(message: string, isLoggedIn: boolean) {
+    console.log("LOGIN??????:::::"+isLoggedIn);
+    this.isLogin = isLoggedIn;
   }
 }

@@ -88,6 +88,13 @@
    - Feature_B223 코인별 입출금 화면및 로직도 추가함
    - 한 페이지라서 한번에 개발함
    - 출금화면쪽 로직이 복잡한데 쪼개는게 좋을지 냅두는게 좋을지는 쫌더 고민이 필요
+  16. Feature_B311 로그인 페이지
+   - js쪽 언어팩 적용(찾아보니 ng-translate 모듈로 됨(개좋음))
+   - 이전까지 페이지당 모듈을 하나씩 썼는데
+   - auth류(login, signup, google auth 등등)은 페이지만 많고 component를 한개정도 내외로 개발가능하므로 그냥 auth란 module 하나에 필요한 component를 모두 개발한다.
+   - 바로 이전페이지로 쉽게 움직이기 위해 login->auth 나 signup->email-auth 동작은 한페이지 내에서 동작하도록 처리한다.
+   - cognito 처리
+   - signup 까지 모두 구현
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

@@ -34,39 +34,39 @@
             </a>
           </li>
           <li class="header-nav-line"></li>
-          <li *ngIf="isLogin" class="header-nav-singup header-nav-items header-nav text-center cap">
+          <li *ngIf="!isLogin" class="header-nav-singup header-nav-items header-nav text-center cap">
             <img src="/assets/img/web_navi_signup.png" class="header-nav-img">
-            <a href="#">
+            <a [routerLink]="['/signup']">
               <font class="header-nav-font">{{ 'W0007' | translate }}</font>
             </a>
           </li>
-          <li *ngIf="isLogin" class="header-nav-line"></li>
-          <li *ngIf="isLogin" class="header-nav-login header-nav-items header-nav text-center cap">
+          <li *ngIf="!isLogin" class="header-nav-line"></li>
+          <li *ngIf="!isLogin" class="header-nav-login header-nav-items header-nav text-center cap">
             <img src="/assets/img/web_navi_login.png" class="header-nav-img">
-            <a href="#">
+            <a [routerLink]="['/login']">
               <font class="header-nav-font">{{ 'W0006' | translate }}</font>
             </a>
           </li>
-          <li *ngIf="!isLogin" class="header-nav-wallet header-nav-items header-nav cap">
+          <li *ngIf="isLogin" class="header-nav-wallet header-nav-items header-nav cap">
             <a [routerLink]="['/wallet']">
               <font class="header-nav-font">{{ 'W0008' | translate }}</font>
             </a>
           </li>
-          <li *ngIf="!isLogin" class="header-nav-line"></li>
-          <li *ngIf="!isLogin" class="header-nav-account header-nav-items header-nav cap">
+          <li *ngIf="isLogin" class="header-nav-line"></li>
+          <li *ngIf="isLogin" class="header-nav-account header-nav-items header-nav cap">
             <a (click) = "notiToggle()">
               <font class="header-nav-font">Account</font>
             </a>
           </li>
-          <li *ngIf="!isLogin" class="header-nav-line"></li>
-          <li *ngIf="!isLogin" class="header-nav-wallet header-nav-items header-nav cap">
+          <li *ngIf="isLogin" class="header-nav-line"></li>
+          <li *ngIf="isLogin" class="header-nav-wallet header-nav-items header-nav cap">
             <img src="/assets/img/web_navi_logout.png" class="header-nav-img">
-            <a href="#">
+            <a (click)="logout()">
               <font class="header-nav-font">Logout</font>
             </a>
           </li>
-          <li *ngIf="!isLogin" class="header-nav-line-fu"></li>
-          <li *ngIf="!isLogin" class="header-nav-noti header-nav cap">
+          <li *ngIf="isLogin" class="header-nav-line-fu"></li>
+          <li *ngIf="isLogin" class="header-nav-noti header-nav cap">
             <a (click) = "notiToggle()">
               <font class="header-nav-font"><img class="img-noti" src="/assets/img/web_navi_notification_off.png"/></font>
             </a>
