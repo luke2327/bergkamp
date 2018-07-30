@@ -1,77 +1,78 @@
-<div *ngIf="!viewModel.isEndSignup">
-  <p>{{ "W0007" | translate }}</p>
-  <div>
-    <input type="text" placeholder="{{ 'W0121' | translate }}"
-      [(ngModel)] = "viewModel.email"
-      (input)="inputEmail($event.target.value)"/>
-    <span>[email img]</span>
-  </div>
-  <div *ngIf="viewModel.isEmailErr">
-    <span>[err img]</span>
-    <p>{{ viewModel.emailErrMsg }}</p>
-  </div>
-  <div>
-    <input type="text" placeholder="{{ 'W0122' | translate }}"
-      [(ngModel)] = "viewModel.pw"
-      (input)="inputPw($event.target.value)"/>
-    <span>[pw img]</span>
-  </div>
-  <div *ngIf="viewModel.isPwErr">
-    <span>[err img]</span>
-    <p>{{ viewModel.pwErrMsg }}</p>
-  </div>
-  <div>
-    <input type="text" placeholder="{{ 'W0126' | translate }}"
-      [(ngModel)] = "viewModel.rePw"
-      (input)="inputRePw($event.target.value)"/>
-    <span>[comfirm img]</span>
-  </div>
-  <div *ngIf="viewModel.isRePwErr">
-    <span>[err img]</span>
-    <p>{{ viewModel.rePwErrMsg }}</p>
-  </div>
-  <div>
-    <input type="checkbox" (click)="checkTermToggle()"
-      [appToggle]="2" [isOn]="viewModel.isCheckTerms"/>
-    <div *ngIf="viewModel.lang=='en'">
-      <p>{{ 'W0180' | translate }}</p>
-      <a>{{ 'W0181' | translate }}</a>
+<div class="login-modulate">
+  <mat-card class="auth-signup auth-login nopadding" *ngIf="!viewModel.isEndSignup">
+    <div class="sg-inner-box">
+      <p class="sg-header">{{ "W0007" | translate }}</p>
+      <div class="sg-input-box">
+        <img class="sg-input-img" src="/assets/img/email.png">
+        <input type="text" placeholder="{{ 'W0121' | translate }}" [(ngModel)]="viewModel.email" (input)="inputEmail($event.target.value)" />
+      </div>
+      <div class="sg-email-error-box" *ngIf="viewModel.isEmailErr">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ viewModel.emailErrMsg }}</p>
+      </div>
+      <div class="sg-input-box">
+        <img class="sg-input-img" src="/assets/img/password.png">
+        <input type="password" placeholder="{{ 'W0122' | translate }}" [(ngModel)]="viewModel.pw" (input)="inputPw($event.target.value)" />
+      </div>
+      <div class="sg-passwd-error-box" *ngIf="viewModel.isPwErr">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ viewModel.pwErrMsg }}</p>
+      </div>
+      <div class="sg-input-box">
+        <img class="sg-input-img" src="/assets/img/confirmpassword.png">
+        <input type="password" placeholder="{{ 'W0126' | translate }}" [(ngModel)]="viewModel.rePw" (input)="inputRePw($event.target.value)" />
+      </div>
+      <div class="sg-passwd-confirm-error-box" *ngIf="viewModel.isRePwErr">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ viewModel.rePwErrMsg }}</p>
+      </div>
+      <div class="sg-agree-box">
+        <input type="checkbox" (click)="checkTermToggle()" [appToggle]="2" [isOn]="viewModel.isCheckTerms" id="sg-agree-checkbox" />
+        <label [appToggle]="2" [isOn]="viewModel.isCheckTerms" for="sg-agree-checkbox"></label>
+        <div class="sg-en-box" *ngIf="viewModel.lang=='en'">
+          <p class="agree-msg">{{ 'W0180' | translate }}</p>
+          <a class="terms-msg">{{ 'W0181' | translate }}</a>
+        </div>
+        <div class="sg-ko-box" *ngIf="viewModel.lang!='en'">
+          <a class="terms-msg">{{ 'W0181' | translate }}</a>
+          <p class="agree-msg">{{ 'W0180' | translate }}</p>
+        </div>
+      </div>
+      <div class="sg-agree-error-box" *ngIf="viewModel.isCheckTermsErr">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ 'S0027' | translate }}</p>
+      </div>
+      <input class="sg-signup-button" type="button" (click)="signup()" value="{{ 'W0007' | translate }}" />
     </div>
-    <div *ngIf="viewModel.lang!='en'">
-      <a>{{ 'W0181' | translate }}</a>
-      <p>{{ 'W0180' | translate }}</p>
-    </div>
-  </div>
-  <div *ngIf="viewModel.isCheckTermsErr">
-    <span>[err img]</span>
-    <p>{{ 'S0027' | translate }}</p>
-  </div>
-  <input type="button" (click)="signup()" value="{{ 'W0007' | translate }}"/>
-</div>
+  </mat-card>
 
-<!--이메일 인증 -->
-<div *ngIf="viewModel.isEndSignup">
-  <span>[img]</span>
-  <p>{{ 'W0128' | translate }}</p>
-  <div *ngIf="viewModel.lang=='en'">
-    <p>{{ 'S0028' | translate }}</p>
-    <p>{{ viewModel.email }}</p>
-  </div>
-  <div *ngIf="viewModel.lang!='en'">
-    <p>{{ viewModel.email }}</p>
-    <p>{{ 'S0028' | translate }}</p>
-  </div>
-  <p>{{ 'S0029' | translate }}</p>
-  <span>[img]</span>
-  <p>{{ 'S0030' | translate }}</p>
-  <input type="button" (click)="resend()" value="{{ 'W0129' | translate }}"/>
-  <span>[img]</span>
-  <p>{{ 'S0031' | translate }}</p>
-  <input type="button" (click)="login()" value="{{ 'W0006' | translate }}"/>
-  <p>{{ 'S0033' | translate }}</p>
-  <!--여긴 건드리지 말것~~-->
-  <div *ngIf="viewModel.needConfirm">
-    <input type="text" [(ngModel)] = "viewModel.confirmCode"/>
-    <input type="button" (click)="confirm()" value="confirm"/>
-  </div>
+  <!--이메일 인증 -->
+  <mat-card class="auth-email auth-login nopadding" *ngIf="viewModel.isEndSignup">
+    <div class="sg-inner-box">
+      <img class="em-icon" src="/assets/img/email_verification_title.png">
+      <p class="em-header">{{ 'W0128' | translate }}</p>
+      <div *ngIf="viewModel.lang=='en'">
+        <p class="em-msg">{{ 'S0028' | translate }}
+          <font class="em-email-info">{{ viewModel.email }}</font><br /> {{ 'S0029' | translate }}</p>
+      </div>
+      <div *ngIf="viewModel.lang!='en'">
+        <p class="em-msg"><font class="em-email-info">{{ viewModel.email }}</font>{{ 'S0028' | translate }}
+          <br /> {{ 'S0029' | translate }}</p>
+      </div>
+      <div class="em-division"></div>
+      <p class="em-below-msg">{{ 'S0030' | translate }}</p>
+      <input class="em-below-button" type="button" (click)="resend()" value="{{ 'W0129' | translate }}" />
+      <div class="em-division"></div>
+      <p class="em-below-msg">{{ 'S0031' | translate }}</p>
+      <input class="em-below-button mbt-20" type="button" (click)="login()" value="{{ 'W0006' | translate }}" />
+      <div class="em-divsion-line"></div>
+      <p class="em-fn-msg">{{ 'S0032' | translate }}</p>
+      <!--여긴 건드리지 말것~~-->
+    </div>
+  </mat-card>
+</div>
+<!--여긴 건드리지 말것~~-->
+<div *ngIf="viewModel.needConfirm" style="display: none">
+  <input type="text" [(ngModel)]="viewModel.confirmCode" />
+  <input type="button" (click)="confirm()" value="confirm" />
 </div>

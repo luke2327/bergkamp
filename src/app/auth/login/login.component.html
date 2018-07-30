@@ -1,20 +1,26 @@
-<mat-card>
-  <p>{{ 'W0006' | translate }}</p>
-  <div>
-    <input *ngIf="viewModel.emailErrMsg.length > 0" type="text" placeholder="{{ viewModel.emailErrMsg }}" [(ngModel)]="viewModel.email"/>
-    <span>Email Img</span>
-  </div>
-  <div>
-    <input type="text" placeholder="{{ viewModel.pwErrMsg }}" [(ngModel)]="viewModel.pw"/>
-    <span>PW Img</span>
-  </div>
-  <input type="button" value="Login" (click) = "login()"/>
-  <div>
-    <p>{{ 'W0123' | translate }}</p>
-    <a>{{ 'W0124' | translate }}</a>
-  </div>
-  <div>
-    <p>{{ 'W0125' | translate }}</p>
-    <a>{{ 'W0007' | translate }}</a>
-  </div>
-</mat-card>
+<div class="login-modulate">
+  <mat-card class="auth-login nopadding">
+    <div class="lg-inner-box">
+      <p class="lg-header">{{ 'W0006' | translate }}</p>
+      <div class="lg-email-box">
+        <img src="/assets/img/email.png" />
+        <input *ngIf="viewModel.emailErrMsg.length > 0" type="text" placeholder="{{ viewModel.emailErrMsg }}" [(ngModel)]="viewModel.email" id="lg-email-button"/>
+      </div>
+      <div class="lg-passwd-box">
+        <img src="/assets/img/password.png" />
+        <input type="password" placeholder="{{ viewModel.pwErrMsg }}" [(ngModel)]="viewModel.pw" />
+      </div>
+      <input type="button" value="Login" (click)="login()" id="lg-login-button"/>
+      <label for="lg-login-button">Login</label>
+      <div class="lg-div-line"></div>
+      <div class="lg-forgotten-box">
+        <p>{{ 'W0123' | translate }}</p>
+        <a>{{ 'W0124' | translate }}</a>
+      </div>
+      <div class="lg-signup-box">
+        <p>{{ 'W0125' | translate }}</p>
+        <a>{{ 'W0007' | translate }}</a>
+      </div>
+    </div>
+  </mat-card>
+</div>

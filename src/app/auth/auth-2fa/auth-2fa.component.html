@@ -1,29 +1,34 @@
-<p>{{ 'W0114' | translate }}</p>
-<mat-tab-group [disableRipple]="true"
-  [@.disabled]="true">
-  <mat-tab *ngIf="viewModel.enableGoogle" label="{{ 'W0115' | translate }}">
-    <div>
-      <p>{{ 'W0116' | translate }}</p>
-      <input type="text" [(ngModel)] = "viewModel.gAuthCode" (input)="inputGoogleAuth($event.target.value)"/>
-      <div *ngIf="viewModel.gAuthErr">
-        <span>ErrImg</span>
-        <p>{{ viewModel.gAuthErrMsg }}</p>
-      </div>
-      <input type="button" value="{{ 'W0117' | translate }}" (click) = "authGoogle()"/>
-    </div>
-  </mat-tab>
-  <mat-tab *ngIf="viewModel.enableSms" label="{{ 'W0118' | translate }}">
-    <div>
-      <p>{{ 'W0119' | translate }}</p>
-      <p *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
-      <input *ngIf="viewModel.smsSendCount <= 0"
-        type="button" value="{{ 'W0120' | translate }}" (click) = "sendSmsAuth()"/>
-      <input type="text" [(ngModel)] = "viewModel.smsAuthCode" (input)="inputSmsAuth($event.target.value)"/>
-      <div *ngIf="viewModel.smsAuthErr">
-        <span>ErrImg</span>
-        <p>{{ viewModel.smsAuthErrMsg }}</p>
-      </div>
-      <input type="button" value="{{ 'W0117' | translate }}" (click) = "authSms()"/>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+<!-- <p>{{ 'W0114' | translate }}</p> -->
+<div class="login-modulate">
+  <mat-card class="auth-2fa auth-login nopadding">
+      <p class="au-header">{{ 'W0114' | translate }}</p>
+      <mat-tab-group [disableRipple]="true" [@.disabled]="true">
+        <mat-tab *ngIf="viewModel.enableGoogle" label="{{ 'W0115' | translate }}">
+          <div>
+            <p class="au-header-msg">{{ 'W0116' | translate }}</p>
+            <input class="au-input au-ga-input" type="text" [(ngModel)]="viewModel.gAuthCode" (input)="inputGoogleAuth($event.target.value)" />
+            <div class="au-error-box" *ngIf="viewModel.gAuthErr">
+              <img class="au-error" src="/assets/img/web_wallet_withdrawal_error.png">
+              <p>{{ viewModel.gAuthErrMsg }}</p>
+            </div>
+            <input type="button" value="{{ 'W0117' | translate }}" (click)="authGoogle()" id="au-verify-button" />
+            <label for="au-verify-button">{{ 'W0117' | translate }}</label>
+          </div>
+        </mat-tab>
+        <mat-tab *ngIf="viewModel.enableSms" label="{{ 'W0118' | translate }}">
+          <div>
+            <p class="au-header-msg">{{ 'W0119' | translate }}</p>
+            <p class="au-email-count" *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
+            <input *ngIf="viewModel.smsSendCount <= 0" type="button" value="{{ 'W0120' | translate }}" (click)="sendSmsAuth()" id="au-email-send-button" />
+            <input class="au-input au-email-input" type="text" [(ngModel)]="viewModel.smsAuthCode" (input)="inputSmsAuth($event.target.value)" />
+            <div class="au-error-box" *ngIf="viewModel.smsAuthErr">
+              <img class="au-error" src="/assets/img/web_wallet_withdrawal_error.png">
+              <p>{{ viewModel.smsAuthErrMsg }}</p>
+            </div>
+            <input type="button" value="{{ 'W0117' | translate }}" (click)="authSms()" id="au-verify-button" />
+            <label for="au-verify-button">{{ 'W0117' | translate }}</label>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+  </mat-card>
+</div>
