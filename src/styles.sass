@@ -6,6 +6,9 @@
 \:lang(en)
   font-family: 'Rubik', sans-serif
 
+html, body
+  height: 100%
+
 body
   position: relative
   background-color: #ffffff
@@ -18,6 +21,23 @@ header
 footer
   background-color: #ffffff
   margin-top: 70px !important
+
+img, label, button
+  user-select: none
+
+a, label
+  cursor: pointer
+
+app-root
+  display: table
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  height: 100%
+app-signup, app-login, app-auth-2fa, app-wallet
+  display: table-row
+  width: 100%
+  height: 100%
 
 .mat-tab-label-content
   user-select: none
@@ -389,3 +409,448 @@ mat-card.wallet-crypto
     border-right: 1px solid #e0e0e8
   .wt-border-helper
     border-top: 1px solid #e0e0e8
+
+//login
+.login-modulate
+  width: 1400px
+  margin: 0 auto
+  .auth-2fa
+    height: 435px
+    label
+      margin-bottom: 0px !important
+    .au-header
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-size: 23px
+      font-weight: 500
+      color: #000
+      margin-bottom: 45px !important
+    mat-tab-group
+      width: 340px
+      min-width: 340px
+      margin: 0 auto
+      // height: 45px
+      mat-tab-header
+        height: 45px
+      mat-ink-bar
+        display: none
+      .mat-tab-labels
+        height: 45px
+        .mat-tab-label
+          height: 45px
+          width: 170px
+      div[aria-selected="true"]
+        border-top: 1px solid #e0e0e8
+      div[aria-selected="false"]
+        border-top: 1px solid #e0e0e8
+        border-bottom: 1px solid #e0e0e8
+        background-color: #f4f4f4
+        &:focus
+          background-color: #f4f4f4 !important
+          background: #f4f4f4 !important
+          opacity: 0.5 !important
+        &:hover, &:active
+          background-color: white
+      div.mat-tab-label:first-child
+        border-left: 1px solid #e0e0e8
+        border-right: 1px solid #e0e0e8
+      div.mat-tab-label:last-child
+        border-right: 1px solid #e0e0e8
+    .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus
+      background-color: #fff
+    .mat-tab-label-content
+      font-size: 15px
+      font-weight: 500
+    .au-header-msg
+      margin-top: 30px !important
+      margin-bottom: 10px !important
+      height: 30px
+      min-height: 30px
+      line-height: 30px
+      font-size: 15px
+      font-weight: 500
+      color: #c4c8d7
+    .au-input
+      height: 40px
+      min-height: 40px
+      line-height: 40px
+      border: 1px solid #c4c8d7
+      border-radius: 2px
+      padding-left: 10px
+      font-size: 15px
+      font-weight: 400
+      color: #000
+      margin-bottom: 30px
+    .au-ga-input
+      width: 340px
+      min-width: 340px
+    .au-email-input
+      width: 270px
+      min-width: 270px
+    .au-error-box
+      text-align: right
+      height: 30px
+      line-height: 30px
+      position: absolute
+      width: 340px
+      top: 110px
+      .au-error
+        width: 13px
+        height: 13px
+        margin-right: 5px
+      p
+        font-size: 12px
+        font-weight: 400
+        color: #f14d4e
+        display: inline
+    #au-verify-button
+      display: none
+    label[for="au-verify-button"]
+      width: 340px
+      min-width: 340px
+      height: 50px
+      min-height: 50px
+      line-height: 50px
+      border-radius: 2px
+      background-color: #3078ff
+      margin-top: 10px !important
+      font-size: 15px
+      font-weight: 500
+      color: white
+      text-align: center
+      cursor: pointer
+      user-select: none
+    #au-email-send-button
+      width: 60px
+      min-width: 60px
+      height: 39px
+      min-height: 39px
+      line-height: 39px
+      border-radius: 2px
+      background-color: #3078ff
+      font-size: 13px
+      font-weight: 400
+      color: #fff
+      text-align: center
+      cursor: pointer
+      margin-right: 6px
+      border: none
+      user-select: none
+      outline: 0px
+      outline-width: 0px
+      outline-offset: 0px
+
+    .au-email-count
+      display: inline-block
+      width: 60px
+      min-width: 60px
+      height: 39px
+      min-height: 39px
+      line-height: 39px
+      border-radius: 2px
+      background-color: #989bab
+      font-size: 13px
+      font-weight: 400
+      color: #fff
+      text-align: center
+      margin-right: 6px
+      border: none
+      margin-bottom: 0px !important
+      user-select: none
+
+    div[class*="mat-tab-label-active"]
+      opacity: 1
+      .mat-tab-label-content
+        color: #000
+  .auth-login
+    width: 420px
+    min-width: 420px
+    height: 460px
+    min-height: 460px
+    margin: 0 auto !important
+    margin-top: 75px !important
+    margin-bottom: 145px !important
+    border-top: 5px solid #000
+    padding-top: 50px !important
+    .lg-inner-box
+      width: 340px
+      margin: 0 auto !important
+      .lg-header
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-size: 23px
+        font-weight: 500
+        color: #000
+        margin-bottom: 45px !important
+      .lg-email-box, .lg-passwd-box
+        border-radius: 2px
+        height: 40px
+        margin-bottom: 30px !important
+        position: relative
+        img
+          width: 45px
+          height: 40px
+          position: absolute
+          z-index: 20
+        input
+          position: absolute
+          z-index: 19
+          height: 40px
+          min-height: 40px
+          width: 100%
+          min-width: 100%
+          max-width: 100%
+          padding-left: 50px
+          border: 1px solid #c4c8d7
+      #lg-login-button
+        display: none
+      label[for="lg-login-button"]
+        width: 340px
+        min-width: 340px
+        height: 50px
+        min-height: 50px
+        line-height: 50px
+        background-color: #3078ff
+        border-radius: 2px
+        color: #fff
+        font-size: 15px
+        font-weight: 500
+        text-align: center
+        cursor: pointer
+        margin-top: 10px !important
+        margin-bottom: 40px !important
+        user-select: none
+      .lg-div-line
+        width: 340px
+        min-width: 340px
+        height: 1px
+        max-height: 1px
+        background-color: #e0e0e8
+        margin-bottom: 15px !important
+      .lg-forgotten-box, .lg-signup-box
+        height: 25px
+        min-height: 25px
+        line-height: 25px
+        text-align: center
+        font-size: 13px
+        font-weight: 400
+        p
+          display: inline
+          margin-right: 2px !important
+          color: #000
+        a
+          color: #3078ff
+          text-decoration: underline
+          cursor: pointer
+  //signup
+  .auth-signup
+    height: 525px
+    min-height: 525px
+    .sg-inner-box
+      width: 340px
+      margin: 0 auto !important
+      .sg-header
+        margin-bottom: 45px
+        height: 30px
+        min-height: 30px
+        line-height: 30px
+        text-align: center
+        font-size: 23px
+        font-weight: 500
+        color: #000
+      .sg-error
+        width: 13px
+        height: 13px
+      .sg-input-box
+        margin-bottom: 30px
+        .sg-input-img
+          width: 45px
+          height: 40px
+          position: relative
+          z-index: 1000
+        input
+          width: 340px
+          height: 40px
+          min-height: 40px
+          line-height: 40px
+          position: absolute
+          left: 40px
+          z-index: 0
+          padding-left: 50px
+          font-size: 13px
+          font-weight: 400
+          border: 1px solid #c4c8d7
+          &::placeholder
+            color: #c4c8d7
+
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+            line-height: 37px
+      .sg-email-error-box
+        top: 165px
+      .sg-passwd-error-box
+        top: 235px
+      .sg-passwd-confirm-error-box
+        top: 305px
+      .sg-agree-error-box
+        top: 360px
+      .sg-email-error-box, .sg-passwd-error-box, .sg-passwd-confirm-error-box, .sg-agree-error-box
+        text-align: right
+        height: 30px
+        line-height: 30px
+        position: absolute
+        width: 340px
+        min-width: 340px
+        .sg-error
+          width: 13px
+          height: 13px
+          margin-right: 5px
+        p
+          font-size: 12px
+          font-weight: 400
+          color: #f14d4e
+          display: inline
+      .sg-agree-box
+        margin-top: 10px
+        margin-bottom: 30px
+        user-select: none
+        input
+          display: none
+        label[for="sg-agree-checkbox"]
+          margin: 0px
+          width: 18px
+          height: 18px
+          background-image: url('/assets/img/web_wallet_possessions_check_off.png')
+          background-position: center
+          background-size: contain
+          background-repeat: no-repeat
+          position: relative
+          top: 4px
+          user-select: none
+          cursor: pointer
+        label[ng-reflect-is-on="true"]
+          background-image: url('/assets/img/web_wallet_possessions_check_on.png')
+        .sg-en-box, .sg-ko-box
+          height: 25px
+          min-height: 25px
+          line-height: 25px
+          display: inline-block
+          margin-left: 6px
+          .agree-msg
+            display: inline
+            margin-bottom: 0px
+            font-size: 13px
+            font-weight: 400
+            color: #989bab
+          .terms-msg
+            font-size: 13px
+            font-weight: 400
+            color: #000
+            text-decoration: underline
+            cursor: pointer
+      .sg-signup-button
+        width: 340px
+        min-width: 340px
+        margin-top: 10px
+        height: 50px
+        min-height: 50px
+        line-height: 50px
+        font-size: 15px
+        font-weight: 500
+        color: #ffffff
+        text-align: center
+        background-color: #3078ff
+        cursor: pointer
+        user-select: none
+        border : none
+        border-radius: 2px
+        outline: 0px
+        outline-width: 0px
+        outline-offset: 0px
+  //auth-email
+  .auth-email
+    width: 500px
+    height: auto
+    .sg-inner-box
+      width: 420px
+      margin: 0 auto
+      .em-icon
+        width: 50px
+        min-width: 50px
+        height: 50px
+        min-height: 50px
+        display: inherit
+        margin: 0 auto
+      .em-header
+        height: 30px
+        min-height: 30px
+        line-height: 30px
+        text-align: center
+        font-size: 23px
+        font-weight: 500
+        color: #000
+        margin-bottom: 15px
+      .em-email-info
+        color: #3078ff
+      .em-msg
+        text-align: center
+        height: 40px
+        min-height: 40px
+        // line-height: 40px
+        font-size: 15px
+        font-weight: 400
+        color: #000
+        margin-bottom: 50px
+      .em-division
+        width: 25px
+        min-width: 25px
+        height: 5px
+        min-height: 5px
+        background-color: #989bab
+        border-radius: 5px
+        margin-bottom: 10px
+        margin-left: auto
+        margin-right: auto
+      .em-below-msg
+        text-align: center
+        height: 20px
+        line-height: 20px
+        font-size: 15px
+        font-weight: 400
+        color: #000
+        margin-bottom: 10px
+      .em-below-button
+        border: none
+        border-radius: 2px
+        width: 130px
+        min-width: 130px
+        height: 40px
+        min-height: 40px
+        line-height: 40px
+        background-color: #3078ff
+        color: white
+        font-size: 15px
+        font-weight: 400
+        text-align: center
+        margin-left: auto
+        margin-right: auto
+        margin-bottom: 25px
+        outline: 0px
+        outline-width: 0px
+        outline-offset: 0px
+        display: inherit
+        cursor: pointer
+      .mbt-20
+        margin-bottom: 20px !important
+      .em-divsion-line
+        height: 1px
+        max-height: 1px
+        background-color: #e0e0e8
+        margin-top: 20px
+        margin-bottom: 20px
+      .em-fn-msg
+        font-size: 13px
+        font-weight: 400
+        color: #989bab
+        margin-bottom: 30px !important
