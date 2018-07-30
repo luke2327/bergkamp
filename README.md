@@ -95,6 +95,9 @@
    - 바로 이전페이지로 쉽게 움직이기 위해 login->auth 나 signup->email-auth 동작은 한페이지 내에서 동작하도록 처리한다.
    - cognito 처리
    - signup 까지 모두 구현
+  17. Feature_B332 account page 구현
+   - 별명 변경 추가(by cognito)
+   - 나머지는 대부분 샘플 데이터로 끼워넣기만 구현
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home

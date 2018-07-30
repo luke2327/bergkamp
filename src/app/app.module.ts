@@ -60,6 +60,7 @@ import { WalletModule } from './wallet/wallet.module';
 import { WalletDepositModule } from './wallet-deposit/wallet-deposit.module';
 import { WalletWithdrawModule } from './wallet-withdraw/wallet-withdraw.module';
 import { WalletTransactionModule } from './wallet-transaction/wallet-transaction.module';
+import { AccountModule } from './account/account.module';
 //커스텀 컴포넌트 선언
 import { MainComponent } from './main/main.component';
 import { TradeComponent } from './trade/trade.component';
@@ -70,6 +71,8 @@ import { WalletTransactionComponent } from './wallet-transaction/wallet-transact
 import { LoginComponent } from './auth/login/login.component';
 import { Auth2faComponent } from './auth/auth-2fa/auth-2fa.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AccountComponent } from './account/account.component';
+
 import { TymxRouterService } from './service/tymx-router.service';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
@@ -88,7 +91,8 @@ const routes: Routes = [
   {path: 'wallet/transaction/:id', component: WalletTransactionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'login/auth', component: Auth2faComponent},
-  {path: 'signup', component: SignupComponent}
+  {path: 'signup', component: SignupComponent},
+  {path: 'account', component: AccountComponent}
 ];
 
 @NgModule({
@@ -124,7 +128,8 @@ const routes: Routes = [
     MomentTimezoneModule,
     MomentModule,
     AuthModule,
-    QRCodeModule
+    QRCodeModule,
+    AccountModule
   ],
   exports: [
     HttpClientModule,

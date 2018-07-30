@@ -4,8 +4,8 @@ export const config = {
     region: 'ap-southeast-1',
 
     identityPoolId: 'ap-southeast-1:7412f688-64be-4720-9c8a-425cabebcd34',
-    userPoolId: 'ap-southeast-1_SXWEJNERn',
-    clientId: '68ue091vkdvk390grvlnll4l88',
+    userPoolId: 'ap-southeast-1_nalGKU2AH',
+    clientId: '4fgbsl9lbstcbq55tcqvg5395o',
 
     rekognitionBucket: 'rekognition-pics',
     albumName: "usercontent",

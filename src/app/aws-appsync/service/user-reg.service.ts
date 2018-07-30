@@ -21,13 +21,17 @@ export class UserRegService {
       Name: 'nickname',
       Value: user.name
     };
+    let dataLocale = {
+      Name: 'locale',
+      Value: user.locale
+    };
     attributeList.push(new CognitoUserAttribute(dataEmail));
     attributeList.push(new CognitoUserAttribute(dataNickname));
-    attributeList.push(new CognitoUserAttribute({
-      Name: 'phone_number',
-      Value: user.phone_number
-    }));
-
+    // attributeList.push(new CognitoUserAttribute({
+    //   Name: 'phone_number',
+    //   Value: user.phone_number
+    // }));
+    attributeList.push(new CognitoUserAttribute(dataLocale));
     this.cognitoUtil.getUserPool().signUp(user.email, user.password, attributeList, null, function (err, result) {
       if (err) {
         callback.cognitoCallback(err.message, null);

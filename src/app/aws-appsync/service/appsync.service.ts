@@ -34,6 +34,7 @@ export class JwtCallback implements Callback {
   }
 
   callbackWithParam(result) {
+    console.log('id:'+result);
     this.appsync.idToken = result;
     this.appsync.setClient();
   }

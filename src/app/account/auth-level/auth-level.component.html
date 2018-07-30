@@ -1,0 +1,88 @@
+<p>{{ 'W0136'| translate }}</p>
+<div>
+  <p>{{ 'W0137'| translate }}</p>
+  <p>{{ viewModel.levelName }}</p>
+  <p>{{ 'W0150'| translate }}: {{ viewModel.levelMax }}BTC</p>
+</div>
+
+<div [appToggle]="6" [isOn]="viewModel.level>=1">
+  <p>{{ 'W0143'| translate }} {{ 'W0139'| translate }}</p>
+  <div>
+    <span *ngIf="viewModel.level>=1">[check img]</span>
+    <span>[img]</span>
+    <p>{{ 'W0128'| translate }}</p>
+    <div *ngIf="viewModel.level>=1">
+      <input type="button" value="{{ 'W0146'| translate }}"/>
+      <span>[img]</span>
+    </div>
+    <div *ngIf="viewModel.level<1">
+      <input type="button" value="{{ 'W0117'| translate }}"/>
+    </div>
+    <p>{{ 'W0150'| translate }}: 1BTC</p>
+  </div>
+</div>
+<span [appToggle]="2" [isOn]="viewModel.level>=1">[arrow img]</span>
+<div [appToggle]="6" [isOn]="viewModel.level>=2">
+  <p>{{ 'W0143'| translate }} {{ 'W0140'| translate }}</p>
+  <div>
+    <span *ngIf="viewModel.level>=2">[check img]</span>
+    <span>[img]</span>
+    <p>{{ 'W0114'| translate }}</p>
+    <div *ngIf="viewModel.isVarifiedOtp">
+      <input type="button" value="{{ 'W0115'| translate }}"/>
+      <span>[img]</span>
+    </div>
+    <div *ngIf="!viewModel.isVarifiedOtp">
+      <input type="button" value="{{ 'W0115'| translate }}"/>
+    </div>
+    <p>or</p>
+    <div *ngIf="viewModel.isVarifiedSms">
+      <input type="button" value="{{ 'W0118'| translate }}"/>
+      <span>[img]</span>
+    </div>
+    <div *ngIf="!viewModel.isVarifiedSms">
+      <input type="button" value="{{ 'W0118'| translate }}"/>
+    </div>
+    <p>{{ 'W0150'| translate }}: 2BTC</p>
+  </div>
+</div>
+<span [appToggle]="2" [isOn]="viewModel.level>=2">[arrow img]</span>
+<div [appToggle]="6" [isOn]="viewModel.level>=3">
+  <p>{{ 'W0143'| translate }} {{ 'W0141'| translate }}</p>
+  <div>
+    <span *ngIf="viewModel.level>=3">[check img]</span>
+    <span>[img]</span>
+    <p>{{ 'W0144'| translate }}</p>
+    <div *ngIf="viewModel.verifiedDocument==2">
+      <input type="button" value="{{ 'W0146'| translate }}"/>
+      <span>[img]</span>
+    </div>
+    <div *ngIf="viewModel.verifiedDocument==1">
+      <input type="button" value="{{ 'W0148'| translate }}"/>
+    </div>
+    <div *ngIf="viewModel.verifiedDocument==0">
+      <input type="button" value="{{ 'W0117'| translate }}"/>
+    </div>
+    <p>{{ 'W0150'| translate }}: 10BTC</p>
+  </div>
+</div>
+<span [appToggle]="2" [isOn]="viewModel.level>=3">[arrow img]</span>
+<div [appToggle]="6" [isOn]="viewModel.level>=4">
+  <p>{{ 'W0143'| translate }} {{ 'W0142'| translate }}</p>
+  <div>
+    <span *ngIf="viewModel.level>=4">[check img]</span>
+    <span>[img]</span>
+    <p>{{ 'W0145'| translate }}</p>
+    <div *ngIf="viewModel.verifiedContact==2">
+      <input type="button" value="{{ 'W0146'| translate }}"/>
+      <span>[img]</span>
+    </div>
+    <div *ngIf="viewModel.verifiedContact==1">
+      <input type="button" value="{{ 'W0148'| translate }}"/>
+    </div>
+    <div *ngIf="viewModel.verifiedContact==0">
+      <input type="button" value="{{ 'W0117'| translate }}"/>
+    </div>
+    <p>{{ 'W0150'| translate }}: {{ 'W0151'| translate }}</p>
+  </div>
+</div>

@@ -116,9 +116,12 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     //아직 정확하지 않으므로 일단 대충 해둔다.
+    let countryCode = JSON.parse(localStorage.getItem('geoloc')).country.code;
     this.regUser = new RegUser();
     this.regUser.email = this.viewModel.email;
     this.regUser.password = this.viewModel.pw;
+    this.regUser.name = this.viewModel.email;
+    this.regUser.locale = this.translateService.currentLang+"-"+countryCode;
     this.userRegService.register(this.regUser,  new SignupCallback(this));
   }
   resend() {
@@ -196,4 +199,5 @@ export class RegUser {
   name: string;
   email: string;
   password: string;
+  locale: string;
 }

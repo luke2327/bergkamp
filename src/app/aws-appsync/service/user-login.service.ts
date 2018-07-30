@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { config } from "../../aws-appsync/config";
 import { CognitoCallback, CognitoService, LoggedInCallback } from "./cognito.service";
-import { AuthenticationDetails, CognitoUser, CognitoUserSession } from "amazon-cognito-identity-js";
+import { AuthenticationDetails, CognitoUser, CognitoUserSession, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
 import { Subject } from 'rxjs/Subject';
@@ -103,6 +103,7 @@ export class UserLoginService {
       }
     });
   }
+
 
   logout() {
     console.log("UserLoginService: Logging out");
