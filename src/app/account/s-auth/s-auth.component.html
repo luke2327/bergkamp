@@ -1,0 +1,36 @@
+<a [routerLink]="['/account']">{{ 'W0009' | translate }}</a>
+<p>></p>
+<p>{{ 'W0174' | translate }}</p>
+<!--phone number-->
+<p>{{ 'W0175' | translate }}</p>
+<div ngbDropdown class="d-inline-block">
+  <button class="btn btn-outline-primary" id="dropdownCode" ngbDropdownToggle>{{ viewModel.code }}</button>
+  <div ngbDropdownMenu aria-labelledby="dropdownCode">
+    <button class="dropdown-item" *ngFor = "let row of codeList" (click) = "selCountry(row.country_code)">{{ row.country }} {{ row.code }}</button>
+  </div>
+</div>
+<!-- 입력하는중 -->
+<div *ngIf="viewModel.smsSendCount <= 0" >
+  <input type = "text" [(ngModel)] = "viewModel.cellNum" (input) = "inputCell($event.target.value)"/>
+  <input type = "button" value="{{ 'W0120' | translate }}" (click) = "send()"/>
+</div>
+<!-- 보내고 난 이후 -->
+<div *ngIf="viewModel.smsSendCount > 0">
+  <input type = "text" [(ngModel)] = "viewModel.cellNum" readonly/>
+  <p>{{ viewModel.smsSendCount }}</p>
+</div>
+
+<div *ngIf="viewModel.isCellErr">
+  <img src="/assets/img/web_wallet_withdrawal_error.png" />
+  <p>{{ viewModel.cellErrMsg }}</p>
+</div>
+
+
+<!--SMS Auth code -->
+<p>{{ 'W0119' | translate }}</p>
+<input type = "text" [(ngModel)] = "viewModel.authCode" (input) = "inputAuth($event.target.value)"/>
+<div *ngIf="viewModel.isAuthErr">
+  <img src="/assets/img/web_wallet_withdrawal_error.png" />
+  <p>{{ viewModel.authErrMsg }}</p>
+</div>
+<input type = "button" value="{{ 'W0173' | translate }}" (click) = "auth()"/>

@@ -44,6 +44,7 @@ import {
 } from '@angular/material';
 import { DirectiveModule } from '../directive/directive.module';
 import { SignupComponent } from './signup/signup.component';
+import { PwChangeComponent } from './pw-change/pw-change.component';
 @NgModule({
   imports: [
     RouterModule,
@@ -62,6 +63,6 @@ import { SignupComponent } from './signup/signup.component';
     CdkTableModule,
     DirectiveModule,
   ],
-  declarations: [LoginComponent, Auth2faComponent, SignupComponent]
+  declarations: [LoginComponent, Auth2faComponent, SignupComponent, PwChangeComponent]
 })
 export class AuthModule { }

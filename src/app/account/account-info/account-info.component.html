@@ -5,7 +5,7 @@
 </div>
 <div>
   <p>{{ 'W0122' | translate }}</p>
-  <a>{{ 'W0135' | translate }}</a>
+  <a [routerLink]="['/account/pw']">{{ 'W0135' | translate }}</a>
 </div>
 <div *ngIf="!viewModel.isInputMode">
   <p>{{ 'W0134' | translate }}</p>

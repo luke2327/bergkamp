@@ -32,6 +32,7 @@ export class UserParametersService {
 
 
   }
+
   //닉네임 변경시 사,
   updateAttr(attr: any, callback: Callback) {
     let cognitoUser = this.cognitoUtil.getCurrentUser();
@@ -67,5 +68,29 @@ export class UserParametersService {
       });
     }
 
+  }
+
+  changePassword(oldPw: any, newPw: any, callback: Callback) {
+    let cognitoUser = this.cognitoUtil.getCurrentUser();
+
+    if (cognitoUser != null) {
+      cognitoUser.getSession(function (err, session) {
+        if (err)
+          console.log("UserParametersService: Couldn't retrieve the user");
+        else {
+          cognitoUser.changePassword(oldPw, newPw, function(err, result) {
+            if (err) {
+                console.log('call err: ' + err);
+                callback.callbackWithParam(err);
+                return;
+            }
+            callback.callbackWithParam(result);
+          });
+        }
+
+
+      });
+
+    }
   }
 }

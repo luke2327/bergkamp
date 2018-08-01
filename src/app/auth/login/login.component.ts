@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from "@angular/router";
-import { LoginModel } from '../../app.model';
 import { EmailRegEx } from '../../app.const';
 import { UserLoginService } from "../../aws-appsync/service/user-login.service";
 import { CognitoCallback, LoggedInCallback } from "../../aws-appsync/service/cognito.service";
@@ -47,8 +46,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, Cognito
   }
   //login 시
   login() {
-    this.inputEmail(this.viewModel.email);
-    this.inputPassword(this.viewModel.pw);
+
+    this.viewModel.isEmailInvalid = ((this.viewModel.email.length == 0) || (!this.validEmail(this.viewModel.email)));
 
     //email Checked
     if(this.viewModel.isEmailInvalid) {
@@ -65,6 +64,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, Cognito
       this.viewModel.email = '';
       return;
     }
+
+    this.viewModel.isPwInvalid = this.viewModel.pw.length == 0;
     if(this.viewModel.isPwInvalid) {
       // this.viewModel.pwErrMsg = this.translateService.instant("W0122");
       this.translateService.get("S0018").subscribe((result: string) => {
@@ -82,11 +83,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, Cognito
   }
 
   inputEmail(data: any) {
-    this.viewModel.isEmailInvalid = ((data.length == 0) || (!this.validEmail(data)));
+    if(this.viewModel.email.length > 0)
+      this.viewModel.isEmailInvalid = false;
   }
 
   inputPassword(data: any) {
-    this.viewModel.isPwInvalid = data.length == 0;
+    if(this.viewModel.pw.length > 0)
+      this.viewModel.isPwInvalid = false;
   }
   cognitoCallback(message: string, result: any) {
     if (message != null) {
@@ -113,4 +116,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, Cognito
       console.log('isLoggedIn');
     }
   }
+}
+//login model
+export class LoginModel {
+  email: string = '';
+  pw: string = '';
+  emailErrMsg: string = '';
+  pwErrMsg: string = '';
+  isEmailInvalid: boolean = false;
+  isPwInvalid: boolean = false;
 }
