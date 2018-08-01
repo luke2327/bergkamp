@@ -39,19 +39,19 @@
         <span class="al-inner-logo al-2fa-image"></span>
         <p class="al-auth-name">{{ 'W0114'| translate }}</p>
         <div class="al-auth-area" *ngIf="viewModel.isVarifiedOtp">
-          <input type="button" value="{{ 'W0115'| translate }}" id="al-auth-button-ch2" />
+          <input type="button" value="{{ 'W0115'| translate }}" id="al-auth-button-ch2" (click) = "gAuth(false)"/>
           <label for="al-auth-button-ch2"><div class="al-auth-checked"></div>{{ 'W0115'| translate }}</label>
         </div>
         <div class="al-auth-noch-area" *ngIf="!viewModel.isVarifiedOtp">
-          <input class="al-auth-button-noch" type="button" value="{{ 'W0115'| translate }}" />
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0115'| translate }}" (click) = "gAuth(true)"/>
         </div>
         <p class="al-auth-or">or</p>
         <div class="al-auth-area al-mbt-15" *ngIf="viewModel.isVarifiedSms">
-          <input type="button" value="{{ 'W0118'| translate }}" id="al-auth-button-ch2-2" />
+          <input type="button" value="{{ 'W0118'| translate }}" id="al-auth-button-ch2-2" (click) = "sAuth(false)"/>
           <label for="al-auth-button-ch2-2"><div class="al-auth-checked"></div>{{ 'W0118'| translate }}</label>
         </div>
         <div class="al-auth-noch-area al-mbt-15" *ngIf="!viewModel.isVarifiedSms">
-          <input class="al-auth-button-noch" type="button" value="{{ 'W0118'| translate }}" />
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0118'| translate }}" (click) = "sAuth(true)"/>
         </div>
         <div class="al-hori-div"></div>
         <p class="al-bottom-msg">{{ 'W0150'| translate }}: 2BTC</p>

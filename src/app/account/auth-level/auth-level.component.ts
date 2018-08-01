@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-auth-level',
   templateUrl: './auth-level.component.html',
@@ -11,7 +11,7 @@ export class AuthLevelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   viewModel: ViewModel;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     this.viewModel = new ViewModel();
@@ -22,6 +22,13 @@ export class AuthLevelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+  gAuth(isVerify: boolean) {
+    this.router.navigate([isVerify? '/account/google' : 'account/cancel-google']);
+  }
+
+  sAuth(isVerify: boolean) {
+    this.router.navigate([isVerify? '/account/sms' : 'account/cancel-sms']);
+  }
   ngOnDestroy() {}
 
 }
@@ -45,10 +52,10 @@ export class ViewModel {
   }
 
   makeSample() {
-    this.level = 1;
+    this.level = 2;
     this.levelName = "YouthTeam";
     this.levelMax = 5;
-    this.isVarifiedOtp = false;
+    this.isVarifiedOtp = true;
     this.isVarifiedSms = false;
     this.verifiedDocument = 0;
     this.verifiedContact = 0;
