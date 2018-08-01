@@ -1,20 +1,21 @@
-<p>{{ 'W0133' | translate }}</p>
-<div>
-  <p>{{ 'W0121' | translate }}</p>
-  <p>{{ viewModel.email }}</p>
+<p class="account-title">{{ 'W0133' | translate }}</p>
+<div class="ac-email-area">
+  <p class="ac-email ac-title">{{ 'W0121' | translate }}</p>
+  <p class="ac-email-info">{{ viewModel.email }}</p>
 </div>
-<div>
-  <p>{{ 'W0122' | translate }}</p>
-  <a [routerLink]="['/account/pw']">{{ 'W0135' | translate }}</a>
+<div class="ac-password-area">
+  <p class="ac-password ac-title">{{ 'W0122' | translate }}</p>
+  <a class="ac-password-change">{{ 'W0135' | translate }}</a>
 </div>
-<div *ngIf="!viewModel.isInputMode">
-  <p>{{ 'W0134' | translate }}</p>
-  <p>{{ viewModel.nickname }}</p>
-  <a (click)="viewModel.isInputMode = true">{{ 'W0135' | translate }}</a>
+<div class="ac-nickname-area" *ngIf="!viewModel.isInputMode">
+  <p class="ac-nickname ac-title">{{ 'W0134' | translate }}</p>
+  <p class="ac-nickname-info">{{ viewModel.nickname }}</p>
+  <a class="ac-nickname-change" (click)="viewModel.isInputMode = true">{{ 'W0135' | translate }}</a>
 </div>
-<div *ngIf="viewModel.isInputMode">
-  <input type="text" [(ngModel)] = "viewModel.inputNickname" (input)="inputNickname($event.target.value)"/>
-  <input type="button" value="{{ 'W0135' | translate }}" (click)="changeNickname()"/>
-  <input type="button" value="{{ 'W0155' | translate }}" (click)="viewModel.isInputMode = false"/>
-  <p *ngIf="viewModel.isErrNickname">{{ viewModel.nicknameErrMsg }}</p>
+<div *ngIf="viewModel.isInputMode" class="ac-change-area">
+  <p class="ac-nickname ac-title">{{ 'W0134' | translate }}</p>
+  <input class="ac-change-input" type="text" [(ngModel)] = "viewModel.inputNickname" (input)="inputNickname($event.target.value)"/>
+  <input class="ac-change-submit" type="button" value="{{ 'W0135' | translate }}" (click)="changeNickname()"/>
+  <input class="ac-change-cancel" type="button" value="{{ 'W0155' | translate }}" (click)="viewModel.isInputMode = false"/>
+  <span class="ac-change-error" *ngIf="viewModel.isErrNickname"><img class="ac-change-image" src="/assets/img/web_wallet_withdrawal_error.png" alt="">{{ viewModel.nicknameErrMsg }}</span>
 </div>

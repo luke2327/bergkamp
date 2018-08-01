@@ -1,88 +1,111 @@
-<p>{{ 'W0136'| translate }}</p>
-<div>
-  <p>{{ 'W0137'| translate }}</p>
-  <p>{{ viewModel.levelName }}</p>
-  <p>{{ 'W0150'| translate }}: {{ viewModel.levelMax }}BTC</p>
+<p class="account-title">{{ 'W0136'| translate }}</p>
+<div class="al-select-box">
+  <p class="al-current_level">{{ 'W0137'| translate }}</p>
+  <span class="al-select-div"></span>
+  <p class="al-level-name">{{ viewModel.levelName }}</p>
+  <p class="al-token-info">{{ 'W0150'| translate }}: {{ viewModel.levelMax }}BTC</p>
 </div>
 
-<div [appToggle]="6" [isOn]="viewModel.level>=1">
-  <p>{{ 'W0143'| translate }} {{ 'W0139'| translate }}</p>
-  <div>
-    <span *ngIf="viewModel.level>=1">[check img]</span>
-    <span>[img]</span>
-    <p>{{ 'W0128'| translate }}</p>
-    <div *ngIf="viewModel.level>=1">
-      <input type="button" value="{{ 'W0146'| translate }}"/>
-      <span>[img]</span>
+<div class="al-auth-level-box">
+  <div class="al-youth_team-box" [appToggle]="6" [isOn]="viewModel.level>=1">
+    <p class="al-auth-title">{{ 'W0143'| translate }} {{ 'W0139'| translate }}</p>
+    <div class="al-youth_team-inner" [appToggle]="6" [isOn]="viewModel.level>=1">
+      <div class="al-helper-icon">
+        <span class="al-check-icon" *ngIf="viewModel.level>=1"></span>
+      </div>
+      <div class="al-inner-in">
+        <span class="al-inner-logo al-email-image"></span>
+        <p class="al-auth-name">{{ 'W0128'| translate }}</p>
+        <div class="al-auth-area al-mbt-62" *ngIf="viewModel.level>=1">
+          <input type="button" value="{{ 'W0146'| translate }}" id="al-auth-button-ch1" />
+          <label for="al-auth-button-ch1"><div class="al-auth-checked"></div>{{ 'W0146'| translate }}</label>
+        </div>
+        <div class="al-auth-noch-area al-mbt-62" *ngIf="viewModel.level<1">
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0117'| translate }}" />
+        </div>
+        <div class="al-hori-div"></div>
+        <p class="al-bottom-msg">{{ 'W0150'| translate }}: 1BTC</p>
+      </div>
     </div>
-    <div *ngIf="viewModel.level<1">
-      <input type="button" value="{{ 'W0117'| translate }}"/>
-    </div>
-    <p>{{ 'W0150'| translate }}: 1BTC</p>
   </div>
-</div>
-<span [appToggle]="2" [isOn]="viewModel.level>=1">[arrow img]</span>
-<div [appToggle]="6" [isOn]="viewModel.level>=2">
-  <p>{{ 'W0143'| translate }} {{ 'W0140'| translate }}</p>
-  <div>
-    <span *ngIf="viewModel.level>=2">[check img]</span>
-    <span>[img]</span>
-    <p>{{ 'W0114'| translate }}</p>
-    <div *ngIf="viewModel.isVarifiedOtp">
-      <input type="button" value="{{ 'W0115'| translate }}"/>
-      <span>[img]</span>
+  <span class="al-arrow-img" [appToggle]="2" [isOn]="viewModel.level>=1"></span>
+  <div class="al-youth_team-box" [appToggle]="6" [isOn]="viewModel.level>=2">
+    <p class="al-auth-title">{{ 'W0143'| translate }} {{ 'W0140'| translate }}</p>
+    <div class="al-youth_team-inner" [appToggle]="6" [isOn]="viewModel.level>=2">
+      <div class="al-helper-icon">
+        <span class="al-check-icon" *ngIf="viewModel.level>=2"></span>
+      </div>
+      <div class="al-inner-in">
+        <span class="al-inner-logo al-2fa-image"></span>
+        <p class="al-auth-name">{{ 'W0114'| translate }}</p>
+        <div class="al-auth-area" *ngIf="viewModel.isVarifiedOtp">
+          <input type="button" value="{{ 'W0115'| translate }}" id="al-auth-button-ch2" />
+          <label for="al-auth-button-ch2"><div class="al-auth-checked"></div>{{ 'W0115'| translate }}</label>
+        </div>
+        <div class="al-auth-noch-area" *ngIf="!viewModel.isVarifiedOtp">
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0115'| translate }}" />
+        </div>
+        <p class="al-auth-or">or</p>
+        <div class="al-auth-area al-mbt-15" *ngIf="viewModel.isVarifiedSms">
+          <input type="button" value="{{ 'W0118'| translate }}" id="al-auth-button-ch2-2" />
+          <label for="al-auth-button-ch2-2"><div class="al-auth-checked"></div>{{ 'W0118'| translate }}</label>
+        </div>
+        <div class="al-auth-noch-area al-mbt-15" *ngIf="!viewModel.isVarifiedSms">
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0118'| translate }}" />
+        </div>
+        <div class="al-hori-div"></div>
+        <p class="al-bottom-msg">{{ 'W0150'| translate }}: 2BTC</p>
+      </div>
     </div>
-    <div *ngIf="!viewModel.isVarifiedOtp">
-      <input type="button" value="{{ 'W0115'| translate }}"/>
-    </div>
-    <p>or</p>
-    <div *ngIf="viewModel.isVarifiedSms">
-      <input type="button" value="{{ 'W0118'| translate }}"/>
-      <span>[img]</span>
-    </div>
-    <div *ngIf="!viewModel.isVarifiedSms">
-      <input type="button" value="{{ 'W0118'| translate }}"/>
-    </div>
-    <p>{{ 'W0150'| translate }}: 2BTC</p>
   </div>
-</div>
-<span [appToggle]="2" [isOn]="viewModel.level>=2">[arrow img]</span>
-<div [appToggle]="6" [isOn]="viewModel.level>=3">
-  <p>{{ 'W0143'| translate }} {{ 'W0141'| translate }}</p>
-  <div>
-    <span *ngIf="viewModel.level>=3">[check img]</span>
-    <span>[img]</span>
-    <p>{{ 'W0144'| translate }}</p>
-    <div *ngIf="viewModel.verifiedDocument==2">
-      <input type="button" value="{{ 'W0146'| translate }}"/>
-      <span>[img]</span>
+  <span class="al-arrow-img" [appToggle]="2" [isOn]="viewModel.level>=2"></span>
+  <div class="al-youth_team-box" [appToggle]="6" [isOn]="viewModel.level>=3">
+    <p class="al-auth-title">{{ 'W0143'| translate }} {{ 'W0141'| translate }}</p>
+    <div class="al-youth_team-inner" [appToggle]="6" [isOn]="viewModel.level>=3">
+      <div class="al-helper-icon">
+        <span class="al-check-icon" *ngIf="viewModel.level>=3"></span>
+      </div>
+      <div class="al-inner-in">
+        <span class="al-inner-logo al-docv-image"></span>
+        <p class="al-auth-name">{{ 'W0144'| translate }}</p>
+        <div class="al-auth-area al-mbt-62" *ngIf="viewModel.verifiedDocument==2">
+          <input type="button" value="{{ 'W0146'| translate }}" id="al-auth-button-ch3" />
+          <label for="al-auth-button-ch3"><div class="al-auth-checked"></div>{{ 'W0146'| translate }}</label>
+        </div>
+        <div class="al-auth-verifying al-mbt-62" *ngIf="viewModel.verifiedDocument==1">
+          <input class="al-auth-button-verifying" type="button" value="{{ 'W0148'| translate }}" />
+        </div>
+        <div class="al-auth-noch-area al-mbt-62" *ngIf="viewModel.verifiedDocument==0">
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0117'| translate }}" />
+        </div>
+        <div class="al-hori-div"></div>
+        <p class="al-bottom-msg">{{ 'W0150'| translate }}: 10BTC</p>
+      </div>
     </div>
-    <div *ngIf="viewModel.verifiedDocument==1">
-      <input type="button" value="{{ 'W0148'| translate }}"/>
-    </div>
-    <div *ngIf="viewModel.verifiedDocument==0">
-      <input type="button" value="{{ 'W0117'| translate }}"/>
-    </div>
-    <p>{{ 'W0150'| translate }}: 10BTC</p>
   </div>
-</div>
-<span [appToggle]="2" [isOn]="viewModel.level>=3">[arrow img]</span>
-<div [appToggle]="6" [isOn]="viewModel.level>=4">
-  <p>{{ 'W0143'| translate }} {{ 'W0142'| translate }}</p>
-  <div>
-    <span *ngIf="viewModel.level>=4">[check img]</span>
-    <span>[img]</span>
-    <p>{{ 'W0145'| translate }}</p>
-    <div *ngIf="viewModel.verifiedContact==2">
-      <input type="button" value="{{ 'W0146'| translate }}"/>
-      <span>[img]</span>
+  <span class="al-arrow-img" [appToggle]="2" [isOn]="viewModel.level>=3"></span>
+  <div class="al-youth_team-box" [appToggle]="6" [isOn]="viewModel.level>=4">
+    <p class="al-auth-title">{{ 'W0143'| translate }} {{ 'W0142'| translate }}</p>
+    <div class="al-youth_team-inner" [appToggle]="6" [isOn]="viewModel.level>=4">
+      <div class="al-helper-icon">
+        <span class="al-check-icon" *ngIf="viewModel.level>=4"></span>
+      </div>
+      <div class="al-inner-in">
+        <span class="al-inner-logo al-priv-image"></span>
+        <p class="al-auth-name">{{ 'W0145'| translate }}</p>
+        <div class="al-auth-area al-mbt-62" *ngIf="viewModel.verifiedContact==2">
+          <input type="button" value="{{ 'W0146'| translate }}" id="al-auth-button-ch4" />
+          <label for="al-auth-button-ch4"><div class="al-auth-checked"></div>{{ 'W0146'| translate }}</label>
+        </div>
+        <div class="al-auth-verifying al-mbt-62" *ngIf="viewModel.verifiedContact==1">
+          <input class="al-auth-button-verifying" type="button" value="{{ 'W0148'| translate }}" />
+        </div>
+        <div class="al-auth-noch-area al-mbt-62" *ngIf="viewModel.verifiedContact==0">
+          <input class="al-auth-button-noch" type="button" value="{{ 'W0117'| translate }}" />
+        </div>
+        <div class="al-hori-div"></div>
+        <p class="al-bottom-msg">{{ 'W0150'| translate }}: {{ 'W0151'| translate }}</p>
+      </div>
     </div>
-    <div *ngIf="viewModel.verifiedContact==1">
-      <input type="button" value="{{ 'W0148'| translate }}"/>
-    </div>
-    <div *ngIf="viewModel.verifiedContact==0">
-      <input type="button" value="{{ 'W0117'| translate }}"/>
-    </div>
-    <p>{{ 'W0150'| translate }}: {{ 'W0151'| translate }}</p>
   </div>
 </div>
