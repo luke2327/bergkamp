@@ -1,13 +1,23 @@
-<li>{{ 'W0009' | translate }}</li>
-<mat-card>
-  <app-account-info></app-account-info>
-</mat-card>
-<mat-card>
-  <app-auth-level></app-auth-level>
-</mat-card>
-<mat-card>
-  <app-noti-setting></app-noti-setting>
-</mat-card>
-<mat-card>
-  <app-login-history></app-login-history>
-</mat-card>
+<div class="account-modulate">
+  <p class="wallet-title">
+    <canvas class="wallet-tt-cv"></canvas>
+    <a>{{ 'W0009' | translate }}</a>
+  </p>
+  <div class="account-box">
+    <div class="col-8 nopadding">
+      <mat-card class="account-info nopadding">
+        <app-account-info></app-account-info>
+      </mat-card>
+      <mat-card class="auth-level nopadding">
+        <app-auth-level></app-auth-level>
+      </mat-card>
+      <mat-card class="noti-setting nopadding">
+        <app-noti-setting></app-noti-setting>
+      </mat-card>
+      <mat-card class="login-history nopadding">
+        <app-login-history></app-login-history>
+      </mat-card>
+    </div>
+    <mat-card class="empty-box col-4 nopadding"></mat-card>
+  </div>
+</div>
