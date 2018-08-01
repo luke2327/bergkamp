@@ -1,11 +1,11 @@
-<p>{{ 'W0156' | translate}}</p>
-<div class="row">
-  <p>{{ 'W0090' | translate}}</p>
-  <p>{{ 'W0157' | translate}}</p>
-  <p>{{ 'W0158' | translate}}</p>
+<p class="account-title">{{ 'W0156' | translate}}</p>
+<div class="row lh-header">
+  <p class="lh-date">{{ 'W0090' | translate}}</p>
+  <p class="lh-type">{{ 'W0157' | translate}}</p>
+  <p class="lh-ip">{{ 'W0158' | translate}}</p>
 </div>
-<div *ngFor="let row of viewModels" class="row">
-  <p>{{ row.date }}</p>
-  <p>{{ row.type }}</p>
-  <p>{{ row.ip }}</p>
+<div class="lh-content-list row" *ngFor="let row of viewModels">
+  <p class="lh-date">{{ row.date }}</p>
+  <p class="lh-type">{{ row.type }}</p>
+  <p class="lh-ip">{{ row.ip }}</p>
 </div>

@@ -25,7 +25,7 @@ footer
 img, label, button
   user-select: none
 
-a, label
+label
   cursor: pointer
 
 app-root
@@ -34,7 +34,7 @@ app-root
   margin-left: auto
   margin-right: auto
   height: 100%
-app-signup, app-login, app-auth-2fa, app-wallet
+app-signup, app-login, app-auth-2fa, app-wallet, app-wallet-transaction
   display: table-row
   width: 100%
   height: 100%
@@ -409,7 +409,350 @@ mat-card.wallet-crypto
     border-right: 1px solid #e0e0e8
   .wt-border-helper
     border-top: 1px solid #e0e0e8
+//wallet
+.wallet-title
+ margin-top: 75px
+ margin-bottom: 15px
+ height: 35px
+ line-height: 35px
+ font-size: 30px
+ font-weight: 500
+ color: #000
 
+.wallet-tt-cv
+ width: 12px
+ height: 12px
+ background-color: #3078ff
+ margin-right: 5px
+ margin-left: 5px
+ margin-bottom: 4px
+
+.angle-barcket
+ &::after, &::before
+   content: ('\00a0\00a0')
+
+.wallet-modulate
+ width: 1400px
+ margin: 0 auto
+ .mat-tab-label
+   opacity: 1
+   color: #989bab
+   min-width: 185px
+   background: #f4f4f4 !important
+   background-color: #f4f4f4 !important
+   border-left: 1px solid #e0e0e8
+   border-right: 1px solid #e0e0e8
+   border-top: 1px solid #e0e0e8
+   font-size: 15px
+   &[id="mat-tab-label-0-0"]
+     border-right: none !important
+   &[class*="mat-tab-label-active"]
+     color: black
+     // border-bottom: none !important
+   &:focus
+     background-color: white !important
+   &[aria-selected="true"]
+     opacity: 1 !important
+     color: #000
+     background-color: white !important
+     background: white !important
+ .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-0"]
+   .wallet-common-history
+     .cm-h-box
+       .cm-h-coin
+         border-top: 1px solid #e0e0e9
+ .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-1"]
+   .wallet-common-history
+     .cm-h-box
+       .cm-h-date
+         border-top: 1px solid #e0e0e8
+
+ .mat-ink-bar
+   width: 185px
+   left: 185px
+   display: none
+
+
+//deposit & withdrawal history handle
+app-wallet-deposit, app-wallet-withdraw
+ .wallet-modulate
+   .wallet-common-history
+     div[class*="cm-h-box"]
+       .cm-h-date, .cm-h-coin
+         border-top: 1px solid #e0e0e8
+
+//Deposit Note
+.dn-header
+ height: 30px
+ margin-bottom: 15px
+ height: 30px
+ line-height: 30px
+ font-size: 20px
+ font-weight: 500
+ color: #000
+ img
+   width: 30px
+   height: 30px
+   margin-right: 5px
+   margin-bottom: 5px
+.dn-main
+ list-style: none
+ padding-left: 0px
+ // list-style-image: url('/assets/img/web_wallet_deposit_notice_dot.png')
+ .dn-list-image
+   display: inline-block
+   width: 5px
+   height: 5px
+   background-image: url('/assets/img/web_wallet_deposit_notice_dot.png')
+   background-position: center
+   background-size: contain
+   background-repeat: no-repeat
+   margin-bottom: 3px
+   margin-right: 7px
+
+
+//wallet-deposit
+
+.wallet-kind
+ p
+   font-size: 15px
+   font-weight: 500
+   color: #000
+   height: 30px
+   line-height: 30px
+   margin-bottom: 10px
+   font
+     color: #c4c8d7
+
+////deposit-address
+.deposit-address, .deposit-note
+ display: table-caption !important
+.deposit-address
+ padding-top: 30px !important
+ padding-left: 40px !important
+ padding-bottom: 50px !important
+ width: 650px
+ height: 440px
+
+ & > input
+   width: 420px
+   height: 40px
+   border: solid 1px #c4c8d7
+   border-radius: 2px
+   color: #989bab
+   font-weight: 400
+   font-size: 15px
+   text-align: center
+   user-select: none
+ .dp-copy-content
+   display: inline-block
+   width: 145px
+   height: 40px
+   border: none
+   background: #3078ff
+   border-radius: 2px
+   color: #fff
+   font-size: 13px
+   font-weight: 400
+   margin-left: 20px
+   line-height: 40px
+   text-align: center
+   cursor: pointer
+   input
+     display: none
+   label
+     color: #fff
+     width: 145px
+     height: 40px
+     cursor: pointer
+   .dp-copied
+     position: absolute
+     z-index: 1001
+     width: 145px
+     height: 40px
+     background: #3078ff
+
+////deposit-note basic info
+.deposit-note
+ width: 725px
+ height: 440px
+ margin-left: 22px !important
+ padding-top: 30px !important
+ padding-left: 30px !important
+ @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+   position: relative
+   left: 649px
+
+////withdraw-address basic info
+.withdraw-address
+ padding-top: 30px !important
+ padding-left: 40px !important
+ width: 650px
+ height: 505px
+ display: table-caption !important
+
+////withdraw-note
+.withdraw-note
+ width: 725px
+ height: 505px
+ margin-left: 22px !important
+ padding-top: 30px !important
+ padding-left: 30px !important
+ display: table-caption !important
+ @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+   position: relative
+   left: 649px
+
+
+//wt-common-history
+.wallet-common-history
+ border-top: none
+
+ .cm-h-box
+   border-bottom: 1px solid #e0e0e8
+   width: 100%
+   .cm-h-date
+     width: 185px
+     min-width: 185px
+     max-width: 185px
+   .cm-h-coin
+     width: 185px
+     min-width: 185px
+     max-width: 185px
+     padding-left: 71px
+   .cm-h-amount
+     position: relative
+     right: 2px
+   .cm-h-amount, .cm-h-status, .cm-h-detail
+     padding-left: 35px
+     border-top: 1px solid #e0e0e8
+   .cm-h-header-button
+     border-top: 1px solid #e0e0e8
+   .cm-h-header
+     width: 100px !important
+     min-width: 100px !important
+     max-width: 100px !important
+   p, a
+     height: 58px
+     line-height: 58px
+     font-size: 13px
+     font-weight: 400
+     color: #989bab
+     padding-bottom: 0px
+     margin-bottom: 0px
+     padding-left: 25px
+ .cm-h-date
+   width: 230px
+   min-width: 230px
+ .cm-h-coin, .cm-h-amount, .cm-h-status
+   width: 150px
+   min-width: 150px
+ .cm-h-detail
+   width: 640px
+   min-width: 640px
+   p
+     padding: 0px !important
+ .cm-h-header-button
+   width: 628px
+   display: inline-block
+   text-align: right
+   line-height: 56px
+   p
+     display: inline-block
+     padding: 0px !important
+ #cm-h-seeall
+   display: inline-table
+   width: 90px
+   height: 30px
+   line-height: 30px
+   text-align: center
+   padding-left: 16px !important
+   border: 1px solid #989bab
+   border-radius: 2px
+   font-size: 13px
+   font-weight: 400
+   color: #000
+   margin-right: 5px
+   text-decoration: none
+   user-select: none
+ #cm-h-refresh
+   width: 35px
+   height: 32px
+   border: 1px solid #989bab
+   border-radius: 2px
+   line-height: 30px
+   margin-right: 25px
+   cursor: pointer
+   user-select: none
+ .cm-h-toggle
+   width: 25px
+   max-width: 25px
+   min-width: 25px
+   height: 25px
+   max-height: 25px
+   min-height: 25px
+   background-image: url('/assets/img/web_wallet_deposit_list_arrow_bottom.png')
+   top: 22px
+   left: 8px
+   cursor: pointer
+   &[class*="open"]
+     background-image: url('/assets/img/web_wallet_deposit_list_arrow_top.png')
+
+ .ref-image
+   width: 15px
+   height: 15px
+   margin-right: 7.5px
+   margin-bottom: 3px
+ .cm-h-list-box
+   border-bottom: 1px solid #f4f4f4
+   width: 100%
+   p, div, span
+     line-height: 70px
+     padding-left: 25px
+     font-size: 15px
+     font-weight: 400
+     color: #000
+     margin-bottom: 0px !important
+   div.col-1
+     background-position: center
+     background-size: contain
+     background-repeat: no-repeat
+   .cm-h-ext
+     max-height: 0px !important
+   .cm-h-ext[ng-reflect-is-on="false"]
+     display: block !important
+     opacity: 0
+     visibility: hidden
+     height: 0px
+     max-height: 0px
+     // &[ng-reflect-is-on="true"]
+     //   visibility: visible
+     //   opacity: 1
+     //   display: block
+     //   max-height: 70px
+   .cm-h-IE[ng-reflect-is-on="true"]
+     visibility: visible
+     opacity: 1
+     display: block !important
+     // transition: all 0.5s
+     max-height: 70px !important
+     height: 70px
+   .cm-h-ext
+     transition: all 0.5s
+     -ms-transition: all 0.5s
+     height: 70px
+   .cm-h-address
+     position: relative
+     z-index: 2
+     background: white
+
+ // .p[ng-reflect-is-on="false"]
+ // .cm-h-ext
+ //   transition: display 0.3s
+
+
+.mat-tab-body-content.ng-trigger.ng-trigger-translateTab
+ overflow: hidden
 //login
 .login-modulate
   width: 1400px
@@ -854,3 +1197,409 @@ mat-card.wallet-crypto
         font-weight: 400
         color: #989bab
         margin-bottom: 30px !important
+
+
+
+//[Feature_G332] 2018-07-31 start
+.account-modulate
+  width: 1400px
+  margin: 0 auto
+  .account-box
+    display: flex
+    width: 1400px
+    flex-wrap: wrap
+    .col-8
+      max-width: 66%
+  .account-title
+    height: 30px
+    line-height: 30px
+    font-size: 20px
+    font-weight: 500
+    color: #000
+    margin-bottom: 20px !important
+    cursor: default
+  .empty-box
+    width: 455px
+    max-width: 455px
+    margin-left: 21px !important
+  .account-info, .auth-level, .noti-setting, .login-history
+    width: 920px
+    padding-top: 25px !important
+    padding-left: 25px !important
+  .account-info
+    height: 250px
+    max-height: 250px
+    margin-bottom: 25px !important
+    .ac-email-area, .ac-password-area, .ac-nickname-area
+      font-size: 15px
+      font-weight: 500
+      height: 40px
+      min-height: 40px
+      line-height: 40px
+      .ac-title
+        width: 120px
+        text-align: left
+        color: #989bab
+      p, a
+        display: inline-block
+      a
+        cursor: pointer
+    .ac-email-area
+      margin-bottom: 10px !important
+      .ac-email-info
+        color: #000
+    .ac-password-area
+      margin-bottom: 10px !important
+      .ac-password-change
+        color: #3078ff
+        text-decoration: underline
+    .ac-nickname-area
+      .ac-nickname-info
+        color: #000
+        margin-right: 10px !important
+      .ac-nickname-change
+        color: #3078ff
+        text-decoration: underline
+    .ac-change-area
+      p
+        display: inline-block
+        font-size: 15px
+        font-weight: 500
+        height: 40px
+        min-height: 40px
+        line-height: 40px
+        width: 120px
+        text-align: left
+        color: #989bab
+        margin-bottom: 0px !important
+        position: relative
+        bottom: 1px
+      .ac-change-input, .ac-change-submit, .ac-change-cancel
+        height: 40px
+        line-height: 40px
+        font-size: 13px
+        font-weight: 400
+        border-radius: 2px
+      .ac-change-submit, .ac-change-cancel
+        width: 100px
+        max-width: 100px
+        border: 1px solid #3078ff
+        text-align: center
+        position: relative
+        top: 2px
+        cursor: pointer
+        outline: 0px
+      .ac-change-input
+        width: 220px
+        max-width: 220px
+        padding-left: 5px !important
+        margin-right: 10px !important
+        border: 1px solid #e0e0e8
+      .ac-change-submit
+        color: #fff
+        margin-right: 10px !important
+        background-color: #3978ff
+      .ac-change-cancel
+        color: #3078ff
+        background-color: #fff
+      .ac-change-image
+        width: 13px
+        height: 13px
+        margin-right: 7px
+        position: relative
+        bottom: 1.5px
+      .ac-change-error
+        display: block
+        height: 30px
+        line-height: 30px
+        font-size: 12px
+        color: #f14d4e
+        padding-left: 125px
+
+  .auth-level
+    height: 475px
+    max-height: 475px
+    margin-bottom: 25px !important
+    .al-select-box
+      border-bottom: 1px solid #e0e0e8
+      width: 860px
+      height: 50px
+      line-height: 50px
+      margin-bottom: 45px !important
+      .al-select-div
+        width: 1px
+        height: 20px
+        background: #e0e0e8
+        display: inline-block
+        vertical-align: middle
+        cursor: default
+      .al-current_level, .al-level-name, .al-token-info
+        display: inline-block
+        color: #989bab
+      .al-current_level, .al-level-name
+        width: 130px
+        font-size: 15px
+        font-weight: 500
+        cursor: default
+      .al-level-name
+        padding-left: 20px
+        color: #3078ff
+      .al-token-info
+        float: right
+        font-size: 13px
+        font-weight: 400
+    .al-auth-level-box
+      display: flex
+    .al-arrow-img
+      background-position: center
+      background-size: contain
+      background-repeat: no-repeat
+      width: 15px
+      height: 265px
+      margin-left: 11px
+      margin-right: 11px
+    .al-arrow-img[ng-reflect-is-on="true"]
+      background-image: url('/assets/img/level_arrow_blue.png')
+    .al-arrow-img[ng-reflect-is-on="false"]
+      background-image: url('/assets/img/level_arrow_gray.png')
+
+    .al-auth-title
+      font-size: 13px
+      font-weight: 500
+      color: #989bab
+      height: 20px
+      line-height: 20px
+      text-align: left
+      margin-bottom: 5px !important
+    .al-helper-icon
+      height: 50px
+    .al-check-icon
+      background-position: center
+      background-size: contain
+      background-repeat: no-repeat
+      width: 22px
+      max-width: 22px
+      height: 22px
+      max-height: 22px
+      background-image: url('/assets/img/level_check.png')
+      float: right
+      margin-top: 15px
+      margin-right: 10px
+      display: block
+    .al-inner-in
+      width: 160px
+      margin: 0 auto
+    .al-youth_team-box
+      &[ng-reflect-is-on="true"]
+        & > p
+          color: #3078ff
+      .al-youth_team-inner
+        width: 190px
+        height: 240px
+        max-height: 240px
+        border-radius: 2px
+      .al-youth_team-inner[ng-reflect-is-on="true"]
+        background-color: #fff
+        border: 1px solid #3078ff
+      .al-youth_team-inner[ng-reflect-is-on="false"]
+        background-color: #f9f9fb
+        border: 1px solid #e8e8e9
+    .al-inner-logo
+      width: 30px
+      height: 30px
+      background-position: center
+      background-size: contain
+      background-repeat: no-repeat
+      display: block
+      margin-bottom: 5px !important
+      margin-left: auto
+      margin-right: auto
+    .al-email-image
+      background-image: url('/assets/img/level_email.png')
+    .al-2fa-image
+      background-image: url('/assets/img/level_2fa.png')
+    .al-docv-image
+      background-image: url('/assets/img/level_document.png')
+    .al-priv-image
+      background-image: url('/assets/img/level_contact.png')
+    .al-auth-name
+      height: 20px
+      line-height: 20px
+      text-align: center
+      font-size: 13px
+      font-weight: 400
+      color: #000
+      margin-bottom: 10px
+      cursor: default
+    .al-auth-or
+      text-align: center
+      margin: 0px !important
+      height: 17px
+      line-height: 17px
+      font-size: 11px
+    .al-auth-area, .al-auth-noch-area, .al-auth-verifying
+      width: 110px
+      height: 30px
+      margin: 0 auto
+    input[id*="al-auth-button-ch"]
+      display: none
+    label[for*="al-auth-button-ch"]
+      width: 110px
+      max-width: 110px
+      height: 30px
+      max-height: 30px
+      line-height: 30px
+      border: 1px solid #000
+      text-align: center
+      cursor: default
+      margin-bottom: 0px
+      font-size: 11px
+    label[for*="al-auth-button-ch2"]
+      &:hover
+        background-color: #000
+        color: #fff
+        cursor: pointer
+        div
+          background-image: url("/assets/img/verified_cancel.png")
+    .al-auth-checked
+      width: 12px
+      height: 12px
+      margin-left: auto
+      margin-right: auto
+      position: relative
+      top: 1.5px
+      background-image: url("/assets/img/verified_check.png")
+      display: inline-block
+      background-position: center
+      background-size: contain
+      background-repeat: no-repeat
+
+    .al-auth-button-noch, .al-auth-button-verifying
+      width: 110px
+      height: 30px
+      max-height: 30px
+      line-height: 30px
+      border-radius: 2px
+      text-align: center
+      font-size: 11px
+      font-weight: 400
+    .al-auth-button-noch
+      background-color: #3078ff
+      color: #fff
+      border: none
+    .al-auth-button-verifying
+      background: none
+      color: #3078ff
+      border: 1px solid #3078ff
+      cursor: default
+    .al-bottom-msg
+      font-size: 11px
+      font-weight: 400
+      color: #989bab
+      height: 32px
+      line-height: 32px
+      margin: 0px !important
+      text-align: center
+    .al-mbt-62
+      margin-bottom: 62px
+    .al-mbt-15
+      margin-bottom: 15px
+    .al-hori-div
+      width: 145px
+      height: 1px
+      max-height: 1px
+      background-color: #e0e0e8
+      margin: 0 auto
+    input
+      cursor: pointer
+      outline: 0px
+
+  .noti-setting
+    height: auto
+    max-height: auto
+    margin-bottom: 25px !important
+    padding: 0px !important
+    .account-title
+      padding-top: 25px
+      padding-left: 25px
+      padding-bottom: 20px
+    .row
+      margin-right: 0 !important
+    .at-header-row
+      height: 30px
+      max-height: 30px
+      line-height: 30px
+      padding-right: 45px
+      background-color: #f4f4f4
+      p
+        text-align: right
+        font-size: 11px
+        font-weight: 400
+        color: #989bab
+        width: 100%
+        margin-bottom: 0px
+    .at-option-row
+      height: 55px
+      max-height: 55px
+      line-height: 55px
+      border-bottom: 1px solid #e0e0e8
+      padding-right: 40px
+      padding-left: 25px !important
+      &:last-child
+        border-bottom: none
+      p
+        width: 815px
+        text-align: left
+        font-size: 15px
+        font-weight: 400
+        color: #000
+      mat-slide-toggle
+        margin-top: 15px
+        cursor: pointer
+        & > label
+          margin-bottom: 0px
+        &[class*="checked"]
+          .mat-slide-toggle-thumb
+            background-color: #3078ff
+        &:not([class*="checked"])
+          .mat-slide-toggle-thumb
+            background-color: #bababa
+        .mat-slide-toggle-thumb-container
+          cursor: pointer
+        .mat-slide-toggle-bar
+          background-color: #e0e0e8
+        .mat-slide-toggle-ripple
+          display: none
+  .login-history
+    padding-left: 0px !important
+    .row
+      margin-right: 0px !important
+    .account-title
+      margin-left: 25px
+    .lh-header
+      height: 58px
+      line-height: 58px
+      padding-left: 25px !important
+      font-size: 13px
+      font-weight: 400
+      color: #989bab
+      border-top: 1px solid #e0e0e8
+      border-bottom: 1px solid #e0e0e8
+    .lh-date
+      width: 230px
+      max-width: 230px
+    .lh-type, .lh-ip
+      width: 320px
+      max-width: 320px
+    .lh-ip
+      text-align: right
+    .lh-content-list
+      height: 70px
+      line-height: 70px
+      font-size: 15px
+      font-weight: 400
+      color: #000
+      border-bottom: 1px solid #f4f4f4
+      padding-left: 25px
+      &:last-child
+        border-bottom: none
