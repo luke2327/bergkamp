@@ -70,9 +70,13 @@ import { WalletWithdrawComponent } from './wallet-withdraw/wallet-withdraw.compo
 import { WalletTransactionComponent } from './wallet-transaction/wallet-transaction.component';
 import { LoginComponent } from './auth/login/login.component';
 import { Auth2faComponent } from './auth/auth-2fa/auth-2fa.component';
+import { PwChangeComponent } from './auth/pw-change/pw-change.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AccountComponent } from './account/account.component';
-
+import { SAuthComponent } from './account/s-auth/s-auth.component';
+import { GAuthComponent } from './account/g-auth/g-auth.component';
+import { CancelSAuthComponent } from './account/cancel-s-auth/cancel-s-auth.component';
+import { CancelGAuthComponent } from './account/cancel-g-auth/cancel-g-auth.component';
 import { TymxRouterService } from './service/tymx-router.service';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
@@ -92,7 +96,12 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'login/auth', component: Auth2faComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'account', component: AccountComponent}
+  {path: 'account', component: AccountComponent},
+  {path: 'account/pw', component: PwChangeComponent},
+  {path: 'account/google', component: GAuthComponent},
+  {path: 'account/sms', component: SAuthComponent},
+  {path: 'account/cancel-google', component: CancelGAuthComponent},
+  {path: 'account/cancel-sms', component: CancelSAuthComponent},
 ];
 
 @NgModule({

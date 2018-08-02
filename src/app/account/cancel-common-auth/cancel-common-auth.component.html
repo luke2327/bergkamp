@@ -1,0 +1,42 @@
+<!-- title -->
+<p *ngIf = "viewModel.cancelType == 0">{{ 'S0057' | translate }}</p>
+<p *ngIf = "viewModel.cancelType == 1">{{ 'S0060' | translate }}</p>
+<!-- phonenumber -->
+<p *ngIf = "viewModel.cancelType == 1">{{ viewModel.cellNum }}</p>
+<!-- password -->
+<p>{{ 'W0172' | translate }}</p>
+<input type="text" [(ngModel)] = "viewModel.pw" (input)="inCurrPw($event.target.value)"/>
+<div *ngIf="viewModel.isPwErr">
+  <img src="/assets/img/web_wallet_withdrawal_error.png" />
+  <p>{{ viewModel.pwErrMsg }}</p>
+</div>
+<!-- google auth -->
+<div *ngIf="viewModel.isGoogleAuth">
+  <p>{{ 'W0116' | translate }}</p>
+  <input type="text" [(ngModel)] = "viewModel.gAuthCode" (input)="inCurrGAuth($event.target.value)"/>
+  <div *ngIf="viewModel.isGAuthCodeErr">
+    <img src="/assets/img/web_wallet_withdrawal_error.png" />
+    <p>{{ viewModel.gAuthCodeErrMsg }}</p>
+  </div>
+  <!-- change auth -->
+  <a (click) = "setIsGAuth(false)">{{ 'S0062' | translate }}</a>
+  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "gAuth()"/>
+</div>
+<!-- sms auth -->
+<div *ngIf="!viewModel.isGoogleAuth">
+  <p>{{ 'W0119' | translate }} <span *ngIf = "viewModel.cancelType == 0">({{ viewModel.cellNum }})</span></p>
+  <input *ngIf="viewModel.smsSendCount <= 0" type = "button" value="{{ 'W0120' | translate }}" (click) = "send()"/>
+  <p *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
+  <input type="text" [(ngModel)] = "viewModel.sAuthCode" (input)="inCurrSAuth($event.target.value)"/>
+  <div *ngIf="viewModel.isSAuthCodeErr">
+    <img src="/assets/img/web_wallet_withdrawal_error.png" />
+    <p>{{ viewModel.sAuthCodeErrMsg }}</p>
+
+  </div>
+  <!-- change auth -->
+  <a (click) = "setIsGAuth(true)">{{ 'S0063' | translate }}</a>
+  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "sAuth()"/>
+</div>
+<!-- info text -->
+<p *ngIf = "viewModel.cancelType == 0">{{ 'S0058' | translate }}</p>
+<p *ngIf = "viewModel.cancelType == 1">{{ 'S0061' | translate }}</p>

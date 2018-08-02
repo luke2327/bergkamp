@@ -1,0 +1,23 @@
+<div *ngIf="viewModel.pageStep == 0">
+  <p>{{ 'W0153' | translate }}</p>
+  <input type = "text" placeholder="{{ 'W0154' | translate }}" [(ngModel)] = "viewModel.currPw"
+    (input)="inCurrPw($event.target.value)"/>
+  <div *ngIf="viewModel.isCurrPwErr">
+    <img src="/assets/img/web_wallet_withdrawal_error.png" />
+    <p>{{ viewModel.currPwErrMsg }}</p>
+  </div>
+  <input type = "text" placeholder="{{ 'W0131' | translate }}" [(ngModel)] = "viewModel.newPw"
+    (input)="inNewPw($event.target.value)"/>
+  <div *ngIf="viewModel.isNewPwErr">
+    <img src="/assets/img/web_wallet_withdrawal_error.png" />
+    <p>{{ viewModel.newPwErrMsg }}</p>
+  </div>
+  <input type = "text" placeholder="{{ 'W0132' | translate }}" [(ngModel)] = "viewModel.confirmPw"
+    (input)="inConfirmPw($event.target.value)"/>
+  <div *ngIf="viewModel.isConfirmPwErr">
+    <img src="/assets/img/web_wallet_withdrawal_error.png" />
+    <p>{{ viewModel.confirmPwErrMsg }}</p>
+  </div>
+  <input type = "button" value="{{ 'W0130' | translate }}" (click) = "submit()"/>
+</div>
+<app-auth-2fa *ngIf="viewModel.pageStep == 1"></app-auth-2fa>

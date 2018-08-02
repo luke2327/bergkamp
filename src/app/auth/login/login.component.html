@@ -4,11 +4,19 @@
       <p class="lg-header">{{ 'W0006' | translate }}</p>
       <div class="lg-email-box">
         <img src="/assets/img/email.png" />
-        <input *ngIf="viewModel.emailErrMsg.length > 0" type="text" placeholder="{{ viewModel.emailErrMsg }}" [(ngModel)]="viewModel.email" id="lg-email-button"/>
+        <input *ngIf="viewModel.emailErrMsg.length > 0" type="text" placeholder="{{ 'W0121' | translate }}" [(ngModel)]="viewModel.email" id="lg-email-button"/>
+      </div>
+      <div class="sg-email-error-box" *ngIf="viewModel.isEmailInvalid">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ viewModel.emailErrMsg }}</p>
       </div>
       <div class="lg-passwd-box">
         <img src="/assets/img/password.png" />
-        <input type="password" placeholder="{{ viewModel.pwErrMsg }}" [(ngModel)]="viewModel.pw" />
+        <input type="password" placeholder="{{ 'W0122' | translate }}" [(ngModel)]="viewModel.pw" />
+      </div>
+      <div class="sg-passwd-error-box" *ngIf="viewModel.isPwInvalid">
+        <img class="sg-error" src="/assets/img/web_wallet_withdrawal_error.png" />
+        <p>{{ viewModel.pwErrMsg }}</p>
       </div>
       <input type="button" value="Login" (click)="login()" id="lg-login-button"/>
       <label for="lg-login-button">Login</label>

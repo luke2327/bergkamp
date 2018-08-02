@@ -5,7 +5,7 @@
 </div>
 <div class="ac-password-area">
   <p class="ac-password ac-title">{{ 'W0122' | translate }}</p>
-  <a class="ac-password-change">{{ 'W0135' | translate }}</a>
+  <a [routerLink] = "['/account/pw']" class="ac-password-change">{{ 'W0135' | translate }}</a>
 </div>
 <div class="ac-nickname-area" *ngIf="!viewModel.isInputMode">
   <p class="ac-nickname ac-title">{{ 'W0134' | translate }}</p>

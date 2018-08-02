@@ -98,6 +98,9 @@
   17. Feature_B332 account page 구현
    - 별명 변경 추가(by cognito)
    - 나머지는 대부분 샘플 데이터로 끼워넣기만 구현
+  18. Feature_B336 비번 재설정 구현
+   - sprint 3 남은 부분 처리 로직 구현
+   - api 는 추후 작업 예정
 5. 개발관련 참고할만한 사이트
  1. Angular 공식 :  https://angular.io/
  2. ng-bootstrap : https://ng-bootstrap.github.io/#/home
