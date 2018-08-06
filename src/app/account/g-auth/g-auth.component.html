@@ -1,48 +1,62 @@
-<a [routerLink]="['/account']">{{ 'W0009' | translate }}</a>
-<p>></p>
-<p>{{ 'W0166' | translate }}</p>
-<div>
-  <!-- step 1 -->
-  <div>
-    <input type="button" value = "{{ 'W0167' | translate }}"/>
-    <p [innerHTML] = "'S0050' | translate"></p>
-    <span>[GOOGLE AUTH IMG]</span>
-    <a>Download app store</a>
-    <a>Download google play</a>
-    <p>- {{'S0051' | translate }}</p>
-  </div>
-  <!-- step 2 -->
-  <div>
-    <input type="button" value = "{{ 'W0168' | translate }}"/>
-    <p [innerHTML] = "'S0052' | translate"></p>
-    <p>{{ 'W0170' | translate }}</p>
-    <div class="qr-box">
-      <qr-code [value]="viewModel.key" [size]="120"></qr-code>
-    </div>
-    <p>{{ 'W0171' | translate }}</p>
-    <p>Kxtre0124s3r0</p>
-    <div>
-      <p>- {{ 'S0053' | translate }}</p>
-      <p>- {{ 'S0054' | translate }}</p>
-    </div>
+<div class="account-modulate">
+  <p class="wallet-title">
+    <canvas class="wallet-tt-cv"></canvas>
+    <a [routerLink]="['/account']">{{ 'W0009' | translate }}</a>
+    <font class="angle-barcket">&gt;</font>
+    <a class="select-default">{{ 'W0166' | translate }}</a>
+  </p>
+  <mat-card class="g-auth nopadding">
+    <div class="ga-inner-box">
+      <!-- step 1 -->
+      <div class="ga-mrt-39">
+        <p class="ga-step">{{ 'W0167' | translate }}</p>
+        <div class="ga-detail-box">
+          <p class="ga-detail-title" [innerHTML]="'S0050' | translate"></p>
+          <span class="ga-auth-image"></span>
+          <div class="ga-helper-install">
+            <a class="ga-appstore"></a>
+            <a class="ga-googleplay"></a>
+          </div>
+          <p class="ga-last-msg">- {{'S0051' | translate }}</p>
+        </div>
+      </div>
+      <!-- step 2 -->
 
-  </div>
-  <!-- step 3 -->
-  <div>
-    <input type="button" value = "{{ 'W0169' | translate }}"/>
-    <p [innerHTML] = "'S0055' | translate"></p>
-    <p>{{ 'W0172' | translate }}</p>
-    <input type="text" [(ngModel)] = "viewModel.password" (input)="inCurrPw($event.target.value)"/>
-    <div *ngIf="viewModel.isPwErr">
-      <img src="/assets/img/web_wallet_withdrawal_error.png" />
-      <p>{{ viewModel.pwErrMsg }}</p>
+      <div class="ga-mrt-39">
+        <p class="ga-step">{{'W0168' | translate }}</p>
+        <div class="ga-detail-box">
+          <p class="ga-detail-title" [innerHTML]="'S0052' | translate"></p>
+          <div class="qr-box">
+            <qr-code [value]="viewModel.key" [size]="120"></qr-code>
+          </div>
+          <input class="qr-text" type="text" value="Kxtre0124s3r0" />
+          <div>
+            <p class="ga-last-msg">- {{ 'S0054' | translate }}</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- step 3 -->
+
+      <div>
+        <p class="ga-step">{{ 'W0169' | translate }}</p>
+        <div class="ga-detail-box">
+          <p class="ga-detail-title" [innerHTML]="'S0055' | translate"></p>
+          <p class="ga-input-msg ga-login-pw">{{ 'W0172' | translate }}</p>
+          <input class="ga-input-box" type="password" [(ngModel)]="viewModel.password" (input)="inCurrPw($event.target.value)" />
+          <div class="ga-error-box ga-er-1" *ngIf="viewModel.isPwErr">
+            <img src="/assets/img/web_wallet_withdrawal_error.png" />
+            <p>{{ viewModel.pwErrMsg }}</p>
+          </div>
+          <p class="ga-input-msg">{{ 'W0116' | translate }}</p>
+          <input class="ga-input-box ga-code" type="text" [(ngModel)]="viewModel.authCode" (input)="inCurrAuth($event.target.value)" />
+          <div class="ga-error-box ga-er-2" *ngIf="viewModel.isAuthErr">
+            <img src="/assets/img/web_wallet_withdrawal_error.png" />
+            <p>{{ viewModel.authErrMsg }}</p>
+          </div>
+          <input class="ga-submit" type="button" value="{{ 'W0173' | translate }}" (click)="auth()" />
+        </div>
+      </div>
     </div>
-    <p>{{ 'W0116' | translate }}</p>
-    <input type="text" [(ngModel)] = "viewModel.authCode" (input)="inCurrAuth($event.target.value)"/>
-    <div *ngIf="viewModel.isAuthErr">
-      <img src="/assets/img/web_wallet_withdrawal_error.png" />
-      <p>{{ viewModel.authErrMsg }}</p>
-    </div>
-    <input type="button" value="{{ 'W0173' | translate }}" (click) = "auth()"/>
-  </div>
+  </mat-card>
 </div>

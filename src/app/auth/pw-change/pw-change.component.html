@@ -1,23 +1,32 @@
-<div *ngIf="viewModel.pageStep == 0">
-  <p>{{ 'W0153' | translate }}</p>
-  <input type = "text" placeholder="{{ 'W0154' | translate }}" [(ngModel)] = "viewModel.currPw"
-    (input)="inCurrPw($event.target.value)"/>
-  <div *ngIf="viewModel.isCurrPwErr">
-    <img src="/assets/img/web_wallet_withdrawal_error.png" />
-    <p>{{ viewModel.currPwErrMsg }}</p>
-  </div>
-  <input type = "text" placeholder="{{ 'W0131' | translate }}" [(ngModel)] = "viewModel.newPw"
-    (input)="inNewPw($event.target.value)"/>
-  <div *ngIf="viewModel.isNewPwErr">
-    <img src="/assets/img/web_wallet_withdrawal_error.png" />
-    <p>{{ viewModel.newPwErrMsg }}</p>
-  </div>
-  <input type = "text" placeholder="{{ 'W0132' | translate }}" [(ngModel)] = "viewModel.confirmPw"
-    (input)="inConfirmPw($event.target.value)"/>
-  <div *ngIf="viewModel.isConfirmPwErr">
-    <img src="/assets/img/web_wallet_withdrawal_error.png" />
-    <p>{{ viewModel.confirmPwErrMsg }}</p>
-  </div>
-  <input type = "button" value="{{ 'W0130' | translate }}" (click) = "submit()"/>
+<div class="login-modulate">
+  <mat-card class="auth-pw-change nopadding" *ngIf="viewModel.pageStep == 0">
+    <p class="ap-title">{{ 'W0153' | translate }}</p>
+    <div class="ap-input-box">
+      <span class="ap-input-img cp-img"></span>
+      <input class="ap-input current-pw" type="password" placeholder="{{ 'W0154' | translate }}" [(ngModel)]="viewModel.currPw" (input)="inCurrPw($event.target.value)" />
+    </div>
+    <div class="ap-error-box ap-error-cp" *ngIf="viewModel.isCurrPwErr">
+      <img src="/assets/img/web_wallet_withdrawal_error.png" />
+      <p>{{ viewModel.currPwErrMsg }}</p>
+    </div>
+    <div class="ap-input-box">
+      <span class="ap-input-img cp-img"></span>
+      <input class="ap-input new-pw" type="password" placeholder="{{ 'W0131' | translate }}" [(ngModel)]="viewModel.newPw" (input)="inNewPw($event.target.value)" />
+    </div>
+    <div class="ap-error-box ap-error-np" *ngIf="viewModel.isNewPwErr">
+      <img src="/assets/img/web_wallet_withdrawal_error.png" />
+      <p>{{ viewModel.newPwErrMsg }}</p>
+    </div>
+
+    <div class="ap-input-box">
+      <span class="ap-input-img cf-img"></span>
+      <input class="ap-input cf-new-pw" type="password" placeholder="{{ 'W0132' | translate }}" [(ngModel)]="viewModel.confirmPw" (input)="inConfirmPw($event.target.value)" />
+    </div>
+    <div class="ap-error-box ap-error-cfnp" *ngIf="viewModel.isConfirmPwErr">
+      <img src="/assets/img/web_wallet_withdrawal_error.png" />
+      <p>{{ viewModel.confirmPwErrMsg }}</p>
+    </div>
+    <input class="ap-submit" type="button" value="{{ 'W0130' | translate }}" (click)="submit()" />
+  </mat-card>
 </div>
 <app-auth-2fa *ngIf="viewModel.pageStep == 1"></app-auth-2fa>

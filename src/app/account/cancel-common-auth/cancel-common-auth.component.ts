@@ -52,7 +52,7 @@ export class CancelCommonAuthComponent implements OnInit {
     this.viewModel.smsSendCount = 0;
   }
 
-  gAuth() {
+  googleAuth() {
     //TODO 일단은 대충 그림그릴거만 구현하고 추후 자식 component에서 구현하자..
 
     if(this.viewModel.pw.length == 0) {
