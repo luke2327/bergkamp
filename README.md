@@ -5,7 +5,7 @@
  2. angular-cli 설치(version을 1.7.4로 설치할것)
  3. git clone
  4. npm install
-
+ 5. node_module/apollo-client/core/ObservabeQuery.d.ts에서 tearDownQuery.d.ts에서 tearDownQuery()를 강제로 public으로 바꿔준다.
 2. Angular Cli 를 통한 생성방법(angular 관련 내용은 모두 아래의 방법대로할것! 자동으로 의존성 주입됨)
  1. module 생성 : ng generate module <module_name>
  2. class 생성 : ng generate class <class_name>

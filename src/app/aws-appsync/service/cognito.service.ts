@@ -25,6 +25,8 @@ export interface Callback {
   callback(): void;
 
   callbackWithParam(result: any): void;
+
+  callbackWithConfirm?(attr: any, cognitoUser: any, callback: any): void;
 }
 
 @Injectable()

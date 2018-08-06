@@ -32,6 +32,7 @@ export class MainComponent implements OnInit, OnDestroy, LoggedInCallback {
   }
 
   ngOnDestroy() {
+    this.snapshotService.stopSub();
     if(this.snapshopSubscription!=null)
       this.snapshopSubscription.unsubscribe();
   }
