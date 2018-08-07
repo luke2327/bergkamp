@@ -3,6 +3,8 @@ import { OrderService } from '../../../rest-api/service/order.service';
 import { OrderDataService } from '../../../rest-api/service/order-data.service';
 import { RestStatus, OrderStatus, OrderHistoryType } from '../../../app.const';
 import { TradePageStateService } from '../../../service/trade-page-state.service';
+import { CommonSubComponent } from '../../../common-sub/common-sub.component';
+import { CompStateService } from '../../../service/comp-state.service';
 @Component({
   selector: 'app-common-order',
   templateUrl: './common-order.component.html',
@@ -22,7 +24,7 @@ html을 하나에 작성해서
 각각에 기능도 크게 다르지 않으므로 이 common order component를 상속받아서
 필요한 부분만 자식 component에서 재구현해쓰자
 */
-export class CommonOrderComponent implements OnInit, AfterViewInit {
+export class CommonOrderComponent extends CommonSubComponent implements OnInit, AfterViewInit {
 
   isLogin: boolean = true;
   isLimit: boolean = false;
@@ -43,15 +45,21 @@ export class CommonOrderComponent implements OnInit, AfterViewInit {
   //최소단위도 없으므로 일단 대충값만 잡아준다.
   callMinUnit: number = 5; //호가단위
   amountMinUnit: number = 10; //총량최소단위
-  constructor(private orderService:OrderService,
-    private orderDataService:OrderDataService,
-    private tradePageStateService:TradePageStateService) {
-
+  constructor(
+    public orderService:OrderService,
+    public orderDataService:OrderDataService,
+    public tradePageStateService:TradePageStateService,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     this.callPageStatus = OrderStatus.Undefined;
   }
 
   ngOnInit() {}
   ngAfterViewInit() {
+
+  }
+  startComponent() {
     this.setOrderStatus();
     this.postOrderSubscription = this.orderDataService.postOrderObservable.subscribe((data) => {
       if(this.callPageStatus == this.pageStatus) {
@@ -66,6 +74,8 @@ export class CommonOrderComponent implements OnInit, AfterViewInit {
       }
 
     });
+  }
+  startComponentErr() {
   }
   orderCoin(): void {
     //데이터를 세팅하고

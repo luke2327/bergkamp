@@ -2,14 +2,17 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { WalletService } from '../../rest-api/service/wallet.service';
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-wallet-header',
   templateUrl: './wallet-header.component.html',
   styleUrls: ['./wallet-header.component.sass']
 })
-export class WalletHeaderComponent implements OnInit, AfterViewInit {
+export class WalletHeaderComponent extends CommonSubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   snapShotSubScription: any;
+  walletSub: any;
   //계좌정보
   balance: any;
   //info의 crypto 정보
@@ -21,18 +24,19 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
   totalPriceByBTC: number;
   totalPriceByUSDT: number;
 
-  constructor(private snapshotDataService: SnapshotDataService,
+  constructor(
+    private snapshotDataService: SnapshotDataService,
     private walletService: WalletService,
-    private walletDataService: WalletDataService) { }
-
-  ngOnInit() {
+    private walletDataService: WalletDataService,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     this.totalPriceByBTC = 0;
     this.totalPriceByUSDT = 0;
     this.cryptoMap = new Map();
   }
 
-  ngAfterViewInit() {
-
+  ngOnInit() {
     //info에서 가져옴
     this.cryptos = JSON.parse(localStorage.getItem("info")).cryptos;
     for(let entry of this.cryptos) {
@@ -47,7 +51,7 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
       this.walletService.getBalanceCryptoAll();
     });
 
-    this.walletDataService.getBalanceCryptoAllSub.subscribe(data => {
+    this.walletSub = this.walletDataService.getBalanceCryptoAllSub.subscribe(data => {
       this.balance = data.body.balance;
       for(let entry of this.balance) {
         let numerator = this.cryptoMap.get(entry.crypto).abbre;
@@ -58,6 +62,19 @@ export class WalletHeaderComponent implements OnInit, AfterViewInit {
 
       }
     });
+  }
+  startComponent() {
+
+  }
+  startComponentErr() {
+  }
+  ngAfterViewInit() {
+
+
+  }
+  ngOnDestroy() {
+    this.snapShotSubScription.unsubscribe();
+    this.walletSub.unsubscribe();
   }
   //가격정보를 BTC혹은 USDT 등으로 변환시켜주자
   getPairRatio(numer: any, denome: any): number {

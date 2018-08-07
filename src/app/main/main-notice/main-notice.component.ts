@@ -4,20 +4,24 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SampleNoticeService } from '../../rest-api/service/sample-notice.service';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-main-notice',
   templateUrl: './main-notice.component.html',
   styleUrls: ['./main-notice.component.sass']
 })
-//carousel 구현 샘플만 간략히 해둔다
-//TODO 추후 실제데이터로 바꿔야함
-export class MainNoticeComponent implements OnInit {
+export class MainNoticeComponent extends CommonSubComponent implements OnInit {
 
   images: Array<string>;
 
-  constructor(private sampleNoticeService: SampleNoticeService,
-              config: NgbCarouselConfig,
-              private _http: HttpClient) {
+  constructor(
+    public sampleNoticeService: SampleNoticeService,
+    public config: NgbCarouselConfig,
+    public _http: HttpClient,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     config.interval = 10000;
     config.wrap = true;
     config.keyboard = false;
@@ -25,10 +29,16 @@ export class MainNoticeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sampleNoticeService.getSampleNotice().subscribe(data => {
-      for(let entry of data.notices) {
-        this.images.push(entry.image_link);
-      }
-    });
+
+  }
+  startComponent() {
+
+    let notices = JSON.parse(localStorage.getItem('info')).notices;
+    for(let entry of notices) {
+      this.images.push(entry.image_link);
+    }
+  }
+  startComponentErr() {
+
   }
 }

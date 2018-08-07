@@ -9,6 +9,7 @@ import { UserLoginService } from "../aws-appsync/service/user-login.service";
 import { CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import { CommonComponent } from "../common/common.component";
 import { AppsyncService } from '../aws-appsync/service/appsync.service';
+import { CompStateService } from '../service/comp-state.service';
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
@@ -25,9 +26,12 @@ export class WalletComponent extends CommonComponent implements OnInit, OnDestro
     public infoService: InfoService,
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
-    public appsyncService: AppsyncService
+    public appsyncService: AppsyncService,
+    public compStateService: CompStateService
   ) {
-    super(geolocationService, geolocationDataService, infoService, infoDataService, userLoginService);
+    super(geolocationService, geolocationDataService,
+          infoService, infoDataService,
+          userLoginService, compStateService);
   }
   startComponent() {
     let mythis = this;
@@ -37,6 +41,7 @@ export class WalletComponent extends CommonComponent implements OnInit, OnDestro
       },
       callbackWithParam(token: any) {
         //이전페이지에서 noti창이 열려있었다면 닫아준다.
+        console.log("this is wallet");
         mythis.appsyncService.setClient(token);
         mythis.snapshotService.startQuery();
         mythis.snapshopSubscription = mythis.snapshotService.queryObservable.subscribe((value) => {
@@ -45,8 +50,10 @@ export class WalletComponent extends CommonComponent implements OnInit, OnDestro
       }
     });
   }
-  ngOnInit() {}
+
   ngOnDestroy() {
     this.snapshopSubscription.unsubscribe();
+    this.geolocationSub.unsubscribe();
+    this.infoDataSub.unsubscribe();
   }
 }

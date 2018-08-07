@@ -3,6 +3,7 @@ import { CommonHistoryComponent } from '../common-history/common-history.compone
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { WalletService } from '../../rest-api/service/wallet.service';
 import { WalletHistoryRowModel } from '../../../app/app.model';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-deposit-history',
   templateUrl: '../common-history/common-history.component.html',
@@ -11,8 +12,9 @@ import { WalletHistoryRowModel } from '../../../app/app.model';
 export class DepositHistoryComponent extends CommonHistoryComponent implements OnInit {
 
   constructor(protected walletDataService: WalletDataService,
-    private walletService: WalletService) {
-    super(walletDataService);
+    private walletService: WalletService,
+    public compStateService: CompStateService) {
+    super(walletDataService, compStateService);
   }
 
   ngOnInit() {

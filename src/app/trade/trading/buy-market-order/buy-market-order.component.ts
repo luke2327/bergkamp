@@ -3,6 +3,7 @@ import { CommonOrderComponent } from '../common-order/common-order.component';
 import { OrderService } from '../../../rest-api/service/order.service';
 import { OrderDataService } from '../../../rest-api/service/order-data.service';
 import { TradePageStateService } from '../../../service/trade-page-state.service';
+import { CompStateService } from '../../../service/comp-state.service';
 @Component({
   selector: 'app-buy-market-order',
   templateUrl: '../common-order/common-order.component.html',
@@ -10,10 +11,13 @@ import { TradePageStateService } from '../../../service/trade-page-state.service
 })
 export class BuyMarketOrderComponent extends CommonOrderComponent implements OnInit {
 
-  constructor(orderService:OrderService,
-    orderDataService:OrderDataService,
-    tradePageStateService:TradePageStateService) {
-    super(orderService, orderDataService, tradePageStateService);
+  constructor(
+    public orderService:OrderService,
+    public orderDataService:OrderDataService,
+    public tradePageStateService:TradePageStateService,
+    public compStateService: CompStateService
+  ) {
+    super(orderService, orderDataService, tradePageStateService, compStateService);
     this.isLimit = false;
     this.isBuy = true;
   }

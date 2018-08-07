@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WalletWithdrawalModel, WalletWithDrawalAddrModel } from '../../../app/app.model';
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { WalletService } from '../../rest-api/service/wallet.service';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-withdraw-address',
   templateUrl: './withdraw-address.component.html',
@@ -12,7 +14,7 @@ import { WalletService } from '../../rest-api/service/wallet.service';
 //두개의 데이터를 서로 주고받기 빡세므로
 //한군데서 그냥 처리해버리자
 //쫌 복잡하긴할듯
-export class WithdrawAddressComponent implements OnInit, AfterViewInit {
+export class WithdrawAddressComponent extends CommonSubComponent implements OnInit, AfterViewInit {
 
   cryptoName: string;
   subscribeId: any;
@@ -23,12 +25,21 @@ export class WithdrawAddressComponent implements OnInit, AfterViewInit {
 
   constructor(private walletDataService: WalletDataService,
     private walletService: WalletService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public compStateService: CompStateService) {
+      super(compStateService);
       this.viewModel = new WalletWithdrawalModel();
       this.addrListModel = [];
     }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+
+  }
+  startComponent() {
     this.subscribeId = this.route.params.subscribe(params => {
       this.cryptoName = params['id'].toUpperCase();
       let cryptos = JSON.parse(localStorage.getItem("info")).cryptos;
@@ -44,9 +55,6 @@ export class WithdrawAddressComponent implements OnInit, AfterViewInit {
       this.viewModel.minimum = this.cryptoInfo.minimum;
       this.walletService.getBalanceCrypto(this.cryptoInfo.id);
     });
-  }
-
-  ngAfterViewInit() {
     this.walletDataService.getBalanceCryptoSub.subscribe(data => {
 
       if(data.body.balance!=null && data.body.balance.length>0) {

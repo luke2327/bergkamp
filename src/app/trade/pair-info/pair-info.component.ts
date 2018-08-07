@@ -7,12 +7,14 @@ import { Sort } from '@angular/material';
 import { FavoriteService } from '../../rest-api/service/favorite.service';
 import { FavoriteDataService } from '../../rest-api/service/favorite-data.service';
 import { Router } from '@angular/router';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-pair-info',
   templateUrl: './pair-info.component.html',
   styleUrls: ['./pair-info.component.sass']
 })
-export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PairInfoComponent extends CommonSubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   quotesValues: any = [];
   quotesBeforePrices: any;
@@ -29,10 +31,14 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
   //table 객체
   @ViewChild('table') table: MatTable<any>;
 
-  constructor(private snapshotDataService: SnapshotDataService,
+  constructor(
+    private snapshotDataService: SnapshotDataService,
     private favoriteService: FavoriteService,
     private favoriteDataService: FavoriteDataService,
-    private router:Router) {
+    private router:Router,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     this.quotesBeforePrices = new Map<string, number>();
     this.quotesValuesByBase = new Map<string, any>();
     this.baseIds = new Map<string, number>();
@@ -40,6 +46,12 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {}
   ngAfterViewInit(){
+
+  }
+  ngOnDestroy() {
+    this.snapShotSubScription.unsubscribe();
+  }
+  startComponent() {
     //일단 요약류 정보를 가져오자
     this.snapShotSubScription = this.snapshotDataService.queryObservable.subscribe((value) => {
 
@@ -80,8 +92,8 @@ export class PairInfoComponent implements OnInit, AfterViewInit, OnDestroy {
       this.favoriteService.getFavorite();
     });
   }
-  ngOnDestroy() {
-    this.snapShotSubScription.unsubscribe();
+  startComponentErr() {
+
   }
   //base 종류가 뭐가있는지 리스트로 반환
   getBaseLists(): any[] {

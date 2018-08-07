@@ -4,6 +4,7 @@ import { CommonHistoryComponent } from '../../wallet-transaction/common-history/
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { WalletService } from '../../rest-api/service/wallet.service';
 import { WalletHistoryRowModel } from '../../../app/app.model';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-deposit-history',
   templateUrl: '../../wallet-transaction/common-history/common-history.component.html',
@@ -15,10 +16,13 @@ export class DepositHistoryComponent  extends CommonHistoryComponent implements 
   subscribeId: any;
   cryptoInfo: any;
 
-  constructor(protected walletDataService: WalletDataService,
+  constructor(
+    protected walletDataService: WalletDataService,
     private walletService: WalletService,
-    private route: ActivatedRoute) {
-    super(walletDataService);
+    private route: ActivatedRoute,
+    public compStateService: CompStateService
+  ) {
+    super(walletDataService, compStateService);
     this.seeAll = true;
     this.routerId = 'deposit';
   }

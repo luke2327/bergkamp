@@ -5,13 +5,15 @@ import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { getLang } from '../../app.util';
 import { SortingOrder, SortingOrderName, SortingWallet } from '../../app.const';
 import { WalletCryptoRowModel } from '../../app.model';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-wallet-crypto',
   templateUrl: './wallet-crypto.component.html',
   styleUrls: ['./wallet-crypto.component.sass']
 })
 
-export class WalletCryptoComponent implements OnInit, AfterViewInit {
+export class WalletCryptoComponent extends CommonSubComponent implements OnInit, AfterViewInit {
 
   snapShotSubScription: any;
   balance: any;
@@ -30,11 +32,13 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
   //Sorting
   sorting: Array<SortingWallet>;
 
-  constructor(private snapshotDataService: SnapshotDataService,
+  constructor(
+    private snapshotDataService: SnapshotDataService,
     private walletService: WalletService,
-    private walletDataService: WalletDataService) { }
-
-  ngOnInit() {
+    private walletDataService: WalletDataService,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     this.cryptoMap = new Map();
     this.balanceBase = [];
     this.balanceNoneBase = [];
@@ -43,7 +47,14 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
     this.isBalance = false;
     this.initSorting();
   }
+
+  ngOnInit() {
+
+  }
   ngAfterViewInit() {
+
+  }
+  startComponent() {
     //info에서 가져옴
     this.cryptos = JSON.parse(localStorage.getItem("info")).cryptos;
     for(let entry of this.cryptos) {
@@ -85,6 +96,8 @@ export class WalletCryptoComponent implements OnInit, AfterViewInit {
       this.initSorting();
       this.sortingTable(4);
     });
+  }
+  startComponentErr() {
   }
   //sorting state 초기화
   initSorting() {

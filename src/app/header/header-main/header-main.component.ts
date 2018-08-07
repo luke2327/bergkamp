@@ -7,13 +7,14 @@ import { SampleLoginService } from '../../service/sample-login.service';
 import { LangToggleService } from '../../service/lang-toggle.service';
 import { UserLoginService } from "../../aws-appsync/service/user-login.service";
 import { LoggedInCallback } from "../../aws-appsync/service/cognito.service";
-
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-header-main',
   templateUrl: './header-main.component.html',
   styleUrls: ['./header-main.component.sass']
 })
-export class HeaderMainComponent implements OnInit, AfterViewInit, LoggedInCallback {
+export class HeaderMainComponent extends CommonSubComponent implements OnInit, AfterViewInit, LoggedInCallback {
   //TODO 슬슬 이 멍청한 변수선언 코드를 고칠때가 온듯..
   private langCodeObj: any;
   isNoti: boolean = false;
@@ -24,12 +25,23 @@ export class HeaderMainComponent implements OnInit, AfterViewInit, LoggedInCallb
       private notiToggleService: NotiToggleService,
       private langToggleService: LangToggleService,
       private sampleLoginService: SampleLoginService,
-      private userLoginService: UserLoginService) {
+      private userLoginService: UserLoginService,
+      public compStateService: CompStateService) {
+    super(compStateService);
     this.langCodeObj = getSupportedLangMap();
-    this.userLoginService.isAuthenticated(this);
+    this.userLoginService.loginSubject.subscribe(data => {
+      this.isLogin = data;
+    });
   }
 
   ngOnInit() {
+
+
+  }
+  ngAfterViewInit(){
+
+  }
+  startComponent() {
 
     this.isNoti = false;
     this.notiToggleService.setOpen(this.isNoti);
@@ -43,11 +55,10 @@ export class HeaderMainComponent implements OnInit, AfterViewInit, LoggedInCallb
     this.langToggleService.observable.subscribe(data => {
       this.isLang = data;
     });
+
   }
-  ngAfterViewInit(){
-    this.userLoginService.loginSubject.subscribe(data => {
-      this.isLogin = data;
-    });
+  startComponentErr() {
+
   }
   setLanguage(lang: string): void {
     if(getLang() == lang){

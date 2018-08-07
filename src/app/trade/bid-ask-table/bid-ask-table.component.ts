@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, group, trigger, state, animate, transition, style } from "@angular/core";
 import { BidAskTableType, BidAskType } from "../../app.const";
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: "app-bid-ask-table",
   templateUrl: "./bid-ask-table.component.html",
@@ -12,7 +14,7 @@ import { BidAskTableType, BidAskType } from "../../app.const";
 3. 버튼을 통해 매도호가만 보여줄지 매수호가만 보여줄지
 4. animation은 directice를 통해 구현
 */
-export class BidAskTableComponent implements OnInit {
+export class BidAskTableComponent extends CommonSubComponent implements OnInit {
   //우선은 sample data를 대충 만들어 놓고 ui만 구현
   sampleData:any = {
     "ask" : [
@@ -44,7 +46,8 @@ export class BidAskTableComponent implements OnInit {
   btnAskType:number = BidAskType.Ask;
   btnBidType:number = BidAskType.Bid;
 
-  constructor() {
+  constructor(public compStateService: CompStateService) {
+    super(compStateService);
     this.tableType = BidAskTableType.BidAndAsk;
   }
 
@@ -52,6 +55,10 @@ export class BidAskTableComponent implements OnInit {
   }
   handleClick(){
 
+  }
+  startComponent() {
+  }
+  startComponentErr() {
   }
   //table type 변경
   changeTableType(type: number): void {

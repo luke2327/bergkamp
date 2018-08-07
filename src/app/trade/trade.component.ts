@@ -10,6 +10,7 @@ import { UserLoginService } from "../aws-appsync/service/user-login.service";
 import { CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import { CommonComponent } from "../common/common.component";
 import { AppsyncService } from '../aws-appsync/service/appsync.service';
+import { CompStateService } from '../service/comp-state.service';
 @Component({
   selector: 'app-trade',
   templateUrl: './trade.component.html',
@@ -27,14 +28,14 @@ export class TradeComponent extends CommonComponent implements OnInit, OnDestroy
     public infoService: InfoService,
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
-    public appsyncService: AppsyncService
+    public appsyncService: AppsyncService,
+    public compStateService: CompStateService
   ) {
-    super(geolocationService, geolocationDataService, infoService, infoDataService, userLoginService);
+    super(geolocationService, geolocationDataService,
+          infoService, infoDataService,
+          userLoginService, compStateService);
   }
 
-  ngOnInit() {
-
-  }
   startComponent() {
     let mythis = this;
     this.cognitoService.getIdToken({
@@ -57,5 +58,7 @@ export class TradeComponent extends CommonComponent implements OnInit, OnDestroy
   }
   ngOnDestroy() {
     this.snapshopSubscription.unsubscribe();
+    this.geolocationSub.unsubscribe();
+    this.infoDataSub.unsubscribe();
   }
 }

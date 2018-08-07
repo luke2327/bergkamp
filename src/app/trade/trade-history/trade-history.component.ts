@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-trade-history',
   templateUrl: './trade-history.component.html',
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 2. table에 뿌려준다.
 3. TODO price color는 아마 type에 대해 바뀌게 될듯
 */
-export class TradeHistoryComponent implements OnInit {
+export class TradeHistoryComponent extends CommonSubComponent implements OnInit {
   //우선은 sample data를 대충 만들어 놓고 ui만 구현
   sampleData:any = {
     "history" : [
@@ -27,11 +28,17 @@ export class TradeHistoryComponent implements OnInit {
       {"time" : "20:05:19", "price" : 200, "amount" : 2000, "type" : "bid"}
     ]
   }
-  constructor() { }
+  constructor(public compStateService: CompStateService) {
+    super(compStateService);
+  }
 
   ngOnInit() {
   }
+  startComponent() {
+  }
+  startComponentErr() {
 
+  }
   getType(type: string):number {
     return (type=="ask")?1:-1;
   }

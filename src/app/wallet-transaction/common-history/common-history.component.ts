@@ -3,19 +3,25 @@ import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { WalletHistoryRowModel } from '../../../app/app.model';
 import { MomentModule } from 'angular2-moment';
 import { MomentTimezoneModule } from 'angular-moment-timezone';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-common-history',
   templateUrl: './common-history.component.html',
   styleUrls: ['./common-history.component.sass']
 })
-export class CommonHistoryComponent implements OnInit, AfterViewInit {
+export class CommonHistoryComponent extends CommonSubComponent implements OnInit, AfterViewInit {
   viewModel: Array<WalletHistoryRowModel>;
   seeAll: boolean; //입금 출금에만 있는 버튼처리를 위해
   routerId: string; //입금인지 출금인지
   cryptos: any;
   cryptoMap: any;
   geoloc: any;
-  constructor(protected walletDataService: WalletDataService) {
+  constructor(
+    protected walletDataService: WalletDataService,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     this.cryptoMap = new Map();
     this.viewModel = [];
     this.seeAll = false;
@@ -25,6 +31,9 @@ export class CommonHistoryComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+  }
+  startComponent() {
     this.walletDataService.getBankStatementCryptoAllSub.subscribe(data => {
       this.geoloc = JSON.parse(localStorage.getItem("geoloc"));
       this.cryptos = JSON.parse(localStorage.getItem("info")).cryptos;
@@ -37,6 +46,8 @@ export class CommonHistoryComponent implements OnInit, AfterViewInit {
       else
         this.setHistory(data.body.result);
     });
+  }
+  startComponentErr() {
   }
   //click해서 data reload함
   reloadHistory() {

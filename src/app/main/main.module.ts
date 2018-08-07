@@ -36,6 +36,7 @@ import { NotiToggleService } from '../service/noti-toggle.service';
 import { LangToggleService } from '../service/lang-toggle.service';
 import { SampleLoginService } from '../service/sample-login.service';
 import { TradePageStateService } from '../service/trade-page-state.service';
+import { CompStateService } from '../service/comp-state.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
@@ -107,7 +108,8 @@ import {
     CognitoService,
     UserLoginService,
     UserRegService,
-    UserParametersService
+    UserParametersService,
+    CompStateService
   ],
   exports: [],
   declarations: [MainComponent, QuotesComponent, TymxQuoteComponent, TymxTokenQuoteComponent, MainNoticeComponent, SportsInfoComponent, AppInstallComponent]

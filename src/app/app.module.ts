@@ -79,7 +79,7 @@ import { CancelSAuthComponent } from './account/cancel-s-auth/cancel-s-auth.comp
 import { CancelGAuthComponent } from './account/cancel-g-auth/cancel-g-auth.component';
 import { TymxRouterService } from './service/tymx-router.service';
 import { CommonComponent } from './common/common.component';
-
+import { CommonSubComponent } from './common-sub/common-sub.component';
 //언어변경 function loader
 //https://github.com/ngx-translate 참고
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,7 +109,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CommonComponent
+    CommonComponent,
+    CommonSubComponent
   ],
   imports: [
     NgbModule.forRoot(),

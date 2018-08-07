@@ -2,12 +2,14 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { significantFigByDP } from '../../app.util';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-coin-info',
   templateUrl: './coin-info.component.html',
   styleUrls: ['./coin-info.component.sass']
 })
-export class CoinInfoComponent implements OnInit, AfterViewInit {
+export class CoinInfoComponent extends CommonSubComponent implements OnInit, AfterViewInit {
   symbolId: string;
   //실시간 코인정보
   coinInfo: any;
@@ -16,16 +18,23 @@ export class CoinInfoComponent implements OnInit, AfterViewInit {
   significantFig = significantFigByDP;
   beforePrice: number = 0;
   diffPrice: number = 0;
-  constructor(private snapshotDataService: SnapshotDataService, private route: ActivatedRoute) {
-    //파라미터 값을 가져온다
-    this.route.params.subscribe(params => {
-      this.symbolId = params['id'].replace('-',"/").toUpperCase();
-    });
+  constructor(
+    private snapshotDataService: SnapshotDataService,
+    private route: ActivatedRoute,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
   }
 
   ngOnInit() {
   }
-  ngAfterViewInit(){
+
+  startComponent() {
+
+    //파라미터 값을 가져온다
+    this.route.params.subscribe(params => {
+      this.symbolId = params['id'].replace('-',"/").toUpperCase();
+    });
     //실시간 정보를 받아와서
     this.snapshotDataService.queryObservable.subscribe((value) => {
       //현재코인정보와 일치하는놈을 찾는다.
@@ -37,6 +46,12 @@ export class CoinInfoComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+  startComponentErr() {
+
+  }
+  ngAfterViewInit(){
+
   }
   //가격차이를 리턴
   priceDiff(price: number): void {

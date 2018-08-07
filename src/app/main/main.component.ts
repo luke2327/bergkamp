@@ -15,6 +15,7 @@ import { AwsService } from "../aws-appsync/service/aws.service";
 import { CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import * as AWS from "aws-sdk/global";
 import { CommonComponent } from "../common/common.component";
+import { CompStateService } from '../service/comp-state.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -35,14 +36,14 @@ export class MainComponent extends CommonComponent implements OnInit, OnDestroy 
     public snapshotDataService: SnapshotDataService,
     public cognitoService: CognitoService,
     public userLoginService: UserLoginService,
-    public appsyncService: AppsyncService
+    public appsyncService: AppsyncService,
+    public compStateService: CompStateService
   ) {
-    super(geolocationService, geolocationDataService, infoService, infoDataService, userLoginService);
+    super(geolocationService, geolocationDataService,
+          infoService, infoDataService,
+          userLoginService, compStateService);
   }
 
-  ngOnInit() {
-    // this.userLoginService.isAuthenticated(this);
-  }
   startComponent() {
     let mythis = this;
     this.cognitoService.getIdToken({
@@ -60,6 +61,8 @@ export class MainComponent extends CommonComponent implements OnInit, OnDestroy 
   }
   ngOnDestroy() {
     this.snapshotService.stopSub();
+    this.geolocationSub.unsubscribe();
+    this.infoDataSub.unsubscribe();
     if(this.snapshopSubscription!=null)
       this.snapshopSubscription.unsubscribe();
   }

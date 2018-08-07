@@ -3,12 +3,14 @@ import { SnapshotService } from '../../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../../aws-appsync/service/snapshot-data.service';
 import { SnapshotDataFragment } from '../../aws-appsync/types/EventAPI';
 import { significantFig } from '../../app.util';
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-tymx-quote',
   templateUrl: './tymx-quote.component.html',
   styleUrls: ['./tymx-quote.component.sass']
 })
-export class TymxQuoteComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TymxQuoteComponent extends CommonSubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   color: string;
   quotesValues: Array<SnapshotDataFragment> = [];
@@ -16,17 +18,31 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit, OnDestroy {
   quotesBeforePrices: any;
   significantFig = significantFig;
   snapShotSubScription: any;
-  constructor(private snapshotDataService: SnapshotDataService,
-    private changeDetectorRef:ChangeDetectorRef) {
+  constructor(
+    public snapshotDataService: SnapshotDataService,
+    public changeDetectorRef:ChangeDetectorRef,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     //quotesValues 객체를 그대로 가져가기보단 필요한 값을 map으로 관리
     this.quotesBeforePrices = new Map<string, number>();
   }
   ngOnInit() {}
   ngAfterViewInit(){
-    //Lifecycle hook that is called after a component's view has been fully initialized.
-    //ngOnInit에서 구동할경우 expressionchangedafterithasbeencheckederror(에러명 졸라김..;;)
-    //문제가 발생한다.
-    //참고 : https://angular.io/api/core/AfterViewInit
+    //문제가 추가로 확인되어
+    //이 부분을 추가함
+    //https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked
+    this.changeDetectorRef.detectChanges();
+  }
+
+  //subscribe 내부에서 view 변경을 하는경우
+  //subscribe를 취소해주고 참조를 제거해줘야함
+  ngOnDestroy() {
+    this.snapShotSubScription.unsubscribe();
+    this.changeDetectorRef.detach();
+  }
+  startComponent() {
+
     this.snapShotSubScription = this.snapshotDataService.queryObservable.subscribe((value) => {
       this.quotesValues = [];
       for(let entry of value){
@@ -37,17 +53,11 @@ export class TymxQuoteComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       }
-      //문제가 추가로 확인되어
-      //이 부분을 추가함
-      //https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked
-      this.changeDetectorRef.detectChanges();
+
     });
   }
-  //subscribe 내부에서 view 변경을 하는경우
-  //subscribe를 취소해주고 참조를 제거해줘야함
-  ngOnDestroy() {
-    this.snapShotSubScription.unsubscribe();
-    this.changeDetectorRef.detach();
+  startComponentErr() {
+
   }
   //이전가격과의 차이를 리턴해준다.
   priceDiff(pair, price): number {

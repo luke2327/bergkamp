@@ -4,7 +4,7 @@ import { CommonHistoryComponent } from '../../wallet-transaction/common-history/
 import { WalletDataService } from '../../rest-api/service/wallet-data.service';
 import { WalletService } from '../../rest-api/service/wallet.service';
 import { WalletHistoryRowModel } from '../../../app/app.model';
-
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-withdraw-history',
   templateUrl: '../../wallet-transaction/common-history/common-history.component.html',
@@ -18,8 +18,9 @@ export class WithdrawHistoryComponent extends CommonHistoryComponent implements 
 
   constructor(protected walletDataService: WalletDataService,
     private walletService: WalletService,
-    private route: ActivatedRoute) {
-    super(walletDataService);
+    private route: ActivatedRoute,
+    public compStateService: CompStateService) {
+    super(walletDataService, compStateService);
 
     this.seeAll = true;
     this.routerId = 'withdrawal';

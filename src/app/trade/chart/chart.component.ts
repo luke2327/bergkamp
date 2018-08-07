@@ -21,7 +21,8 @@ import {
 } from '../../../assets/datafeeds/udf/src/udf-compatible-datafeed';
 
 import { getLang } from '../../app.util';
-
+import { CommonSubComponent } from '../../common-sub/common-sub.component';
+import { CompStateService } from '../../service/comp-state.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -32,7 +33,7 @@ import { getLang } from '../../app.util';
 //차트를 그리기 위한 Component
 //TODO 아직 레퍼런스 부족으로 100% 기능파악이 되지않아
 //tradingview example에서 뼈대를 가져와 조금씩 수정하는 형태로 개발한다.
-export class ChartComponent implements OnInit {
+export class ChartComponent extends CommonSubComponent implements OnInit {
 
   private _interval: ChartingLibraryWidgetOptions['interval'] = '1';
   // BEWARE: no trailing slash is expected in feed URL
@@ -105,16 +106,28 @@ export class ChartComponent implements OnInit {
   set containerId(containerId: ChartingLibraryWidgetOptions['container_id']) {
     this._containerId = containerId || this._containerId;
   }
-  constructor(private historyService: HistoryService, private route: ActivatedRoute) {
+  constructor(
+    private historyService: HistoryService,
+    private route: ActivatedRoute,
+    public compStateService: CompStateService
+  ) {
+    super(compStateService);
     console.log();
   }
   ngOnInit() {
+
+  }
+  startComponent() {
+
     //파라미터 값을 가져온다
     this.subscribeId = this.route.params.subscribe(params => {
       this.symbolId = params['id'].replace('-',"/").toUpperCase();
       //값을 전달함
       this.initChart();
     });
+  }
+  startComponentErr() {
+
   }
   initChart(): void {
     function getLanguageCode(): LanguageCode | null {

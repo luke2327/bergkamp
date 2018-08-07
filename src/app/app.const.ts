@@ -16,7 +16,7 @@ export const AppSyncOptions = {
 }
 export const RestUrlGeoLoc: string = 'http://geoip.nekudo.com/api/';
 export const RestUrlBase: string = 'https://288ro8h2i2.execute-api.us-west-2.amazonaws.com/apidev/';
-export const RestUrlInfoAll: string = 'info/all/ut';
+export const RestUrlInfoAll: string = 'info/all';
 export const RestUrlNotice: string = 'info/notice/';
 export const RestUrlFavorite: string = 'user/favorite';
 export const RestUrlOrder: string = 'order/';
@@ -28,7 +28,11 @@ export const RestUrlWAMCrypto: string = 'wallet/address/my/crypto/';
 export const RestUrlWAFCrypto: string = 'wallet/address/favorite/crypto/';
 export const RestUrlWWCrypto: string = 'wallet/withdrawal/crypto/';
 export const RestUrlWBCCryptoAll: string = 'wallet/bank_statement/crypto/all';
-export const RestUrlWBCCrypto: string = 'wallet/bank_statement/crypto/'
+export const RestUrlWBCCrypto: string = 'wallet/bank_statement/crypto/';
+export const enum AppState {
+  StartApp = 0,
+  StartAppErr = 1
+}
 export const enum DirectiveToggleType {
   Visibility = 0,
   Opened = 1,

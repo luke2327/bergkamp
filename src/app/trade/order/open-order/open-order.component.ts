@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonOrderHistoryComponent } from '../common-order-history/common-order-history.component';
 import { OrderService } from '../../../rest-api/service/order.service';
 import { OrderDataService } from '../../../rest-api/service/order-data.service';
+import { CompStateService } from '../../../service/comp-state.service';
 @Component({
   selector: 'app-open-order',
   templateUrl: '../common-order-history/common-order-history.component.html',
@@ -9,8 +10,12 @@ import { OrderDataService } from '../../../rest-api/service/order-data.service';
 })
 export class OpenOrderComponent extends CommonOrderHistoryComponent implements OnInit, AfterViewInit {
 
-  constructor(orderService:OrderService, orderDataService:OrderDataService) {
-    super(orderService, orderDataService);
+  constructor(
+    orderService:OrderService,
+    orderDataService:OrderDataService,
+    public compStateService: CompStateService
+  ) {
+    super(orderService, orderDataService, compStateService);
     this.isOpenOrders = true;
   }
 
