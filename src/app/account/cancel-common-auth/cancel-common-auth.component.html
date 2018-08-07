@@ -20,7 +20,7 @@
   </div>
   <!-- change auth -->
   <a (click) = "setIsGAuth(false)">{{ 'S0062' | translate }}</a>
-  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "gAuth()"/>
+  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "googleAuth()"/>
 </div>
 <!-- sms auth -->
 <div *ngIf="!viewModel.isGoogleAuth">

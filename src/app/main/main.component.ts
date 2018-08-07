@@ -7,48 +7,63 @@ import { SnapshotService } from '../aws-appsync/service/snapshot.service';
 import { SnapshotDataService } from '../aws-appsync/service/snapshot-data.service';
 import { HistoryService } from '../aws-appsync/service/history.service';
 import { UserLoginService } from "../aws-appsync/service/user-login.service";
+import { GeolocationService } from '../rest-api/service/geolocation.service';
+import { GeolocationDataService } from '../rest-api/service/geolocation-data.service';
+import { InfoService } from '../rest-api/service/info.service';
+import { InfoDataService } from '../rest-api/service/info-data.service';
 import { AwsService } from "../aws-appsync/service/aws.service";
 import { CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import * as AWS from "aws-sdk/global";
+import { CommonComponent } from "../common/common.component";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit, OnDestroy, LoggedInCallback {
+export class MainComponent extends CommonComponent implements OnInit, OnDestroy {
 
   snapshopSubscription: any;
   idToken: any;
   credentials: any;
-  constructor(private snapshotService: SnapshotService,
-              private historyService: HistoryService,
-              private snapshotDataService: SnapshotDataService,
-              public cognitoService: CognitoService,
-              private userLoginService: UserLoginService,
-              private awsService: AwsService) { }
-
-  ngOnInit() {
-    this.userLoginService.isAuthenticated(this);
+  constructor(
+    public geolocationService: GeolocationService,
+    public geolocationDataService: GeolocationDataService,
+    public infoService: InfoService,
+    public infoDataService: InfoDataService,
+    public snapshotService: SnapshotService,
+    public historyService: HistoryService,
+    public snapshotDataService: SnapshotDataService,
+    public cognitoService: CognitoService,
+    public userLoginService: UserLoginService,
+    public appsyncService: AppsyncService
+  ) {
+    super(geolocationService, geolocationDataService, infoService, infoDataService, userLoginService);
   }
 
+  ngOnInit() {
+    // this.userLoginService.isAuthenticated(this);
+  }
+  startComponent() {
+    let mythis = this;
+    this.cognitoService.getIdToken({
+      callback() {
+
+      },
+      callbackWithParam(token: any) {
+        mythis.appsyncService.setClient(token);
+        mythis.startSnapshot();
+      }
+    });
+  }
+  startComponentErr() {
+
+  }
   ngOnDestroy() {
     this.snapshotService.stopSub();
     if(this.snapshopSubscription!=null)
       this.snapshopSubscription.unsubscribe();
   }
-  isLoggedIn(message: string, isLoggedIn: boolean) {
-    if(isLoggedIn) {
-      let mythis = this;
-      this.cognitoService.getIdToken({
-        callback() {
 
-        },
-        callbackWithParam(token: any) {
-          mythis.startSnapshot();
-        }
-      });
-    }
-  }
   startSnapshot() {
     this.snapshotService.startObserver();
     this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {

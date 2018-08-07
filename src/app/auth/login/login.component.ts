@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, LoggedI
       this.viewModel.isPwInvalid = false;
   }
   authGoogle() {
+    console.log("authGoogle" +this.viewModel.authType);
     if(this.viewModel.gAuthCode.length == 0) {
       this.translateService.get("S0020").subscribe((result: string) => {
         this.viewModel.gAuthErrMsg = result;
@@ -108,11 +109,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, LoggedI
     }
 
     //TODO 인증코드 맞는지 체크는 우선 패스한다.
-    this.userService.loginSub(true);
-    console.log("hi:::"+this.tymxRouterService.getPreviousUrl());
-    this.router.navigate([this.tymxRouterService.getPreviousUrl()]);
-  }
+    // this.userService.loginSub(true);
+    // console.log("hi:::"+this.tymxRouterService.getPreviousUrl());
+    // this.router.navigate([this.tymxRouterService.getPreviousUrl()]);
+    if(this.viewModel.authType==0) {
+      this.confirmCodeCallBack('SOFTWARE_TOKEN_MFA');
+    } else {
+      this.authGoogleWithResult();
+    }
 
+  }
+  authGoogleWithResult() {
+    this.confirmCodeCallBack(this.viewModel.gAuthCode);
+  }
   authSms() {
     this.viewModel.smsSendCount = 0;
     if(this.viewModel.smsAuthCode.length  == 0) {
@@ -131,6 +140,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, LoggedI
   }
 
   sendSmsAuth() {
+    if(this.viewModel.authType==0) {
+      this.confirmCodeCallBack('SMS_MFA');
+    }
     this.viewModel.smsSendCount = 60;
     this.startTimer();
   }
@@ -167,6 +179,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy, LoggedI
 //login model
 export class ViewModel {
   loginStep: number; //0: 로그인창, 1: 인증창
+  authType: number; //0: 둘다, 1: 구글 2: sms, -1 : undefined
   email: string;
   pw: string;
   emailErrMsg: string;
@@ -185,6 +198,7 @@ export class ViewModel {
 
   constructor() {
     this.loginStep = 0;
+    this.authType = -1;
     this.email = '';
     this.pw = '';
     this.emailErrMsg = '';
@@ -222,8 +236,27 @@ export class SignInCallback implements CognitoCallback {
     this.component.confirmCodeCallBack = callback;
     if(challengeName == 'SMS_MFA') {
       this.component.sendSmsAuth();
-      this.component.viewModel.enableGoogle = false;
+      if(this.component.viewModel.authType == -1) {
+        this.component.viewModel.authType = 2;
+        this.component.viewModel.enableGoogle = false;
+        this.component.viewModel.enableSms = true;
+      }
+    }
+    else if (challengeName == 'SOFTWARE_TOKEN_MFA') {
+
+      if(this.component.viewModel.authType == -1) {
+        this.component.viewModel.authType = 1;
+        this.component.viewModel.enableGoogle = true;
+        this.component.viewModel.enableSms = false;
+      }
+      if (this.component.viewModel.authType == 0) {
+        this.component.authGoogleWithResult();
+      }
+    }
+    else if(challengeName == 'SELECT_MFA_TYPE') {
+      this.component.viewModel.enableGoogle = true;
       this.component.viewModel.enableSms = true;
+      this.component.viewModel.authType = 0;
     }
   }
 }

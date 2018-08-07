@@ -6,6 +6,12 @@
  3. git clone
  4. npm install
  5. node_module/apollo-client/core/ObservabeQuery.d.ts에서 tearDownQuery.d.ts에서 tearDownQuery()를 강제로 public으로 바꿔준다.
+ 6. node_module/amazon-cognito-identity-js/index.d.ts 에
+  public setUserMfaPreference(smsMfaSettings: string[], softwareTokenMfaSettings: string[], callback: NodeCallback<Error, string>): void; 를
+ public setUserMfaPreference(smsMfaSettings: any, softwareTokenMfaSettings: any, callback: NodeCallback<Error, string>): void; 이렇게 바꿔준다.
+ 또한
+ public sendMFASelectionAnswer(answerChallenge: any, callback: NodeCallback<Error, UserData>): void; 추가!!!!!
+ See : https://github.com/aws-amplify/amplify-js/pull/1287/commits/0f8f9aa4c99f7653f57000cabea50a527817250e
 2. Angular Cli 를 통한 생성방법(angular 관련 내용은 모두 아래의 방법대로할것! 자동으로 의존성 주입됨)
  1. module 생성 : ng generate module <module_name>
  2. class 생성 : ng generate class <class_name>

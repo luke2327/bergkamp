@@ -10,33 +10,21 @@ export class AppsyncService {
   public idToken: string = null;
   constructor(public cognitoUtil: CognitoService) {
     //cognito user pool 사용으로 로직변경
-    this.cognitoUtil.getIdToken(new JwtCallback(this));
+    console.log("AppsyncService");
+
   }
 
-  setClient() {
+  setClient(idToken: any) {
     const config = {
       url: "https://rsdyr5jruvcgzetcjhyekcynym.appsync-api.us-west-2.amazonaws.com/graphql",
       region: "us-west-2",
       auth: {
         type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-        jwtToken: async () => (await this.idToken)
+        jwtToken: async () => (await idToken)
       }
     };
     const client = new AWSAppSyncClient(config, AppSyncOptions);
     this.hc = client.hydrated;
   }
 
-}
-export class JwtCallback implements Callback {
-  constructor(public appsync: AppsyncService) {
-  }
-
-  callback() {
-  }
-
-  callbackWithParam(result) {
-    console.log('id:'+result);
-    this.appsync.idToken = result;
-    this.appsync.setClient();
-  }
 }

@@ -27,7 +27,7 @@
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^3.0.1",
     "@types/jquery": "^1.10.31",
-    "amazon-cognito-identity-js": "^2.0.2",
+    "amazon-cognito-identity-js": "^2.0.4",
     "angular-moment-timezone": "^1.7.1",
     "angular2-qrcode": "^2.0.1",
     "apollo-angular": "^1.1.0",

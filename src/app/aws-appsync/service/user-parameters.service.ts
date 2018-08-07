@@ -49,12 +49,16 @@ export class UserParametersService {
             onSuccess: function () {
               console.log("S!!!");
               if(attr == "phone_number") {
-                cognitoUser.enableMFA(function(err, result) {
+                let smsMfaSettings = {
+                  PreferredMfa : false,
+                  Enabled : true
+                };
+
+                cognitoUser.setUserMfaPreference(smsMfaSettings, null, function(err, result) {
                   if (err) {
-                    alert(err);
-                    return;
+                    alert(err.message || JSON.stringify(err));
                   }
-                  console.log('call result: ' + result);
+                  console.log('call result ' + result)
                 });
               }
               callback.callback();
@@ -137,14 +141,7 @@ export class UserParametersService {
   }
   verifySoftwareToken(code: any, callback: Callback) {
     console.log("verifySoftwareToken");
-    let cognitoUser:CognitoUser = this.cognitoUtil.getCurrentUser();
-    // cognitoUser.SetUserMFAPreference(null, null, function(err, result) {
-    //   if (err) {
-    //     callback.callbackWithParam(err.message);
-    //     return;
-    //   }
-    //   callback.callbackWithParam(null);
-    // });
+    let cognitoUser = this.cognitoUtil.getCurrentUser();
     if (cognitoUser != null) {
       cognitoUser.getSession(function (err, session) {
         if (err)
@@ -159,7 +156,7 @@ export class UserParametersService {
             },
             onSuccess: function () {
               let totpMfaSettings = {
-                PreferredMfa : true,
+                PreferredMfa : false,
                 Enabled : true
               };
               cognitoUser.setUserMfaPreference(null, totpMfaSettings, function(err, result) {
