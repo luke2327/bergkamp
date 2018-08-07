@@ -18,9 +18,12 @@
         <mat-tab *ngIf="viewModel.enableSms" label="{{ 'W0118' | translate }}">
           <div>
             <p class="au-header-msg">{{ 'W0119' | translate }}</p>
+            <!--[Feature_G336] 2018-08-03 Create input-helper-box -->
+            <div class="input-helper-box">            
             <p class="au-email-count" *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
             <input *ngIf="viewModel.smsSendCount <= 0" type="button" value="{{ 'W0120' | translate }}" (click)="sendSmsAuth()" id="au-email-send-button" />
             <input class="au-input au-email-input" type="text" [(ngModel)]="viewModel.smsAuthCode" (input)="inputSmsAuth($event.target.value)" />
+            </div>
             <div class="au-error-box" *ngIf="viewModel.smsAuthErr">
               <img class="au-error" src="/assets/img/web_wallet_withdrawal_error.png">
               <p>{{ viewModel.smsAuthErrMsg }}</p>
