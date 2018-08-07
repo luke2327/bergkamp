@@ -15,6 +15,8 @@ export class CancelGAuthComponent extends CancelCommonAuthComponent implements O
               public router: Router,
               public tymxRouterService: TymxRouterService) {
     super(translateService, router, tymxRouterService);
+    this.viewModel.cancelType = 0;
+    this.viewModel.isGoogleAuth = true;
   }
 
   ngOnInit() {

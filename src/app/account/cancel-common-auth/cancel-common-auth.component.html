@@ -1,42 +1,50 @@
+<div class="account-modulate">
+<mat-card class="cancel-common-auth noppading">
+
 <!-- title -->
-<p *ngIf = "viewModel.cancelType == 0">{{ 'S0057' | translate }}</p>
-<p *ngIf = "viewModel.cancelType == 1">{{ 'S0060' | translate }}</p>
+<p class="d-co-title d-ga-title" *ngIf = "viewModel.cancelType == 0">{{ 'S0057' | translate }}</p>
+<p class="d-co-title d-sa-title" *ngIf = "viewModel.cancelType == 1">{{ 'S0060' | translate }}</p>
 <!-- phonenumber -->
-<p *ngIf = "viewModel.cancelType == 1">{{ viewModel.cellNum }}</p>
+<span class="d-sa-phonenum d-sa-p-1" *ngIf = "viewModel.cancelType == 1">
+  {{ viewModel.cellNum }}
+</span>
 <!-- password -->
-<p>{{ 'W0172' | translate }}</p>
-<input type="text" [(ngModel)] = "viewModel.pw" (input)="inCurrPw($event.target.value)"/>
-<div *ngIf="viewModel.isPwErr">
+<p class="d-co-input-msg">{{ 'W0172' | translate }}</p>
+<input class="d-co-input" type="password" [(ngModel)] = "viewModel.pw" (input)="inCurrPw($event.target.value)"/>
+<div class="d-co-error-box d-co-error-1" *ngIf="viewModel.isPwErr">
   <img src="/assets/img/web_wallet_withdrawal_error.png" />
   <p>{{ viewModel.pwErrMsg }}</p>
 </div>
 <!-- google auth -->
 <div *ngIf="viewModel.isGoogleAuth">
-  <p>{{ 'W0116' | translate }}</p>
-  <input type="text" [(ngModel)] = "viewModel.gAuthCode" (input)="inCurrGAuth($event.target.value)"/>
-  <div *ngIf="viewModel.isGAuthCodeErr">
+  <p class="d-co-input-msg">{{ 'W0116' | translate }}</p>
+  <input class="d-co-input" type="text" [(ngModel)] = "viewModel.gAuthCode" (input)="inCurrGAuth($event.target.value)"/>
+  <div class="d-co-error-box d-co-error-2" *ngIf="viewModel.isGAuthCodeErr">
     <img src="/assets/img/web_wallet_withdrawal_error.png" />
     <p>{{ viewModel.gAuthCodeErrMsg }}</p>
   </div>
   <!-- change auth -->
-  <a (click) = "setIsGAuth(false)">{{ 'S0062' | translate }}</a>
-  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "gAuth()"/>
+  <a class="d-co-change-auth" (click) = "setIsGAuth(false)">{{ 'S0062' | translate }}</a>
+  <input class="d-co-submit-button" type = "button" value = "{{ 'W0130' | translate }}" (click) = "googleAuth()"/>
 </div>
 <!-- sms auth -->
 <div *ngIf="!viewModel.isGoogleAuth">
-  <p>{{ 'W0119' | translate }} <span *ngIf = "viewModel.cancelType == 0">({{ viewModel.cellNum }})</span></p>
-  <input *ngIf="viewModel.smsSendCount <= 0" type = "button" value="{{ 'W0120' | translate }}" (click) = "send()"/>
-  <p *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
-  <input type="text" [(ngModel)] = "viewModel.sAuthCode" (input)="inCurrSAuth($event.target.value)"/>
-  <div *ngIf="viewModel.isSAuthCodeErr">
+  <p class="d-co-input-msg">{{ 'W0119' | translate }} <span class="d-sa-phonenum d-sa-p-2" *ngIf = "viewModel.cancelType == 0">({{ viewModel.cellNum }})</span></p>
+  <div class="d-co-sendhelper">
+  <input class="d-co-send-button" *ngIf="viewModel.smsSendCount <= 0" type = "button" value="{{ 'W0120' | translate }}" (click) = "send()"/>
+  <p class="d-co-countdown select-default" *ngIf="viewModel.smsSendCount > 0">{{ viewModel.smsSendCount }}</p>
+  <input class="d-co-input d-sa-input" type="text" [(ngModel)] = "viewModel.sAuthCode" (input)="inCurrSAuth($event.target.value)"/></div>
+  <div class="d-co-error-box d-co-error-3" *ngIf="viewModel.isSAuthCodeErr">
     <img src="/assets/img/web_wallet_withdrawal_error.png" />
     <p>{{ viewModel.sAuthCodeErrMsg }}</p>
 
   </div>
   <!-- change auth -->
-  <a (click) = "setIsGAuth(true)">{{ 'S0063' | translate }}</a>
-  <input type = "button" value = "{{ 'W0130' | translate }}" (click) = "sAuth()"/>
+  <a class="d-co-change-auth" (click) = "setIsGAuth(true)">{{ 'S0063' | translate }}</a>
+  <input class="d-co-submit-button" type = "button" value = "{{ 'W0130' | translate }}" (click) = "sAuth()"/>
 </div>
 <!-- info text -->
-<p *ngIf = "viewModel.cancelType == 0">{{ 'S0058' | translate }}</p>
-<p *ngIf = "viewModel.cancelType == 1">{{ 'S0061' | translate }}</p>
+<p class="d-co-below-msg" *ngIf = "viewModel.cancelType == 0">{{ 'S0058' | translate }}</p>
+<p class="d-co-below-msg" *ngIf = "viewModel.cancelType == 1">{{ 'S0061' | translate }}</p>
+</mat-card>
+</div>
