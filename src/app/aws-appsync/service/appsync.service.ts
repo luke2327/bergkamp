@@ -21,7 +21,8 @@ export class AppsyncService {
       auth: {
         type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
         jwtToken: async () => (await idToken)
-      }
+      },
+      disableOffline: true
     };
     const client = new AWSAppSyncClient(config, AppSyncOptions);
     this.hc = client.hydrated;

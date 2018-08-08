@@ -16,11 +16,11 @@ import { CompStateService } from '../../service/comp-state.service';
 })
 export class HeaderMainComponent extends CommonSubComponent implements OnInit, AfterViewInit, LoggedInCallback {
   //TODO 슬슬 이 멍청한 변수선언 코드를 고칠때가 온듯..
-  private langCodeObj: any;
+  langCodeObj: any;
   isNoti: boolean = false;
   isLang: boolean = false;
   isLogin: boolean = false;
-  constructor(private translate: TranslateService,
+  constructor(public translate: TranslateService,
       private router: Router,
       private notiToggleService: NotiToggleService,
       private langToggleService: LangToggleService,
@@ -55,7 +55,8 @@ export class HeaderMainComponent extends CommonSubComponent implements OnInit, A
     this.langToggleService.observable.subscribe(data => {
       this.isLang = data;
     });
-
+    console.log("HEADER!!!");
+    console.log(this.compStateService.token);
   }
   startComponentErr() {
 

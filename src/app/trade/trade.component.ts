@@ -33,24 +33,15 @@ export class TradeComponent extends CommonComponent implements OnInit, OnDestroy
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService, cognitoService);
   }
 
   startComponent() {
-    let mythis = this;
-    this.cognitoService.getIdToken({
-      callback() {
-
-      },
-      callbackWithParam(token: any) {
-        //이전페이지에서 noti창이 열려있었다면 닫아준다.
-        mythis.appsyncService.setClient(token);
-        mythis.notiToggleService.setOpen(false);
-        mythis.snapshotService.startObserver();
-        mythis.snapshopSubscription = mythis.snapshotService.queryObservable.subscribe((value) => {
-          mythis.snapshotDataService.setSnapshot(value);
-        });
-      }
+    this.appsyncService.setClient(this.token);
+    this.notiToggleService.setOpen(false);
+    this.snapshotService.startObserver();
+    this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {
+      this.snapshotDataService.setSnapshot(value);
     });
   }
   startComponentErr() {

@@ -26,11 +26,13 @@ export class WalletDepositComponent extends CommonComponent implements OnInit, A
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
     public appsyncService: AppsyncService,
-    public compStateService: CompStateService
+    public compStateService: CompStateService,
+    public cognitoService: CognitoService
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
   }
 
 

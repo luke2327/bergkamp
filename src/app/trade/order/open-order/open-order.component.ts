@@ -36,10 +36,10 @@ export class OpenOrderComponent extends CommonOrderHistoryComponent implements O
   }
 
   getOrderMy() {
-    this.orderService.getOrderMy();
+    this.orderService.getOrderMy(this.compStateService.token);
   }
 
   cancelOrder(id: number): void {
-    this.orderService.deleteOrder(id);
+    this.orderService.deleteOrder(this.compStateService.token, id);
   }
 }

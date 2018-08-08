@@ -1,35 +1,35 @@
 <header>
   <div class="header-body">
     <div class="navbar navbar-expand nopadding">
-      <a class="navbar-brand tymx-brand nopadding" href="#">
+      <a class="navbar-brand tymx-brand nopadding" [routerLink]="['/']">
         <img class="tymx-logo" src="../../assets/img/web_navi_logo.png" alt="tymx"/>
       </a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="header-nav-about header-nav-indent-l header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/']">
               <font class="header-nav-font">{{ 'W0001' | translate }}</font>
             </a>
           </li>
           <li class="header-nav-exchange header-nav-indent-l header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/']">
               <font class="header-nav-font">{{ 'W0002' | translate }}</font>
             </a>
           </li>
           <li class="header-nav-shop header-nav-indent-l header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/']">
               <font class="header-nav-font-disabled">{{ 'W0003' | translate }}</font>
             </a>
           </li>
           <li class="header-nav-forum header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/']">
               <font class="header-nav-font-disabled">{{ 'W0004' | translate }}</font>
             </a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="header-nav-notice header-nav-items header-nav cap">
-            <a href="#">
+            <a [routerLink]="['/login']">
               <font class="header-nav-font">{{ 'W0005' | translate }}</font>
             </a>
           </li>

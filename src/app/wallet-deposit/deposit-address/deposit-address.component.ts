@@ -45,7 +45,7 @@ export class DepositAddressComponent extends CommonSubComponent implements OnIni
           break;
         }
       }
-      this.walletService.getAddrMyCrypto(this.cryptoInfo.id);
+      this.walletService.getAddrMyCrypto(this.compStateService.token, this.cryptoInfo.id);
     });
     this.walletDataService.getAddrMyCryptoSub.subscribe(data => {
 

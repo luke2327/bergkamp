@@ -53,7 +53,7 @@ export class WithdrawAddressComponent extends CommonSubComponent implements OnIn
       this.viewModel.abbre = this.cryptoInfo.abbre;
       this.viewModel.fee = this.cryptoInfo.basic_fee;
       this.viewModel.minimum = this.cryptoInfo.minimum;
-      this.walletService.getBalanceCrypto(this.cryptoInfo.id);
+      this.walletService.getBalanceCrypto(this.compStateService.token, this.cryptoInfo.id);
     });
     this.walletDataService.getBalanceCryptoSub.subscribe(data => {
 
@@ -91,7 +91,7 @@ export class WithdrawAddressComponent extends CommonSubComponent implements OnIn
       this.viewModel.abbre = this.cryptoInfo.abbre;
       this.viewModel.fee = this.cryptoInfo.basic_fee;
       this.viewModel.minimum = this.cryptoInfo.minimum;
-      this.walletService.getBalanceCrypto(this.cryptoInfo.id);
+      this.walletService.getBalanceCrypto(this.compStateService.token, this.cryptoInfo.id);
     });
   }
   //출금처리
@@ -136,7 +136,7 @@ export class WithdrawAddressComponent extends CommonSubComponent implements OnIn
       'fee' : this.viewModel.fee,
       'amount' : this.viewModel.inputAmount
     }
-    this.walletService.postWithdrawalCrypto(reqBody, this.cryptoInfo.id);
+    this.walletService.postWithdrawalCrypto(this.compStateService.token, reqBody, this.cryptoInfo.id);
   }
 
   validBase58(data: any): boolean {
@@ -146,7 +146,7 @@ export class WithdrawAddressComponent extends CommonSubComponent implements OnIn
   //주소를 가져오기
   getAddrs() {
     this.viewModel.isAddressList = !this.viewModel.isAddressList;
-    this.walletService.getAddrFavCrypto(this.cryptoInfo.id);
+    this.walletService.getAddrFavCrypto(this.compStateService.token, this.cryptoInfo.id);
   }
   //주소를 view 모델에 셋
   setAddr(data: any) {
@@ -190,7 +190,7 @@ export class WithdrawAddressComponent extends CommonSubComponent implements OnIn
       'name': this.addrDialogModel.name,
       'address': this.addrDialogModel.addr
     }
-    this.walletService.postAddrFavCrypto(reqBody, this.cryptoInfo.id);
+    this.walletService.postAddrFavCrypto(this.compStateService.token, reqBody, this.cryptoInfo.id);
   }
 
   amountMax() {

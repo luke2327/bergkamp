@@ -75,7 +75,7 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
     //요약류 정보와 async하게 동작하고
     //어느것이 먼저들어오던지 상관없이 오류가 나지않도록 설계
     //api 수정으로 변경함
-    this.favoriteService.getFavorite();
+    this.favoriteService.getFavorite(this.compStateService.token);
 
     this.favoriteDataService.getFavoriteObservable.subscribe(data => {
 
@@ -89,7 +89,7 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
       if(this.baseLists.length == this.tabPosition) {
         this.dataSource = this.getFavoriteList();
       }
-      this.favoriteService.getFavorite();
+      this.favoriteService.getFavorite(this.compStateService.token);
     });
   }
   startComponentErr() {
@@ -163,7 +163,7 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
         pairs.push(id);
       }
       this.favPairs = pairs.slice();
-      this.favoriteService.putFavorite({'pairs': pairs});
+      this.favoriteService.putFavorite(this.compStateService.token, {'pairs': pairs});
     } catch (e) {}
   }
   routeTo(id: string): void {

@@ -66,7 +66,7 @@ export class CommonOrderComponent extends CommonSubComponent implements OnInit, 
         if(data.status == RestStatus.ResultOk) {
           if( this.tradePageStateService.getHistoryTabState() == OrderHistoryType.OpenOrder ) {
             //OpenOrder일때
-            this.orderService.getOrderMy();
+            this.orderService.getOrderMy(this.compStateService.token);
           } else {
             //OrderHistory일때
           }
@@ -85,7 +85,7 @@ export class CommonOrderComponent extends CommonSubComponent implements OnInit, 
     this.orderData.volume = this.amount;
     this.orderData.price = this.price;
     //콜한다.
-    this.orderService.postOrder(this.orderData);
+    this.orderService.postOrder(this.compStateService.token, this.orderData);
     //어떤 페이지 콜인지 체크를 위해
     this.callPageStatus = this.pageStatus;
   }

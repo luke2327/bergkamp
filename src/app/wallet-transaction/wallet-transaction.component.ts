@@ -27,11 +27,13 @@ export class WalletTransactionComponent extends CommonComponent implements OnIni
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
     public appsyncService: AppsyncService,
-    public compStateService: CompStateService
+    public compStateService: CompStateService,
+    public cognitoService: CognitoService
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
     this.selectedTab = 0;
   }
   ngOnDestroy() {
@@ -39,7 +41,7 @@ export class WalletTransactionComponent extends CommonComponent implements OnIni
     this.infoDataSub.unsubscribe();
   }
   startComponent() {
-    this.walletService.getBankStatementCrypto('all');
+    this.walletService.getBankStatementCrypto(this.compStateService.token, 'all');
     this.subscribeId = this.route.params.subscribe(params => {
       if(params!=null && params['id']!=null) {
         this.type = params['id'];

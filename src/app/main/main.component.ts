@@ -41,20 +41,13 @@ export class MainComponent extends CommonComponent implements OnInit, OnDestroy 
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
   }
 
   startComponent() {
-    let mythis = this;
-    this.cognitoService.getIdToken({
-      callback() {
-
-      },
-      callbackWithParam(token: any) {
-        mythis.appsyncService.setClient(token);
-        mythis.startSnapshot();
-      }
-    });
+    this.appsyncService.setClient(this.token);
+    this.startSnapshot();
   }
   startComponentErr() {
 

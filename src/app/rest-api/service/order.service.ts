@@ -11,19 +11,21 @@ import { OrderDataService } from '../service/order-data.service';
 @Injectable()
 export class OrderService {
   //TODO 일단 api 헤더들이 대충 정리가 된이후 하나로 합칠예정
-  httpOptions: RequestOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-    ,observe : 'response'
-  };
+  httpOptions: RequestOptions;
 
   constructor(private http: HttpClient, private orderDataService: OrderDataService) {
     // this.httpOptions.observe = 'response';
   }
 
   //[post] /order
-  postOrder(jsonBody: any): void {
+  postOrder(token: any, jsonBody: any): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+      ,observe : 'response'
+    };
     this.http.post(RestUrlBase+RestUrlOrder, jsonBody, this.httpOptions)
       .subscribe(data => {
       this.orderDataService.setPostOrder(data);
@@ -31,7 +33,14 @@ export class OrderService {
   }
 
   //[get] /order/my
-  getOrderMy(): void {
+  getOrderMy(token: any): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+      ,observe : 'response'
+    };
     this.http.get(RestUrlBase+RestUrlOrderMy, this.httpOptions)
       .subscribe(data => {
       this.orderDataService.setGetOrderMy(data);
@@ -39,7 +48,14 @@ export class OrderService {
   }
 
   //[put] /order/{order}
-  putOrder(order:any): void {
+  putOrder(token: any, order:any): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+      ,observe : 'response'
+    };
     this.http.put(RestUrlBase+RestUrlOrder+order, this.httpOptions)
       .subscribe(data => {
       this.orderDataService.setPutOrder(data);
@@ -47,7 +63,14 @@ export class OrderService {
   }
 
   //[delete] /order/{order}
-  deleteOrder(order:any): void {
+  deleteOrder(token: any, order:any): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+      ,observe : 'response'
+    };
     this.http.delete(RestUrlBase+RestUrlOrder+order, this.httpOptions)
       .subscribe(data => {
       this.orderDataService.setDeleteOrder(data);

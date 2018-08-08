@@ -4,7 +4,7 @@ import { GeolocationDataService } from '../rest-api/service/geolocation-data.ser
 import { InfoService } from '../rest-api/service/info.service';
 import { InfoDataService } from '../rest-api/service/info-data.service';
 import { UserLoginService } from "../aws-appsync/service/user-login.service";
-import { CognitoCallback } from '../aws-appsync/service/cognito.service';
+import { CognitoCallback, CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import { CompStateService } from '../service/comp-state.service';
 import { setLang, getLang, setCountry, getCountry } from '../app.util';
 @Component({
@@ -23,13 +23,15 @@ import { setLang, getLang, setCountry, getCountry } from '../app.util';
 export class CommonComponent implements OnInit, OnDestroy {
   geolocationSub: any;
   infoDataSub: any;
+  token: any;
   constructor(
     public geolocationService: GeolocationService,
     public geolocationDataService: GeolocationDataService,
     public infoService: InfoService,
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
-    public compStateService: CompStateService
+    public compStateService: CompStateService,
+    public cognitoService: CognitoService
   ) {
 
   }
@@ -54,6 +56,19 @@ export class CommonComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
   }
+  getIdToken() {
+    let mythis = this;
+    this.cognitoService.getIdToken({
+      callback() {
+
+      },
+      callbackWithParam(token: any) {
+        mythis.token = token;
+        mythis.compStateService.setToken(token);
+        mythis.startComponent();
+      }
+    });
+  }
   startComponent() {
 
   }
@@ -72,7 +87,7 @@ export class AuthLevelCallback implements CognitoCallback {
       //로그인 안됨
       this.component.userLoginService.autenticateGuest(new GuestLoginCallback(this.component));
     } else {
-      this.component.startComponent();
+      this.component.getIdToken();
       this.component.compStateService.startApp();
     }
     this.component.userLoginService.loginSub(result>1);
@@ -91,7 +106,7 @@ export class GuestLoginCallback implements CognitoCallback {
       this.component.startComponentErr();
       this.component.compStateService.startAppErr();
     } else {
-      this.component.startComponent();
+      this.component.getIdToken();
       this.component.compStateService.startApp();
     }
   }

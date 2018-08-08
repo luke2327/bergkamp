@@ -48,7 +48,7 @@ export class WalletHeaderComponent extends CommonSubComponent implements OnInit,
       //계좌정보를 가져온다
       this.snapshotPairs = value;
       console.log(this.snapshotPairs);
-      this.walletService.getBalanceCryptoAll();
+      this.walletService.getBalanceCryptoAll(this.compStateService.token);
     });
 
     this.walletSub = this.walletDataService.getBalanceCryptoAllSub.subscribe(data => {

@@ -23,10 +23,11 @@ export class WalletService {
 
   constructor(private http: HttpClient, private walletDataService: WalletDataService) { }
 
-  getBalanceCryptoAll(): void {
+  getBalanceCryptoAll(token: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -37,10 +38,11 @@ export class WalletService {
     });
   }
 
-  getBalanceCrypto(crypto: any): void {
+  getBalanceCrypto(token: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -50,10 +52,11 @@ export class WalletService {
     });
   }
 
-  getAddrMyCrypto(crypto: any): void {
+  getAddrMyCrypto(token: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -63,10 +66,11 @@ export class WalletService {
     });
   }
 
-  getAddrFavCrypto(crypto: any): void {
+  getAddrFavCrypto(token: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -76,10 +80,11 @@ export class WalletService {
     });
   }
 
-  postAddrFavCrypto(jsonBody: any, crypto: any): void {
+  postAddrFavCrypto(token: any, jsonBody: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -89,11 +94,12 @@ export class WalletService {
     });
   }
 
-  delAddrFavCrypto(crypto: any, name: any): void {
+  delAddrFavCrypto(token: any, crypto: any, name: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'name': name
+        'name': name,
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -103,10 +109,11 @@ export class WalletService {
     });
   }
 
-  postWithdrawalCrypto(jsonBody: any, crypto: any): void {
+  postWithdrawalCrypto(token: any, jsonBody: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };
@@ -116,10 +123,11 @@ export class WalletService {
     });
   }
 
-  getBankStatementCrypto(crypto: any): void {
+  getBankStatementCrypto(token: any, crypto: any): void {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
       ,observe : 'response'
     };

@@ -26,11 +26,13 @@ export class WalletWithdrawComponent extends CommonComponent implements OnInit, 
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
     public appsyncService: AppsyncService,
-    public compStateService: CompStateService
+    public compStateService: CompStateService,
+    public cognitoService: CognitoService
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
   }
   ngOnDestroy() {
     this.geolocationSub.unsubscribe();

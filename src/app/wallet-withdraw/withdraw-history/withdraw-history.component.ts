@@ -36,11 +36,11 @@ export class WithdrawHistoryComponent extends CommonHistoryComponent implements 
           break;
         }
       }
-      this.walletService.getBankStatementCrypto(this.cryptoInfo.id);
+      this.walletService.getBankStatementCrypto(this.compStateService.token, this.cryptoInfo.id);
     });
   }
   reloadHistory() {
-    this.walletService.getBankStatementCrypto(this.cryptoInfo.id);
+    this.walletService.getBankStatementCrypto(this.compStateService.token, this.cryptoInfo.id);
   }
   setHistory(data: any) {
     if(data!=null) {

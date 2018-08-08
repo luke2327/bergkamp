@@ -4,7 +4,7 @@ import { GeolocationDataService } from '../rest-api/service/geolocation-data.ser
 import { InfoService } from '../rest-api/service/info.service';
 import { InfoDataService } from '../rest-api/service/info-data.service';
 import { UserLoginService } from "../aws-appsync/service/user-login.service";
-import { CognitoCallback } from '../aws-appsync/service/cognito.service';
+import { CognitoCallback, CognitoService } from '../aws-appsync/service/cognito.service';
 import { CommonComponent } from "../common/common.component";
 import { CompStateService } from '../service/comp-state.service';
 
@@ -21,11 +21,13 @@ export class AccountComponent extends CommonComponent implements OnInit, OnDestr
     public infoService: InfoService,
     public infoDataService: InfoDataService,
     public userLoginService: UserLoginService,
-    public compStateService: CompStateService
+    public compStateService: CompStateService,
+    public cognitoService: CognitoService
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
   }
 
   ngOnDestroy() {

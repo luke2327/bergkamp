@@ -31,23 +31,14 @@ export class WalletComponent extends CommonComponent implements OnInit, OnDestro
   ) {
     super(geolocationService, geolocationDataService,
           infoService, infoDataService,
-          userLoginService, compStateService);
+          userLoginService, compStateService,
+          cognitoService);
   }
   startComponent() {
-    let mythis = this;
-    this.cognitoService.getIdToken({
-      callback() {
-
-      },
-      callbackWithParam(token: any) {
-        //이전페이지에서 noti창이 열려있었다면 닫아준다.
-        console.log("this is wallet");
-        mythis.appsyncService.setClient(token);
-        mythis.snapshotService.startQuery();
-        mythis.snapshopSubscription = mythis.snapshotService.queryObservable.subscribe((value) => {
-          mythis.snapshotDataService.setSnapshot(value);
-        });
-      }
+    this.appsyncService.setClient(this.token);
+    this.snapshotService.startQuery();
+    this.snapshopSubscription = this.snapshotService.queryObservable.subscribe((value) => {
+      this.snapshotDataService.setSnapshot(value);
     });
   }
 

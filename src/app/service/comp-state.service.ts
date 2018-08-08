@@ -5,7 +5,7 @@ import { AppState } from '../app.const';
 @Injectable()
 export class CompStateService {
   observable: any;
-
+  token: any;
   constructor() {
     this.observable = new Subject();
   }
@@ -18,4 +18,7 @@ export class CompStateService {
     this.observable.next(AppState.StartAppErr);
   }
 
+  setToken(token: any): void {
+    this.token = token;
+  }
 }

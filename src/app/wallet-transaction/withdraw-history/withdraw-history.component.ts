@@ -19,7 +19,7 @@ export class WithdrawHistoryComponent extends CommonHistoryComponent implements 
   ngOnInit() {
   }
   reloadHistory() {
-    this.walletService.getBankStatementCrypto('all');
+    this.walletService.getBankStatementCrypto(this.compStateService.token, 'all');
   }
   setHistory(data: any) {
     for(let entry of data) {
