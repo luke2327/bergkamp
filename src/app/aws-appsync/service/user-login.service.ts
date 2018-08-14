@@ -55,7 +55,9 @@ export class UserLoginService {
       onSuccess: result => this.onLoginSuccess(callback, result),
       onFailure: err => this.onLoginError(callback, err),
       mfaRequired: (challengeName, challengeParameters) => {
+        console.log("mfaRequired");
         callback.handleMFAStep(challengeName, challengeParameters, (confirmationCode: string) => {
+          
           cognitoUser.sendMFACode(confirmationCode, {
             onSuccess: result => this.onLoginSuccess(callback, result),
             onFailure: err => this.onLoginError(callback, err)
@@ -63,6 +65,41 @@ export class UserLoginService {
         });
       }
     });
+  }
+
+  authenticateMfa(username: string, password: string, callback: CognitoCallback) {
+    console.log("UserLoginService: starting the authentication");
+
+    let authenticationData = {
+      Username: username,
+      Password: password,
+    };
+    let authenticationDetails = new AuthenticationDetails(authenticationData);
+
+    let userData = {
+      Username: username,
+      Pool: this.cognitoUtil.getUserPool()
+    };
+
+    console.log("UserLoginService: Params set...Authenticating the user");
+    let cognitoUser = new CognitoUser(userData);
+    cognitoUser.authenticateUser(authenticationDetails, {
+           onSuccess: function (result) {
+             console.log('onSuccess: function');
+               console.log(result);
+               var accessToken = result.getAccessToken().getJwtToken();
+           },
+
+           onFailure: function(err) {
+             console.log('onFailure: function');
+               alert(err.message || JSON.stringify(err));
+           },
+
+           mfaSetup: function(challengeName, challengeParameters) {
+             console.log('mfaSetup: function');
+
+           }
+       });
   }
 
   forgotPassword(username: string, callback: CognitoCallback) {

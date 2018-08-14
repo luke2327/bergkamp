@@ -7,7 +7,7 @@ import * as AWS from "aws-sdk/global";
 @Injectable()
 export class AppsyncService {
   hc;
-  public idToken: string;
+  public idToken: string = null;
   constructor(public cognitoUtil: CognitoService) {
     //cognito user pool 사용으로 로직변경
     this.cognitoUtil.getIdToken(new JwtCallback(this));
@@ -25,6 +25,7 @@ export class AppsyncService {
     const client = new AWSAppSyncClient(config, AppSyncOptions);
     this.hc = client.hydrated;
   }
+
 }
 export class JwtCallback implements Callback {
   constructor(public appsync: AppsyncService) {

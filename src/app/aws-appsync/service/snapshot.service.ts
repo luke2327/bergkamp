@@ -11,11 +11,13 @@ import { ObservableQuery } from 'apollo-client';
 export class SnapshotService {
 
   queryObservable;
+  subscription:any;
   appSyncObservable: ObservableQuery<GetSnapshotQuery> ;
   constructor(private appsync: AppsyncService) {
     //constructor에서는 appsync 객체만 생성하는걸로 바꾼다.
     //call까지 같이 있으면 여러군데서 subscribe하는 경우 동시에 실행되어버린다.
     // console.log("service start");
+    console.log("snapshotService!!!!!!");
   }
   startQuery(): void {
     console.log('startQuery');
@@ -44,7 +46,7 @@ export class SnapshotService {
     //call 동작은 이곳으로 옮김
     this.queryObservable = new Observable((observer) => {
       this.appsync.hc().then(client => {
-        this.appSyncObservable  = client.watchQuery({
+        this.appSyncObservable = client.watchQuery({
           query: GetSnapshot,
           variables : { id_ : 'all_sample' },
           fetchPolicy: 'network-only'
@@ -58,11 +60,12 @@ export class SnapshotService {
           }
         });
         //subscription
+
         this.appSyncObservable.subscribeToMore({
           document: SubscribeSnapshot,
           variables : { id_ : 'all_sample' },
           updateQuery: (prev: GetSnapshotQuery, {subscriptionData}) => {
-            console.log('subscribeToMore - updateQuery:', subscriptionData);
+            console.log('subscribeToMore1 - updateQuery:', subscriptionData);
 
             observer.next(subscriptionData.data.subscribeSnapshot.pairs);
             return null;
@@ -71,5 +74,12 @@ export class SnapshotService {
       });
     });
   }
+  stopSub(): void {
+    //appsync subscription을 강제로 멈출방법이 없다.
+    //node_module/apollo-client/core/ObservabeQuery.d.ts에서 tearDownQuery를 강제로 public으로 바꿔준다.
+    if(this.appsync.idToken !=null) {
+      this.appSyncObservable.tearDownQuery();
+    }
 
+  }
 }

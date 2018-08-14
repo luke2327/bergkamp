@@ -1,7 +1,6 @@
-/* You can add global styles to this file, and also import other style files
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"
 
-@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i')
+// @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i')
 
 \:lang(en)
   font-family: 'Rubik', sans-serif
@@ -41,6 +40,11 @@ app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth
   display: table-row
   width: 100%
   height: 100%
+app-footer
+  display: table-row
+//[Feature_G361] 2018-08-13 Add
+button, a
+  outline: none !important
 
 .mat-tab-label-content
   user-select: none
@@ -70,7 +74,7 @@ app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth
 .row
   margin-left: 0px !important
 
-/**material design custom*
+//material design custom*
 
 .mat-tab-body-wrapper.sample
   color: white
@@ -109,14 +113,13 @@ app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth
   .mat-tab-body-content
     overflow: hidden
   .mat-tab-labels
-    /* border-bottom: 1px solid #2e2e2e !important;
     height: 33px !important
     margin-top: 12px
     border-bottom: 3px #f4f4f4 solid
   .mat-tab-label-active
     font-size: 17px
-    font-weight: bold
-    color: #2e2e2e !important
+    font-weight: 500
+    color: black !important
   .mat-tab-label
     height: 33px !important
     background-color: transparent !important
@@ -169,7 +172,7 @@ app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth
         position: relative
         right: 11px
 
-/**angular material bug see : https://github.com/angular/material2/issues/7291" 개귀찮..;;
+//angular material bug see : https://github.com/angular/material2/issues/7291" 개귀찮..;;
 
 .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition
   opacity: 0
@@ -198,7 +201,8 @@ app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth
       &:hover
         color: #3078ff !important
         opacity: 1
-      &[aria-selected="true"]
+      //[Feature_G361] 2018-08-09 | fix
+      &[class*="active"]
         color: #3078ff !important
         opacity: 1
       &:not(.mat-tab-disabled):focus
@@ -218,6 +222,7 @@ mat-tab-group.pair-info-tab
       margin-bottom: 10px
       border: 1px solid #e0e0e8 !important
       border-radius: 2px
+      position: relative
 
 .pair-info-card
   height: 482px !important
@@ -293,11 +298,12 @@ mat-card.wallet-crypto
     font-size: 13px
     font-weight: 400
     color: #989bab
-    & > div > span[ng-reflect-state="default"] > div
+    //[Feature_G361] 2018-08-09 | fix
+    & > div > span[class*="sorting"] > div, & > div > span[ng-reflect-state*="default"] > div
       background: url('/assets/img/web_wallet_list_arrow_off.png')
-    & > div > span[ng-reflect-state="asc"] > div
+    & > div > span[class="invalid"] > div, & > div > span[ng-reflect-state*="asc"] > div
       background: url('/assets/img/web_wallet_list_arrow_bottom.png')
-    & > div > span[ng-reflect-state="desc"] > div
+    & > div > span[class*="desc"] > div, & > div > span[ng-reflect-state*="desc"] > div
       background: url('/assets/img/web_wallet_list_arrow_top.png')
     .wt-sorting1
       width: 15px
@@ -440,43 +446,44 @@ mat-card.wallet-crypto
 
 ////[Feature_G336] 2018-08-06 | wallet-transaction bug fix
 .wallet-modulate
-  width: 1400px
-  margin: 0 auto
-  .mat-tab-label
-    opacity: 1
-    color: #989bab
-    min-width: 185px
-    background: #f4f4f4 !important
-    background-color: #f4f4f4 !important
-    border-left: 1px solid #e0e0e8
-    border-right: 1px solid #e0e0e8
-    border-top: 1px solid #e0e0e8
-    font-size: 15px
-    &[id="mat-tab-label-0-0"]
-      border-right: none !important
-    &[class*="mat-tab-label-active"]
-      color: #2e2e2e
-    &:focus
-      background-color: white !important
-    &[aria-selected="true"]
-      opacity: 1 !important
-      color: #2e2e2e
-      background-color: white !important
-      background: white !important
-  .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-0"]
-    .wallet-common-history
-      .cm-h-box
-        .cm-h-coin
-          border-top: 1px solid #e0e0e9
-        .cm-h-date
-          top: 1px
-  .mat-tab-body[class*="mat-tab-body-active"][class*="ng-tns-c13-1"]
-    .wallet-common-history
-      .cm-h-box
-        .cm-h-date
-          border-top: 1px solid #e0e0e8
-        .cm-h-coin
-          top: 1px
+ width: 1400px
+ margin: 0 auto
+ .mat-tab-label
+   opacity: 1
+   color: #989bab
+   min-width: 185px
+   background: #f4f4f4 !important
+   background-color: #f4f4f4 !important
+   border-left: 1px solid #e0e0e8
+   border-right: 1px solid #e0e0e8
+   border-top: 1px solid #e0e0e8
+   font-size: 15px
+   &[id="mat-tab-label-0-0"]
+     border-right: none !important
+   &[class*="mat-tab-label-active"]
+     color: black
+     // border-bottom: none !important
+   &:focus
+     background-color: white !important
+   &[aria-selected="true"]
+     opacity: 1 !important
+     color: #000
+     background-color: white !important
+     background: white !important
+ .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-0"]
+   .wallet-common-history
+     .cm-h-box
+       .cm-h-coin
+         border-top: 1px solid #e0e0e9
+       .cm-h-date
+         top: 1px
+ .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-1"]
+   .wallet-common-history
+     .cm-h-box
+       .cm-h-date
+         border-top: 1px solid #e0e0e8
+       .cm-h-coin
+         top: 1px
 
   .mat-ink-bar
     width: 185px
@@ -585,9 +592,9 @@ app-wallet-deposit, app-wallet-withdraw
 
 ////deposit-note basic info
 .deposit-note
- width: 725px
+ width: 730px
  height: 440px
- margin-left: 22px !important
+ margin-left: 20px !important
  padding-top: 30px !important
  padding-left: 30px !important
  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
@@ -604,9 +611,9 @@ app-wallet-deposit, app-wallet-withdraw
 
 ////withdraw-note
 .withdraw-note
- width: 725px
+ width: 730px
  height: 505px
- margin-left: 22px !important
+ margin-left: 20px !important
  padding-top: 30px !important
  padding-left: 30px !important
  display: table-caption !important
@@ -1080,6 +1087,7 @@ app-wallet-deposit, app-wallet-withdraw
         margin-top: 10px
         margin-bottom: 30px
         user-select: none
+        display: flex
         input
           display: none
         label[for="sg-agree-checkbox"]
@@ -1094,14 +1102,15 @@ app-wallet-deposit, app-wallet-withdraw
           top: 4px
           user-select: none
           cursor: pointer
-        label[ng-reflect-is-on="true"]
+        //[Feature_G361] 2018-08-09 | fix
+        label[class="checkbox-checked"]
           background-image: url('/assets/img/web_wallet_possessions_check_on.png')
         .sg-en-box, .sg-ko-box
           height: 25px
           min-height: 25px
           line-height: 25px
           display: inline-block
-          margin-left: 6px
+          margin-left: 10px
           .agree-msg
             display: inline
             margin-bottom: 0px
@@ -1470,9 +1479,10 @@ app-wallet-deposit, app-wallet-withdraw
       height: 265px
       margin-left: 11px
       margin-right: 11px
-    .al-arrow-img[ng-reflect-is-on="true"]
+    //[Feature_G361] 2018-08-09 | fix
+    .al-arrow-img[class="al-arrow-img checkbox-checked"]
       background-image: url('/assets/img/level_arrow_blue.png')
-    .al-arrow-img[ng-reflect-is-on="false"]
+    .al-arrow-img[class="al-arrow-img checkbox"]
       background-image: url('/assets/img/level_arrow_gray.png')
 
     .al-auth-title
@@ -1501,8 +1511,9 @@ app-wallet-deposit, app-wallet-withdraw
     .al-inner-in
       width: 160px
       margin: 0 auto
+    //[Feature_G361] 2018-08-09 | fix
     .al-youth_team-box
-      &[ng-reflect-is-on="true"]
+      &[class="al-youth_team-box valid"]
         & > p
           color: #3078ff
       .al-youth_team-inner
@@ -1510,10 +1521,10 @@ app-wallet-deposit, app-wallet-withdraw
         height: 240px
         max-height: 240px
         border-radius: 2px
-      .al-youth_team-inner[ng-reflect-is-on="true"]
+      .al-youth_team-inner[class="al-youth_team-inner valid"]
         background-color: #fff
         border: 1px solid #3078ff
-      .al-youth_team-inner[ng-reflect-is-on="false"]
+      .al-youth_team-inner[class="al-youth_team-inner invalid"]
         background-color: #f9f9fb
         border: 1px solid #e8e8e9
     .al-inner-logo

@@ -35,8 +35,9 @@
   min-height: 40px
 
 .below_pair
-  display: contents
-  display: ruby-text-container
+  display: contents !important
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    display: ruby-text-container
   font-size: 11px
   font-weight: 400
   color: #afb2be
@@ -46,3 +47,7 @@ div.mat-tab-labels
   div.mat-tab-label.mat-ripple.ng-star-inserted
     height: 30px !important
     padding-top: 3px !important
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+  .mat-column-price
+    position: relative
+    right: 25px
