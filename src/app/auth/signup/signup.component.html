@@ -72,7 +72,11 @@
   </mat-card>
 </div>
 <!--여긴 건드리지 말것~~-->
+<<<<<<< HEAD
 <div *ngIf="viewModel.isEndSignup">
+=======
+<div *ngIf="viewModel.needConfirm">
+>>>>>>> master
   <input type="text" [(ngModel)]="viewModel.confirmCode" />
   <input type="button" (click)="confirm()" value="confirm" />
 </div>
