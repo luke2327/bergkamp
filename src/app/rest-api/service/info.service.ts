@@ -12,16 +12,18 @@ export class InfoService {
   constructor(private http: HttpClient, private infoDataService: InfoDataService) { }
 
   getInfoAll(locale: any): void {
-    this.httpOptions= {
+
+    this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'locale': locale
+        'Content-Type': 'application/json'
       })
       ,observe : 'response'
     };
-    this.http.get(RestUrlBase+RestUrlInfoAll, this.httpOptions)
+    this.http.get(RestUrlInfoAll+locale+".json")
       .subscribe(data => {
         this.infoDataService.setInfoAll(data);
+      },(error: any) => {
+        this.infoDataService.setInfoAll({});
       });
   }
 

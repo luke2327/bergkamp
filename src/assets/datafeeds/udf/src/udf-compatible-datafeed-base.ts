@@ -178,7 +178,7 @@ export class UDFCompatibleDatafeedBase implements IExternalDatafeed, IDatafeedQu
 
 	public resolveSymbol(symbolName: string, onResolve: ResolveCallback, onError: ErrorCallback): void {
 		logMessage('Resolve requested');
-
+		console.log('resolveSymbol');
 		const resolveRequestStartTime = Date.now();
 		function onResultReady(symbolInfo: LibrarySymbolInfo): void {
 			console.log("onresultready");
@@ -228,7 +228,7 @@ export class UDFCompatibleDatafeedBase implements IExternalDatafeed, IDatafeedQu
 	}
 
 	public getBars(symbolInfo: LibrarySymbolInfo, resolution: ResolutionString, rangeStartDate: number, rangeEndDate: number, onResult: HistoryCallback, onError: ErrorCallback): void {
-
+		console.log('getBars');
 		// this._historyProvider.getBars(symbolInfo, resolution, rangeStartDate, rangeEndDate)
 		// 	.then((result: GetBarsResult) => {
 		// 		console.log(result.bars);
@@ -247,14 +247,16 @@ export class UDFCompatibleDatafeedBase implements IExternalDatafeed, IDatafeedQu
 	}
 	public subscribeBars(symbolInfo: LibrarySymbolInfo, resolution: ResolutionString, onTick: SubscribeBarsCallback, listenerGuid: string, onResetCacheNeededCallback: () => void): void {
 		// this._dataPulseProvider.subscribeBars(symbolInfo, resolution, onTick, listenerGuid);
+		console.log("subscribeBars");
 	}
 
 	public unsubscribeBars(listenerGuid: string): void {
-		// this._dataPulseProvider.unsubscribeBars(listenerGuid);
+		this._dataPulseProvider.unsubscribeBars(listenerGuid);
+		console.log("unsubscribeBars:"+listenerGuid);
 	}
 
 	protected _requestConfiguration(): Promise<UdfCompatibleConfiguration | null> {
-
+		console.log("_requestConfiguration");
 		return this._send<UdfCompatibleConfiguration>('config')
 			.catch((reason?: string | Error) => {
 				logMessage(`UdfCompatibleDatafeed: Cannot get datafeed configuration - use default, error=${getErrorMessage(reason)}`);

@@ -139,8 +139,11 @@ export class SignupCallback implements CognitoCallback {
   constructor(public component: SignupComponent) {}
 
   cognitoCallback(message: string, result: any) {
+    console.log(message);
+    console.log(result);
     if (message != null) { //error
-      if(message.includes("An account with the given email already exists.")) {
+      if(message.includes("An account with the given email already exists.")
+        ||message.includes("User already exists")) {
         this.component.viewModel.isEndSignup = true;
       }
     } else { //success

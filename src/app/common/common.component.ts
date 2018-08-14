@@ -7,6 +7,7 @@ import { UserLoginService } from "../aws-appsync/service/user-login.service";
 import { CognitoCallback, CognitoService, LoggedInCallback, Callback } from '../aws-appsync/service/cognito.service';
 import { CompStateService } from '../service/comp-state.service';
 import { setLang, getLang, setCountry, getCountry } from '../app.util';
+import { AppState } from '../app.const';
 @Component({
   selector: 'app-common',
   templateUrl: './common.component.html',
@@ -23,6 +24,7 @@ import { setLang, getLang, setCountry, getCountry } from '../app.util';
 export class CommonComponent implements OnInit, OnDestroy {
   geolocationSub: any;
   infoDataSub: any;
+  restartSub: any;
   token: any;
   constructor(
     public geolocationService: GeolocationService,
@@ -37,22 +39,10 @@ export class CommonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
-    this.geolocationService.getGeoLocation();
-    this.geolocationSub = this.geolocationDataService.getGeolocationObservable.subscribe(data => {
-      console.log(data);
-
-      localStorage.setItem('geoloc', JSON.stringify(data));
-      this.infoService.getInfoAll(getLang()+"-"+data.country.code);
-    });
-    this.infoDataSub = this.infoDataService.getInfoAllObservable.subscribe(data => {
-      //일단 localstorage에 저장해두고쓰자..
-      //TODO 추후 session관리를 하게되면 sessionstorage로 변경하면된다.
-      localStorage.setItem('info', JSON.stringify(data.body));
-      // console.log(JSON.parse(localStorage.getItem('info')).body.pairs);
-      this.userLoginService.isAuthenticatedLevel(new AuthLevelCallback(this));
-    });
+    this.init();
   }
+
+
   ngOnDestroy() {
 
   }
@@ -69,6 +59,27 @@ export class CommonComponent implements OnInit, OnDestroy {
       }
     });
   }
+  init() {
+    this.geolocationService.getGeoLocation();
+    this.geolocationSub = this.geolocationDataService.getGeolocationObservable.subscribe(data => {
+      console.log(JSON.stringify(data));
+      localStorage.setItem('geoloc', JSON.stringify(data));
+      this.infoService.getInfoAll(getLang());
+    });
+    this.infoDataSub = this.infoDataService.getInfoAllObservable.subscribe(data => {
+      //일단 localstorage에 저장해두고쓰자..
+      //TODO 추후 session관리를 하게되면 sessionstorage로 변경하면된다.
+      localStorage.setItem('info', JSON.stringify(data));
+      // console.log(JSON.parse(localStorage.getItem('info')).body.pairs);
+      this.userLoginService.isAuthenticatedLevel(new AuthLevelCallback(this));
+    });
+    this.restartSub = this.compStateService.observable.subscribe(data => {
+      if(data == AppState.RestartApp) {
+        this.init();
+      }
+    });
+  }
+
   startComponent() {
 
   }

@@ -5,7 +5,7 @@
  2. angular-cli 설치(version을 1.7.4로 설치할것)
  3. git clone
  4. npm install
- 5. node_module/apollo-client/core/ObservabeQuery.d.ts에서 tearDownQuery.d.ts에서 tearDownQuery()를 강제로 public으로 바꿔준다.
+ 5. node_module/apollo-client/core/ObservabeQuery.d.ts에서 tearDownQuery()를 강제로 public으로 바꿔준다.
  6. node_module/amazon-cognito-identity-js/index.d.ts 에
   public setUserMfaPreference(smsMfaSettings: string[], softwareTokenMfaSettings: string[], callback: NodeCallback<Error, string>): void; 를
  public setUserMfaPreference(smsMfaSettings: any, softwareTokenMfaSettings: any, callback: NodeCallback<Error, string>): void; 이렇게 바꿔준다.
@@ -17,6 +17,7 @@
  2. class 생성 : ng generate class <class_name>
  3. component 생성 : ng generate component <component_name>
  4. service 생성 : ng generate service <service_name>
+ 5. build : ng build --prod --aot
 
 4. 개발내용 정리
  1. Feature_B101

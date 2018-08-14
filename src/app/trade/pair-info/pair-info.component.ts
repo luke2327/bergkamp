@@ -9,6 +9,8 @@ import { FavoriteDataService } from '../../rest-api/service/favorite-data.servic
 import { Router } from '@angular/router';
 import { CommonSubComponent } from '../../common-sub/common-sub.component';
 import { CompStateService } from '../../service/comp-state.service';
+import { significantFig } from '../../app.util';
+import { SortingOrder } from '../../app.const';
 @Component({
   selector: 'app-pair-info',
   templateUrl: './pair-info.component.html',
@@ -26,6 +28,11 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
   baseIds: any; //info 정보가 없으므로 우선은 id 저장용으로 만들어둠
   tabPosition: number = 0;
   snapShotSubScription: any;
+  significantFig: any;
+  sortingStateName = 0;
+  sortingStatePrice = 0;
+  sortingStateDiff = 0;
+  sortingOrder: any;
   //sort 할 객체
   @ViewChild(MatSort) sort: MatSort;
   //table 객체
@@ -42,6 +49,8 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
     this.quotesBeforePrices = new Map<string, number>();
     this.quotesValuesByBase = new Map<string, any>();
     this.baseIds = new Map<string, number>();
+    this.significantFig = significantFig;
+    this.sortingOrder = SortingOrder;
   }
 
   ngOnInit() {}
@@ -124,20 +133,59 @@ export class PairInfoComponent extends CommonSubComponent implements OnInit, Aft
     } else {
       this.dataSource = this.getFavoriteList();
     }
+    this.sortingStateName = 0;
+    this.sortingStatePrice = 0;
+    this.sortingStateDiff = 0;
   }
   //데이터가 sort되면 여기에서 처리한다.
-  sortData(sort: Sort) {
-    //쌈빡하게 짜고싶...지만 이게 최선
+  // sortData(sort: Sort) {
+  //   //쌈빡하게 짜고싶...지만 이게 최선
+  //   this.dataSource.sort((a, b) => {
+  //     let isAsc = sort.direction == 'asc';
+  //     switch (sort.active) {
+  //       case 'pair': return compare(a.pair, b.pair, isAsc);
+  //       case 'price': return compare(a.price, b.price, isAsc);
+  //       case 'type': return compare(a.type, b.type, isAsc);
+  //       default: return 0;
+  //     }
+  //   });
+  //   this.table.renderRows();
+  // }
+  sorting(type: any) {
+    switch(type) {
+      case 'pair':
+        this.sortingStateName = (this.sortingStateName+1)%this.sortingOrder.length;
+        this.sortingStatePrice = 0;
+        this.sortingStateDiff = 0;
+        console.log(this.sortingStateName);
+        this.sortData(type, this.sortingOrder[this.sortingStateName]=='asc')
+        break;
+      case 'price':
+        this.sortingStateName = 0;
+        this.sortingStatePrice = (this.sortingStatePrice+1)%this.sortingOrder.length;
+        this.sortingStateDiff = 0;
+        this.sortData(type, this.sortingOrder[this.sortingStatePrice]=='asc')
+        break;
+      case 'change':
+        this.sortingStateName = 0;
+        this.sortingStatePrice = 0;
+        this.sortingStateDiff = (this.sortingStateDiff+1)%this.sortingOrder.length;
+        this.sortData(type, this.sortingOrder[this.sortingStateDiff]=='asc')
+        break;
+      default:
+        return;
+    }
+  }
+  //sortData 변형 위에함수를 쓰지 않기로..mattable을 쓰지않는다(보다 커스텀한 구현을 위해)
+  sortData(type: string, isAsc: boolean): void {
     this.dataSource.sort((a, b) => {
-      let isAsc = sort.direction == 'asc';
-      switch (sort.active) {
+      switch (type) {
         case 'pair': return compare(a.pair, b.pair, isAsc);
         case 'price': return compare(a.price, b.price, isAsc);
-        case 'type': return compare(a.type, b.type, isAsc);
+        case 'change': return compare(a.changepct24, b.changepct24, isAsc);
         default: return 0;
       }
     });
-    this.table.renderRows();
   }
   //너는 favorite 이냐?
   isFavorite(pair: string): boolean {

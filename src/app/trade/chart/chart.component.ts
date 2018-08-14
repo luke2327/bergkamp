@@ -158,7 +158,8 @@ export class ChartComponent extends CommonSubComponent implements OnInit {
 
     tvWidget.onChartReady(() => {
       tvWidget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
-
+        console.log(interval);
+        // tvWidget.resetData();
       })
       //20일선, 5일선 추가
       tvWidget.chart().createStudy("Moving Average", false, false, [20]);
@@ -171,58 +172,55 @@ export class CustomUDFCompatibleDatafeed extends UDFCompatibleDatafeed {
   private _service: HistoryService;
   private _customInterval: string;
   private historys: any = [];
+  public onResult: HistoryCallback;
+
   public constructor(historyService: HistoryService, datafeedURL: string, updateFrequency: number = 10 * 1000) {
 		super(datafeedURL, updateFrequency);
     this._service = historyService;
     this._customInterval = "1";
+
 	}
+  public subscribeData(interval: any) {
+    this._service.startObserver(interval);
+    this._service.queryObservable.subscribe((value) => {
+      this.setBars(value);
+    });
+  }
   public setInterVal(interval: string){
     this._customInterval = interval;
   }
-  //직접 차트에다 바를 그려넣는 부분
-  public getBarsCustom(resolution: string, onResult: HistoryCallback) {
-    console.log('getBarsCustom:' + this._customInterval);
+  public setBars(value: any) {
+    console.log("setBars");
     let bars: Bar[] = [];
     const meta: HistoryMetadata = {
       noData: false,
     };
-    this._service.startObserver();
-    this._service.queryObservable.subscribe((value) => {
-      console.log(value.getHistory);
-      let results = value.getHistory;
-      const result:GetBarsResult = {
-        bars: bars,
-        meta: meta
-      }
-      console.log('raul');
-      console.log(results);
-      if(this.historys.length == 0){
-        if(resolution=='1') {
-          this.historys = results;
-        } else {
-          this.historys = results;
-        }
-        let length: number = this.historys.length;
-        for(var i = length-1; i >=0; i--) {
-          let entry: any = this.historys[i];
-          let t:number = entry.ut * 1000;
-          const barValue: Bar = {
-            time: t,
-            close: entry.close,
-            open: entry.open,
-            high: entry.high,
-            low: entry.low,
-            volume: entry.volume
-          };
-          bars.push(barValue);
-        }
-        console.log(bars);
-        console.log(bars);
-        onResult(bars, meta);
-      }
-
-    });
-
-
+    let results = value.getHistory;
+    const result:GetBarsResult = {
+      bars: bars,
+      meta: meta
+    }
+    this.historys = results;
+    let length: number = this.historys.length;
+    for(var i = length-1; i >=0; i--) {
+      let entry: any = this.historys[i];
+      let t:number = entry.ut * 1000;
+      const barValue: Bar = {
+        time: t,
+        close: entry.close,
+        open: entry.open,
+        high: entry.high,
+        low: entry.low,
+        volume: entry.volume
+      };
+      bars.push(barValue);
+    }
+    this.onResult(bars, meta);
+  }
+  //직접 차트에다 바를 그려넣는 부분
+  public getBarsCustom(resolution: string, onResult: HistoryCallback) {
+    this.onResult = onResult;
+    let interval = resolution == '1' ? '1m' : '1h';
+    this.subscribeData(interval);
 	}
 }

@@ -12,7 +12,8 @@
 <div class="card-padding">
   <mat-card class="pair-info-card nopadding">
     <mat-card-content>
-      <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+      <!--mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
         <ng-container matColumnDef="pair">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Pair </mat-header-cell>
           <mat-cell *matCellDef="let element">
@@ -28,19 +29,47 @@
 
         <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-          <!-- <mat-cell *matCellDef="let element"> {{element.price}}</mat-cell> -->
-          <mat-cell *matCellDef="let element"> 0.00037260</mat-cell>
+          <mat-cell *matCellDef="let element"> {{significantFig(element.price)}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="changepct24">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Change </mat-header-cell>
-          <!-- <mat-cell *matCellDef="let element"> {{element.changepct24}} </mat-cell> -->
-          <mat-cell *matCellDef="let element"> +14.29% </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.changepct24.toFixed(2)}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row class="nopadding" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+      </mat-table-->
+      <div class="row area-token-quotes-list">
+        <div class="row token-quote-table-header">
+          <div class="title-pair" (click)="sorting('pair')">
+            <p>{{ 'W0010' | translate }}</p>
+            <span [appToggle] = "4" [state]="sortingOrder[sortingStateName]"><div class="wt-sorting1"></div></span>
+          </div>
+          <div class="title-price text-center" (click)="sorting('price')">
+            <p>{{ 'W0011' | translate }}</p>
+            <span [appToggle] = "4" [state]="sortingOrder[sortingStatePrice]"><div class="wt-sorting1"></div></span>
+          </div>
+          <div class="title-change text-center" (click)="sorting('change')">
+            <p>{{ 'W0012' | translate }}</p>
+            <span [appToggle] = "4" [state]="sortingOrder[sortingStateDiff]"><div class="wt-sorting1"></div></span>
+          </div>
+        </div>
+        <a class="row token-quote-list" *ngFor="let value of dataSource"
+          (click) = "routeTo(value.pair.toLowerCase().replace('/','-'))">
+          <div class="favorite">
+            <input type="button" (click)="setFavorite($event, value.pair)"
+              class="favorite-button" [appToggle]='3' [isOn]="isFavorite(value.pair)">
+          </div>
+          <div class="token-name align-middle">
+            <p>{{ value.pair }}</p>
+            <p>{{ value.pair }}</p>
+          </div>
+          <div class="price text-center">{{ significantFig(value.price) }}</div>
+          <div [appRealTimeColor]="value.changepct24" class="change text-center">{{ value.changepct24.toFixed(2) }}%</div>
+
+        </a>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

@@ -34,5 +34,6 @@ export class LangPopoverComponent extends CommonSubComponent implements OnInit {
     setLang(lang);
     this.translate.use(lang);
     this.langToggleService.setOpen(false);
+    this.compStateService.restartApp();
   }
 }

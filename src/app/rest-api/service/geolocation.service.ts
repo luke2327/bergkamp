@@ -10,12 +10,12 @@ export class GeolocationService {
   //https://geoip.nekudo.com/
   constructor(private http: HttpClient, private geolocationDataService: GeolocationDataService) {}
 
-  // getGeoLocation(): Observable<any> {
-  //   return this.http.get(RestUrlGeoLoc);
-  // }
   getGeoLocation(): void {
     this.http.get(RestUrlGeoLoc)
-      .subscribe(data =>{
+      .subscribe(data => {
+        if(data==null) {
+          data = {"city":false,"country":{"name":"","code":"GB"},"location":{"time_zone":"Europe/London"},"ip":""};
+        }
         this.geolocationDataService.setGetGeolocation(data);
       });
   }

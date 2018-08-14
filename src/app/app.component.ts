@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       //head의 언어설정을 바꿔준다.
       document.documentElement.lang = getLang();
-
     });
 
   }

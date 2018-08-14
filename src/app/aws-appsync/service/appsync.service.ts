@@ -16,8 +16,8 @@ export class AppsyncService {
 
   setClient(idToken: any) {
     const config = {
-      url: "https://rsdyr5jruvcgzetcjhyekcynym.appsync-api.us-west-2.amazonaws.com/graphql",
-      region: "us-west-2",
+      url: "https://dhlx3hflnbeknfpxsduulfpo44.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+      region: "ap-southeast-1",
       auth: {
         type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
         jwtToken: async () => (await idToken)

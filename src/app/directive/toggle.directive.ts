@@ -18,6 +18,7 @@ export class ToggleDirective {
   ngOnChanges(changes: any) {
     try {
       switch(this.type) {
+
         case DirectiveToggleType.Visibility :
           this.el.nativeElement.style.display = this.isOn? "block": "none";
           break;
@@ -32,20 +33,21 @@ export class ToggleDirective {
         case DirectiveToggleType.Favorite :
           this.renderer.setElementClass(this.el.nativeElement, 'favorite-button-checked', this.isOn);
           this.renderer.setElementClass(this.el.nativeElement, 'favorite-button', !this.isOn);
+          break;
         case DirectiveToggleType.SortingState :
           if(this.state!=null){
             this.renderer.setElementClass(this.el.nativeElement, 'sorting', this.state=='default');
-            this.renderer.setElementClass(this.el.nativeElement, 'sorting-ask', this.state=='ask');
+            this.renderer.setElementClass(this.el.nativeElement, 'sorting-asc', this.state=='asc');
             this.renderer.setElementClass(this.el.nativeElement, 'sorting-desc', this.state=='desc');
           }
-
+          break;
         case DirectiveToggleType.State :
           if(this.state!=null && this.stateList!=null){
             for(let entry of this.stateList) {
               this.renderer.setElementClass(this.el.nativeElement, this.state, this.state==entry);
             }
           }
-
+          break;
         case DirectiveToggleType.Valid :
           this.renderer.setElementClass(this.el.nativeElement, 'valid', this.isOn);
           this.renderer.setElementClass(this.el.nativeElement, 'invalid', !this.isOn);

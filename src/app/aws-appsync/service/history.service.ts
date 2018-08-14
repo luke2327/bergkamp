@@ -12,7 +12,7 @@ export class HistoryService {
   queryObservable;
 
   constructor(private appsync: AppsyncService) {}
-  startObserver(): void {
+  startObserver(interval): void {
     this.queryObservable = new Observable((observer) => {
 
       this.appsync.hc().then(client => {
@@ -22,7 +22,7 @@ export class HistoryService {
         console.log(now);
         const observable: ObservableQuery<GetHistoryQuery> = client.watchQuery({
           query: GetHistory,
-          variables : { id_ : 'ETH/USDT,1m' },
+          variables : { id_ : 'ETH/USDT,'+interval },
           fetchPolicy: 'network-only'
         });
         //getAllSnapshot 을 우선 가져온다.
@@ -36,7 +36,7 @@ export class HistoryService {
         // subscription
         observable.subscribeToMore({
           document: SubscribeHistory,
-          variables : { id_ : 'ETH/USDT,1m'},
+          variables : { id_ : 'ETH/USDT,'+interval},
           updateQuery: (prev: GetHistoryQuery, {subscriptionData}) => {
             console.log('subscribeToMore - updateQuery:', subscriptionData);
             //데이터는 observer로 알려주고 따로 리턴하진 않는다.

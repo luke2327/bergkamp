@@ -18,6 +18,10 @@ export class CompStateService {
     this.observable.next(AppState.StartAppErr);
   }
 
+  restartApp(): void {
+    this.observable.next(AppState.RestartApp);
+  }
+
   setToken(token: any): void {
     this.token = token;
   }

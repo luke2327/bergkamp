@@ -8,7 +8,7 @@ import { CompStateService } from '../../../service/comp-state.service';
   templateUrl: '../common-order-history/common-order-history.component.html',
   styleUrls: ['../common-order-history/common-order-history.component.sass']
 })
-export class OpenOrderComponent extends CommonOrderHistoryComponent implements OnInit, AfterViewInit {
+export class OpenOrderComponent extends CommonOrderHistoryComponent implements OnInit {
 
   constructor(
     orderService:OrderService,
@@ -21,8 +21,7 @@ export class OpenOrderComponent extends CommonOrderHistoryComponent implements O
 
   ngOnInit() {
   }
-
-  ngAfterViewInit() {
+  startComponent() {
     this.getOrderMy();
     //get 이후 처리
     this.orderDataService.getOrderMyObservable.subscribe((data) => {

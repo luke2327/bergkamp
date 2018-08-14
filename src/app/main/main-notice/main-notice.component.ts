@@ -32,7 +32,7 @@ export class MainNoticeComponent extends CommonSubComponent implements OnInit {
 
   }
   startComponent() {
-
+    console.log(localStorage.getItem('info'));
     let notices = JSON.parse(localStorage.getItem('info')).notices;
     for(let entry of notices) {
       this.images.push(entry.image_link);

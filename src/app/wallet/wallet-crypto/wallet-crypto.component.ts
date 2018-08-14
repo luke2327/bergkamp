@@ -257,8 +257,7 @@ export class WalletCryptoComponent extends CommonSubComponent implements OnInit,
   buildRowModel(crypto: any): WalletCryptoRowModel {
     let rowModel:WalletCryptoRowModel = new WalletCryptoRowModel();
     rowModel.id = crypto.id;
-    rowModel.name = getLang() =='en'?
-      JSON.parse(crypto.name).en : JSON.parse(crypto.name).ko;
+    rowModel.name = crypto.name;
     rowModel.abbre = crypto.abbre;
     rowModel.type = crypto.type;
     rowModel.total = 0;
