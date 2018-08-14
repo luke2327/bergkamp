@@ -33,15 +33,21 @@ app-root
   margin-left: auto
   margin-right: auto
   height: 100%
-app-signup, app-login, app-auth-2fa, app-wallet, app-wallet-transaction
+app-signup, app-login, app-auth-2fa, app-wallet, app-wallet-transaction, app-pw-change,
+app-s-auth, app-g-auth, app-cancel-s-auth, app-cancel-g-auth, app-wallet-withdraw, app-wallet-deposit
   display: table-row
   width: 100%
   height: 100%
 app-footer
   display: table-row
-//[Feature_G361] 2018-08-13 Add
+
 button, a
   outline: none !important
+
+app-main-notice
+  .carousel-control-next, .carousel-control-prev
+    cursor: pointer
+
 
 .mat-tab-label-content
   user-select: none
@@ -90,7 +96,7 @@ button, a
     transition: color .5s cubic-bezier(0.74, 0.63, 0.23, 0.44) !important
     opacity: 1 !important
   .mat-tab-label[aria-selected="false"]
-    color: black !important
+    color: #2e2e2e !important
     transition: color .5s cubic-bezier(0.74, 0.63, 0.23, 0.44) !important
     opacity: 1 !important
 
@@ -115,8 +121,8 @@ button, a
     border-bottom: 3px #f4f4f4 solid
   .mat-tab-label-active
     font-size: 17px
-    font-weight: 500
-    color: black !important
+    font-weight: bold
+    color: #2e2e2e !important
   .mat-tab-label
     height: 33px !important
     background-color: transparent !important
@@ -160,7 +166,7 @@ button, a
   .mat-tab-label
     width: 185px !important
 
-//[IE css í•µ]
+//[IE css ÇÙ]
 //https://gist.github.com/vidaaudrey/c16774076391d09e7ec7dbb7ed7a3189
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
   .order-history-tab
@@ -169,7 +175,7 @@ button, a
         position: relative
         right: 11px
 
-//angular material bug see : https://github.com/angular/material2/issues/7291" ê°œê·€ì°®..;;
+//angular material bug see : https://github.com/angular/material2/issues/7291" °³±ÍÂú..;;
 
 .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition
   opacity: 0
@@ -198,7 +204,7 @@ button, a
       &:hover
         color: #3078ff !important
         opacity: 1
-      //[Feature_G361] 2018-08-09 | fix
+      //[Feature_G361]
       &[class*="active"]
         color: #3078ff !important
         opacity: 1
@@ -220,14 +226,11 @@ mat-tab-group.pair-info-tab
       border: 1px solid #e0e0e8 !important
       border-radius: 2px
       position: relative
-
-.pair-info-card
-  height: 482px !important
-  .mat-header-row
-    padding: 0px !important
-  mat-header-cell.mat-column-pair
-    min-width: 150px
-    padding-left: 15px
+      .mat-tab-list
+        .mat-tab-labels
+          .mat-tab-label
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+              padding: 0px !important
 
 .mat-header-row.ng-star-inserted
   mat-header-cell:not(.cdk-column-pair)
@@ -245,8 +248,8 @@ mat-tab-group.pair-info-tab
     font-weight: 500
     font-size: 13px
     /**
-      1. ë§¤ì§ ë„˜ë²„. 'mat-cell:not(.mat-column-pair)'ì˜ left ê°’ì€ ì •ë ¬ ì‹œí‚¤ê¸° ìœ„í•´
-      ì°¾ì€ ìž„ì˜ì˜ ê°’ì´ë‹¤. ê°€ëŠ¥í•˜ë‹¤ë©´, ì ì ˆí•˜ê²Œ ê³ ì³ì•¼ í•  ë“¯.
+      1. ¸ÅÁ÷ ³Ñ¹ö. 'mat-cell:not(.mat-column-pair)'ÀÇ left °ªÀº Á¤·Ä ½ÃÅ°±â À§ÇØ
+      Ã£Àº ÀÓÀÇÀÇ °ªÀÌ´Ù. °¡´ÉÇÏ´Ù¸é, ÀûÀýÇÏ°Ô °íÃÄ¾ß ÇÒ µí.
       */
   mat-cell:not(.mat-column-pair)
     position: relative
@@ -295,7 +298,7 @@ mat-card.wallet-crypto
     font-size: 13px
     font-weight: 400
     color: #989bab
-    //[Feature_G361] 2018-08-09 | fix
+    cursor: default
     & > div > span[class*="sorting"] > div, & > div > span[ng-reflect-state*="default"] > div
       background: url('/assets/img/web_wallet_list_arrow_off.png')
     & > div > span[class="invalid"] > div, & > div > span[ng-reflect-state*="asc"] > div
@@ -333,9 +336,11 @@ mat-card.wallet-crypto
       padding: 0px
       font-size: 15px
       font-weight: 15px
-      color: #000
+      color:
       &:not(.btcvalue)
         padding-top: 20px
+    .total
+      min-width: 150px
     .btcvalue, .coin
       padding-top: 12px
     .btcvalue
@@ -344,7 +349,9 @@ mat-card.wallet-crypto
     .coin
       font-size: 15px
       font-weight: 500
-      color: #000
+      color: #2e2e2e
+      min-width: 137px !important
+      padding-right: 0px !important
     .coin-img
       width: 25px
       height: 25px
@@ -363,7 +370,7 @@ mat-card.wallet-crypto
       &:not(.trade)
         a
           vertical-align: bottom
-          border: 1px solid #000
+          border: 1px solid #2e2e2e
           border-radius: 2px
           width: 100px
           min-width: 100px
@@ -372,7 +379,7 @@ mat-card.wallet-crypto
           font-size: 13px
           font-weight: 400
           line-height: 23px
-          color: #000
+          color: #2e2e2e
           text-decoration: none
     .deposit
       margin-left: 100px
@@ -415,72 +422,76 @@ mat-card.wallet-crypto
     border-right: 1px solid #e0e0e8
   .wt-border-helper
     border-top: 1px solid #e0e0e8
+////[Feature_G336] 2018-08-02 | font color fix
 //wallet
 .wallet-title
- margin-top: 75px
- margin-bottom: 15px
- height: 35px
- line-height: 35px
- font-size: 30px
- font-weight: 500
- color: #000
+  margin-top: 75px
+  margin-bottom: 15px
+  height: 35px
+  line-height: 35px
+  font-size: 30px
+  font-weight: 500
+  color: #2e2e2e !important
+  a, p
+    color: #2e2e2e !important
+    text-decoration: none !important
 
 .wallet-tt-cv
- width: 12px
- height: 12px
- background-color: #3078ff
- margin-right: 5px
- margin-left: 5px
- margin-bottom: 4px
+  width: 12px
+  height: 12px
+  background-color: #3078ff
+  margin-right: 5px
+  margin-left: 5px
+  margin-bottom: 4px
 
 .angle-barcket
  &::after, &::before
    content: ('\00a0\00a0')
 
+////[Feature_G336] 2018-08-06 | wallet-transaction bug fix
 .wallet-modulate
- width: 1400px
- margin: 0 auto
- .mat-tab-label
-   opacity: 1
-   color: #989bab
-   min-width: 185px
-   background: #f4f4f4 !important
-   background-color: #f4f4f4 !important
-   border-left: 1px solid #e0e0e8
-   border-right: 1px solid #e0e0e8
-   border-top: 1px solid #e0e0e8
-   font-size: 15px
-   &[id="mat-tab-label-0-0"]
-     border-right: none !important
-   &[class*="mat-tab-label-active"]
-     color: black
-     // border-bottom: none !important
-   &:focus
-     background-color: white !important
-   &[aria-selected="true"]
-     opacity: 1 !important
-     color: #000
-     background-color: white !important
-     background: white !important
- .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-0"]
-   .wallet-common-history
-     .cm-h-box
-       .cm-h-coin
-         border-top: 1px solid #e0e0e9
-       .cm-h-date
-         top: 1px
- .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-1"]
-   .wallet-common-history
-     .cm-h-box
-       .cm-h-date
-         border-top: 1px solid #e0e0e8
-       .cm-h-coin
-         top: 1px
+  width: 1400px
+  margin: 0 auto
+  .mat-tab-label
+    opacity: 1
+    color: #989bab
+    min-width: 185px
+    background: #f4f4f4 !important
+    background-color: #f4f4f4 !important
+    border-left: 1px solid #e0e0e8
+    border-right: 1px solid #e0e0e8
+    border-top: 1px solid #e0e0e8
+    font-size: 15px
+    &[id="mat-tab-label-0-0"]
+      border-right: none !important
+    &[class*="mat-tab-label-active"]
+      color: #2e2e2e
+    &:focus
+      background-color: white !important
+    &[aria-selected="true"]
+      opacity: 1 !important
+      color: #2e2e2e
+      background-color: white !important
+      background: white !important
+  .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-0"]
+    .wallet-common-history
+      .cm-h-box
+        .cm-h-coin
+          border-top: 1px solid #e0e0e9
+        .cm-h-date
+          top: 1px
+  .mat-tab-body[class*="mat-tab-body-active"][id="mat-tab-content-0-1"]
+    .wallet-common-history
+      .cm-h-box
+        .cm-h-date
+          border-top: 1px solid #e0e0e8
+        .cm-h-coin
+          top: 1px
 
- .mat-ink-bar
-   width: 185px
-   left: 185px
-   display: none
+  .mat-ink-bar
+    width: 185px
+    left: 185px
+    display: none
 
 
 //deposit & withdrawal history handle
@@ -499,7 +510,7 @@ app-wallet-deposit, app-wallet-withdraw
  line-height: 30px
  font-size: 20px
  font-weight: 500
- color: #000
+ color: #2e2e2e
  img
    width: 30px
    height: 30px
@@ -527,7 +538,7 @@ app-wallet-deposit, app-wallet-withdraw
  p
    font-size: 15px
    font-weight: 500
-   color: #000
+   color: #2e2e2e
    height: 30px
    line-height: 30px
    margin-bottom: 10px
@@ -535,7 +546,7 @@ app-wallet-deposit, app-wallet-withdraw
      color: #c4c8d7
 
 ////deposit-address
-.deposit-address, .deposit-note
+.deposit-note
  display: table-caption !important
 .deposit-address
  padding-top: 30px !important
@@ -599,7 +610,7 @@ app-wallet-deposit, app-wallet-withdraw
  padding-left: 40px !important
  width: 650px
  height: 505px
- display: table-caption !important
+ // display: table-caption !important
 
 ////withdraw-note
 .withdraw-note
@@ -670,19 +681,23 @@ app-wallet-deposit, app-wallet-withdraw
    p
      display: inline-block
      padding: 0px !important
- #cm-h-seeall
-   display: inline-table
-   width: 90px
-   height: 30px
-   line-height: 30px
-   text-align: center
-   padding-left: 16px !important
+ .cm-h-seeall-div
+   display: inline-block
+   height: 32px
    border: 1px solid #989bab
    border-radius: 2px
+   line-height: 31px
+   vertical-align: middle
+   padding-right: 5px
+   margin-right: 5px
+ #cm-h-seeall
+   line-height: 0px !important
+   width: 90px
+   height: 30px
+   text-align: center
    font-size: 13px
    font-weight: 400
-   color: #000
-   margin-right: 5px
+   color: #2e2e2e
    text-decoration: none
    user-select: none
  #cm-h-refresh
@@ -721,7 +736,7 @@ app-wallet-deposit, app-wallet-withdraw
      padding-left: 25px
      font-size: 15px
      font-weight: 400
-     color: #000
+     color: #2e2e2e
      margin-bottom: 0px !important
    div.col-1
      background-position: center
@@ -735,11 +750,6 @@ app-wallet-deposit, app-wallet-withdraw
      visibility: hidden
      height: 0px
      max-height: 0px
-     // &[ng-reflect-is-on="true"]
-     //   visibility: visible
-     //   opacity: 1
-     //   display: block
-     //   max-height: 70px
    .cm-h-IE[ng-reflect-is-on="true"]
      visibility: visible
      opacity: 1
@@ -755,10 +765,6 @@ app-wallet-deposit, app-wallet-withdraw
      position: relative
      z-index: 2
      background: white
-
- // .p[ng-reflect-is-on="false"]
- // .cm-h-ext
- //   transition: display 0.3s
 
 
 .mat-tab-body-content.ng-trigger.ng-trigger-translateTab
@@ -777,7 +783,7 @@ app-wallet-deposit, app-wallet-withdraw
       text-align: center
       font-size: 23px
       font-weight: 500
-      color: #000
+      color: #2e2e2e
       margin-bottom: 45px !important
     mat-tab-group
       width: 340px
@@ -833,7 +839,7 @@ app-wallet-deposit, app-wallet-withdraw
       padding-left: 10px
       font-size: 15px
       font-weight: 400
-      color: #000
+      color: #2e2e2e
       margin-bottom: 30px
     .au-ga-input
       width: 340px
@@ -915,7 +921,7 @@ app-wallet-deposit, app-wallet-withdraw
     div[class*="mat-tab-label-active"]
       opacity: 1
       .mat-tab-label-content
-        color: #000
+        color: #2e2e2e
   .auth-login
     width: 420px
     min-width: 420px
@@ -924,7 +930,7 @@ app-wallet-deposit, app-wallet-withdraw
     margin: 0 auto !important
     margin-top: 75px !important
     margin-bottom: 145px !important
-    border-top: 5px solid #000
+    border-top: 5px solid #2e2e2e
     padding-top: 50px !important
     .lg-inner-box
       width: 340px
@@ -935,7 +941,7 @@ app-wallet-deposit, app-wallet-withdraw
         text-align: center
         font-size: 23px
         font-weight: 500
-        color: #000
+        color: #2e2e2e
         margin-bottom: 45px !important
       .lg-email-box, .lg-passwd-box
         border-radius: 2px
@@ -975,6 +981,27 @@ app-wallet-deposit, app-wallet-withdraw
         margin-top: 10px !important
         margin-bottom: 40px !important
         user-select: none
+      ////[Feature_G336] 2018-08-02 | error-box bug fix
+      .sg-email-error-box
+        top: 165px
+      .sg-passwd-error-box
+        top: 235px
+      .sg-email-error-box, .sg-passwd-error-box
+        text-align: right
+        height: 30px
+        line-height: 30px
+        position: absolute
+        width: 340px
+        min-width: 340px
+        .sg-error
+          width: 13px
+          height: 13px
+          margin-right: 5px
+        p
+          font-size: 12px
+          font-weight: 400
+          color: #f14d4e
+          display: inline
       .lg-div-line
         width: 340px
         min-width: 340px
@@ -992,7 +1019,7 @@ app-wallet-deposit, app-wallet-withdraw
         p
           display: inline
           margin-right: 2px !important
-          color: #000
+          color: #2e2e2e
         a
           color: #3078ff
           text-decoration: underline
@@ -1012,7 +1039,7 @@ app-wallet-deposit, app-wallet-withdraw
         text-align: center
         font-size: 23px
         font-weight: 500
-        color: #000
+        color: #2e2e2e
       .sg-error
         width: 13px
         height: 13px
@@ -1037,7 +1064,6 @@ app-wallet-deposit, app-wallet-withdraw
           border: 1px solid #c4c8d7
           &::placeholder
             color: #c4c8d7
-
           @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
             line-height: 37px
       .sg-email-error-box
@@ -1083,7 +1109,6 @@ app-wallet-deposit, app-wallet-withdraw
           top: 4px
           user-select: none
           cursor: pointer
-        //[Feature_G361] 2018-08-09 | fix
         label[class="checkbox-checked"]
           background-image: url('/assets/img/web_wallet_possessions_check_on.png')
         .sg-en-box, .sg-ko-box
@@ -1101,7 +1126,7 @@ app-wallet-deposit, app-wallet-withdraw
           .terms-msg
             font-size: 13px
             font-weight: 400
-            color: #000
+            color: #2e2e2e
             text-decoration: underline
             cursor: pointer
       .sg-signup-button
@@ -1144,7 +1169,7 @@ app-wallet-deposit, app-wallet-withdraw
         text-align: center
         font-size: 23px
         font-weight: 500
-        color: #000
+        color: #2e2e2e
         margin-bottom: 15px
       .em-email-info
         color: #3078ff
@@ -1155,7 +1180,7 @@ app-wallet-deposit, app-wallet-withdraw
         // line-height: 40px
         font-size: 15px
         font-weight: 400
-        color: #000
+        color: #2e2e2e
         margin-bottom: 50px
       .em-division
         width: 25px
@@ -1173,7 +1198,7 @@ app-wallet-deposit, app-wallet-withdraw
         line-height: 20px
         font-size: 15px
         font-weight: 400
-        color: #000
+        color: #2e2e2e
         margin-bottom: 10px
       .em-below-button
         border: none
@@ -1209,7 +1234,97 @@ app-wallet-deposit, app-wallet-withdraw
         font-weight: 400
         color: #989bab
         margin-bottom: 30px !important
-
+  ////[Feature_G336] 2018-08-02 | app 'app-pw-change' Create
+  .auth-pw-change
+    width: 420px
+    max-width: 420px
+    height: auto
+    max-height: auto
+    padding: 50px 40px 60px 40px !important
+    border-top: 5px solid #2e2e2e
+    margin: 0 auto !important
+    margin-top: 75px !important
+    margin-bottom: 145px !important
+    .ap-title
+      width: 340px
+      height: 30px
+      line-height: 30px
+      margin-bottom: 35px !important
+      font-size: 23px
+      font-weight: 500
+      color: #2e2e2e
+      text-align: center
+    .ap-input-box
+      margin-bottom: 30px
+      height: 40px
+      max-height: 40px
+      .ap-input-img
+        width: 45px
+        max-width: 45px
+        height: 40px
+        max-height: 40px
+        background-position: center
+        background-size: contain
+        background-repeat: no-repeat
+        display: inline-block
+        z-index: 100
+        position: relative
+      .cp-img
+        background-image: url('/assets/img/password.png')
+      .cf-img
+        background-image: url('/assets/img/confirmpassword.png')
+      .ap-input
+        height: 40px
+        max-height: 40px
+        position: absolute
+        border: 1px solid #e0e0e8
+        border-radius: 2px
+        left: 40px
+        z-index: 0
+        padding-left: 49px
+        width: 340px
+        font-size: 13px
+        font-weight: 400
+        color: #2e2e2e
+        &:placeholder
+          color: #c4c8d7
+    .ap-error-box
+      position: absolute
+      width: 340px
+      max-width: 340px
+      height: 30px
+      max-height: 30px
+      line-height: 30px
+      text-align: right
+      font-size: 12px
+      font-weight: 13px
+      img
+        width: 13px
+        height: 13px
+      p
+        display: inline-block
+        color: #f14d4e
+        margin-bottom: 0px !important
+    .ap-error-cp
+      top: 155px
+    .ap-error-np
+      top: 225px
+    .ap-error-cfnp
+      top: 295px
+    .ap-submit
+      margin-top: 10px !important
+      width: 340px
+      height: 50px
+      line-height: 50px
+      border: none
+      border-radius: 2px
+      background-color: #3078ff
+      outline: 0px
+      text-align: center
+      color: #fff
+      font-size: 15px
+      font-weight: 500
+      cursor: pointer
 
 
 //[Feature_G332] 2018-07-31 start
@@ -1227,7 +1342,7 @@ app-wallet-deposit, app-wallet-withdraw
     line-height: 30px
     font-size: 20px
     font-weight: 500
-    color: #000
+    color: #2e2e2e
     margin-bottom: 20px !important
     cursor: default
   .empty-box
@@ -1259,7 +1374,7 @@ app-wallet-deposit, app-wallet-withdraw
     .ac-email-area
       margin-bottom: 10px !important
       .ac-email-info
-        color: #000
+        color: #2e2e2e
     .ac-password-area
       margin-bottom: 10px !important
       .ac-password-change
@@ -1267,7 +1382,7 @@ app-wallet-deposit, app-wallet-withdraw
         text-decoration: underline
     .ac-nickname-area
       .ac-nickname-info
-        color: #000
+        color: #2e2e2e
         margin-right: 10px !important
       .ac-nickname-change
         color: #3078ff
@@ -1370,7 +1485,6 @@ app-wallet-deposit, app-wallet-withdraw
       height: 265px
       margin-left: 11px
       margin-right: 11px
-    //[Feature_G361] 2018-08-09 | fix
     .al-arrow-img[class="al-arrow-img checkbox-checked"]
       background-image: url('/assets/img/level_arrow_blue.png')
     .al-arrow-img[class="al-arrow-img checkbox"]
@@ -1402,7 +1516,6 @@ app-wallet-deposit, app-wallet-withdraw
     .al-inner-in
       width: 160px
       margin: 0 auto
-    //[Feature_G361] 2018-08-09 | fix
     .al-youth_team-box
       &[class="al-youth_team-box valid"]
         & > p
@@ -1442,7 +1555,7 @@ app-wallet-deposit, app-wallet-withdraw
       text-align: center
       font-size: 13px
       font-weight: 400
-      color: #000
+      color: #2e2e2e
       margin-bottom: 10px
       cursor: default
     .al-auth-or
@@ -1463,14 +1576,16 @@ app-wallet-deposit, app-wallet-withdraw
       height: 30px
       max-height: 30px
       line-height: 30px
-      border: 1px solid #000
+      border: 1px solid #2e2e2e
+      ////[Feature_G336] 2018-08-02 | border-radius: Add missing radius
+      border-radius: 2px
       text-align: center
       cursor: default
       margin-bottom: 0px
       font-size: 11px
     label[for*="al-auth-button-ch2"]
       &:hover
-        background-color: #000
+        background-color: #2e2e2e
         color: #fff
         cursor: pointer
         div
@@ -1566,7 +1681,7 @@ app-wallet-deposit, app-wallet-withdraw
         text-align: left
         font-size: 15px
         font-weight: 400
-        color: #000
+        color: #2e2e2e
       mat-slide-toggle
         margin-top: 15px
         cursor: pointer
@@ -1612,8 +1727,446 @@ app-wallet-deposit, app-wallet-withdraw
       line-height: 70px
       font-size: 15px
       font-weight: 400
-      color: #000
+      color: #2e2e2e
       border-bottom: 1px solid #f4f4f4
       padding-left: 25px
       &:last-child
         border-bottom: none
+  ////[Feature_G336] 2018-08-02 | Create : g-auth, s-auth, cancel-common-auth
+  .g-auth
+    width: 100%
+    max-width: 1400px
+    height: 620px
+    max-height: auto !important
+    padding: 70px 39px 80px 38px !important
+    p
+      margin-bottom: 0px
+    .ga-inner-box
+      display: flex
+      .ga-mrt-39
+        margin-right: 39px !important
+      .ga-step
+        height: 20px
+        line-height: 20px
+        font-size: 15px
+        font-weight: 500
+        color: #2e2e2e
+        margin-bottom: 10px !important
+      .ga-detail-box
+        width: 415px
+        max-width: 415px
+        height: 440px
+        max-height: 440px
+        padding-top: 25px
+        padding-left: 30px
+        padding-right: 30px
+        background-color: #f4f4f4
+        border: 1px solid #e0e0e8
+        border-radius: 2px
+        .ga-detail-title
+          height: 20px
+          line-height: 20px
+          font-size: 15px
+          font-weight: 500
+          color: #2e2e2e
+          strong
+            color: #3078ff
+        .ga-auth-image, .ga-appstore, .ga-googleplay, .qr-box
+          margin-left: auto
+          margin-right: auto
+          background-size: contain
+          background-position: center
+          background-repeat: no-repeat
+        .ga-auth-image
+          height: 145px
+          margin-top: 55px
+          margin-bottom: 35px
+          background-image: url('/assets/img/authentication_google_authenticator.png')
+          display: block
+        .ga-appstore, .ga-googleplay
+          width: 120px
+          max-width: 120px
+          height: 35px
+          cursor: pointer
+        .ga-appstore
+          background-image: url('/assets/img/authentication_appstore_badge.png')
+          margin-right: 18px
+        .ga-googleplay
+          background-image: url('/assets/img/authentication_google_badge.png')
+        .ga-helper-install
+          display: flex
+          margin: 0 auto
+          width: 258px
+          margin-bottom: 40px !important
+        .ga-last-msg
+          height: 40px
+          width: 100%
+          font-size: 13px
+          font-weight: 400
+          color: #989bab
+          margin-bottom: 0px !important
+        .qr-box
+          width: 175px
+          height: 175px
+          margin-top: 35px
+          margin-bottom: 25px
+          background-image: url('/assets/img/web_wallet_deposit_qrbox.png')
+          qr-code
+            img
+              position: relative
+              top: 28px
+              left: 28px
+        .qr-text
+          height: 35px
+          line-height: 35px
+          padding: 0 40px
+          margin-bottom: 40px
+          margin-left: auto
+          margin-right: auto
+          background-color: #fff
+          border: 1px solid #e0e0e8
+          font-size: 15px
+          font-weight: 500
+          color: #2e2e2e
+          text-align: center
+          display: block
+        .ga-input-msg
+          width: 340px
+          height: 30px
+          line-height: 30px
+          font-size: 15px
+          font-weight: 500
+          color: #989bab
+          margin-bottom: 10px !important
+          margin-left: auto
+          margin-right: auto
+        .ga-login-pw
+          margin-top: 30px !important
+        .ga-code
+          margin-bottom: 40px !important
+        .ga-input-box
+          width: 340px
+          height: 40px
+          line-height: 40px
+          border: 1px solid #e0e0e8
+          margin-bottom: 30px
+          display: block
+          margin-left: auto
+          margin-right: auto
+          padding-left: 10px
+        .ga-error-box
+          position: absolute
+          width: 340px
+          height: 30px
+          line-height: 30px
+          text-align: right
+          margin-left: 6px
+          img
+            width: 13px
+            height: 13px
+          p
+            font-size: 12px
+            color: #f14d4e
+            display: inline
+        .ga-er-1
+          top: 256px
+        .ga-er-2
+          top: 366px
+        .ga-submit
+          width: 340px
+          height: 50px
+          line-height: 50px
+          color: #fff
+          background-color: #3078ff
+          font-size: 15px
+          font-weight: 500
+          text-align: center
+          border: none
+          border-radius: 2px
+          display: block
+          margin-left: auto
+          margin-right: auto
+          cursor: pointer
+          outline: none
+
+  .s-auth
+    width: 420px
+    max-width: 420px
+    height: 410px
+    padding: 60px 40px !important
+    margin: 0 auto !important
+    margin-bottom: 145px !important
+    .sa-title
+      height: 30px
+      line-height: 30px
+      font-size: 15px
+      font-weight: 500
+      color: #989bab
+      margin-bottom: 10px
+    input:not(.sa-send), .sa-area-select
+      border: 1px solid #e0e0e8
+    .sa-input-area
+      margin-bottom: 30px
+    .sa-input-box
+      height: 40px
+      line-height: 40px
+      font-size: 15px
+      font-weight: 400
+      color: #2e2e2e
+    .sa-phone
+      display: flex
+      position: absolute
+      top: 100px
+      left: 40px
+      z-index: 0
+    .sa-area-select
+      position: relative
+      z-index: 1
+      height: 40px
+      width: 60px
+      background: #fff !important
+      opacity: 1
+      color: #2e2e2e !important
+      box-shadow: none !important
+      border-color: #e0e0e8 !important
+    .sa-input
+      margin-right: 10px
+      padding-left: 70px
+      box-shadow: none !important
+      outline: none !important
+      width: 270px
+      border-radius: 2px
+      height: 40px
+    .sa-send
+      width: 60px
+      height: 40px
+      line-height: 40px
+      border: none
+      background-color: #3078ff
+      color: #fff
+      font-size: 13px
+      font-weight: 500
+      text-align: center
+      border-radius: 2px
+      cursor: pointer
+      outline: 0px
+    .sa-error-box
+      width: 340px
+      height: 30px
+      line-height: 30px
+      text-align: right
+      position: absolute
+      img
+        width: 13px
+        height: 13px
+      p
+        display: inline
+        font-size: 12px
+        font-weight: 400
+        color: #f14d4e
+    .dropdown-menu
+      border-radius: 2px
+      top: 92px !important
+      width: 270px
+      padding: 0 !important
+      box-shadow: 0px -1px 7px 0px rgba(0, 0, 0, 0.1)
+      .dropdown-item
+        height: 40px
+        line-height: 40px
+        color: #2e2e2e
+        padding: 0 15px !important
+        cursor: pointer
+        outline: 0px !important
+        border-radius: 2px
+        border-bottom: 1px solid #f4f4f4
+        &:last-child
+          border-bottom: none
+      .sa-con-code
+        float: right !important
+      .dropdown-item.active, .dropdown-item:active
+        color: #fff !important
+    .sa-phone-error
+      top: 140px
+    .sa-sms-error
+      top: 250px
+    .sa-sms
+      width: 340px
+      margin-bottom: 30px
+      padding-left: 10px
+    .sa-countdown
+      float: right
+      bottom: 70px
+      left: 2px
+      position: relative
+      background-color: #989bab
+      width: 60px
+      height: 40px
+      line-height: 40px
+      text-align: center
+      color: #fff
+      border-radius: 2px
+      margin-bottom: 0px !important
+    .sa-authenticate
+      display: block
+      margin-top: 10px
+      width: 340px
+      height: 50px
+      background-color: #3078ff
+      font-size: 15px
+      font-weight: 500
+      color: #fff
+      text-align: center
+      border-radius: 2px
+      outline: 0px
+      cursor: pointer
+  .cancel-common-auth
+    width: 420px
+    max-width: 420px
+    height: auto
+    margin: 0 auto !important
+    margin-top: 75px !important
+    padding: 50px 40px 30px 40px !important
+    border-top: 5px solid #2e2e2e
+    .d-co-title
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-size: 23px
+      font-weight: 500
+      color: #2e2e2e
+    .d-ga-title
+      margin-bottom: 45px !important
+    .d-sa-title
+      margin-bottom: 0px !important
+    .d-sa-phonenum
+      width: 100px
+      max-width: 120px
+      margin: 0 auto
+      height: 22px
+      font-size: 13px
+      color: #989bab
+      border: 1px solid #e0e0e8
+      border-radius: 2px
+      line-height: 22px
+      padding-left: 10px
+      padding-right: 10px
+      background-color: #f4f4f4
+    .d-sa-p-1
+      margin-top: 4px
+      margin-bottom: 24px
+      display: block
+    .d-sa-p-2
+      margin-right: 10px
+      font-weight: 400 !important
+    .d-co-input-msg
+      height: 30px
+      line-height: 30px
+      font-size: 15px
+      font-weight: 500
+      color: #989bab
+      text-align: left
+      margin-bottom: 10px !important
+    .d-co-input
+      width: 100%
+      height: 40px
+      max-height: 40px
+      border: 1px solid #c4c8d7
+      border-radius: 2px
+      padding-left: 5px
+      font-size: 13px
+      font-weight: 400
+      color: #2e2e2e
+      margin-bottom: 40px
+    .d-co-error-box
+      height: 30px
+      line-height: 30px
+      width: 338px
+      text-align: right
+      position: absolute
+      img
+        width: 13px
+        height: 13px
+        margin-right: 7px
+      p
+        font-size: 12px
+        font-weight: 400
+        color: #f14d4e
+        display: inline
+    .d-co-error-1, .d-co-error-3
+      top: 205px
+    .d-co-error-2
+      top: 330px
+    .d-co-error-3
+      top: 210px
+    .d-co-change-auth
+      width: 338px
+      height: 25px
+      line-height: 25px
+      text-align: right
+      float: right
+      font-size: 12px
+      font-weight: 400
+      color: #3078ff
+      text-decoration: underline
+      margin-bottom: 10px !important
+      cursor: pointer
+      user-select: none
+      &:hover, &:active
+        text-decoration: underline !important
+        color: #3078ff !important
+    .d-co-submit-button, .d-co-send-button
+      background-color: #3078ff
+      font-weight: 500
+      color: #fff
+      text-align: center
+      border: none
+      border-radius: 2px
+      cursor: pointer
+      outline: 0px
+    .d-co-submit-button
+      width: 338px
+      height: 50px
+      line-height: 50px
+      font-size: 15px
+      margin-bottom: 30px !important
+      display: block
+    .d-co-send-button
+      width: 60px
+      height: 40px
+      line-height: 40px
+      font-size: 13px
+      margin-right: 10px !important
+    .d-sa-input
+      width: 270px
+      position: relative
+    .d-co-countdown
+      display: inline-block
+      width: 60px
+      height: 40px
+      line-height: 40px
+      color: #ffffff
+      background-color: #989bab
+      border: none
+      text-align: center
+      font-size: 13px
+      margin-right: 10px
+      margin-bottom: 0px
+      border-radius: 2px
+    .d-co-sendhelper
+      display: flex
+    .d-co-below-msg
+      height: 40px
+      font-size: 13px
+      font-weight: 400
+      color: #989bab
+
+
+
+.select-default
+  cursor: default
+
+.wt-s-auth
+  margin-bottom: 35px !important
+
+.input-helper-box
+  display: flex

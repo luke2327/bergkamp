@@ -44,6 +44,7 @@
   line-height: 15px
 
 div.mat-tab-labels
+
   div.mat-tab-label.mat-ripple.ng-star-inserted
     height: 30px !important
     padding-top: 3px !important
@@ -51,3 +52,104 @@ div.mat-tab-labels
   .mat-column-price
     position: relative
     right: 25px
+
+.pair-info-card
+  width: 100%
+  height: 482px !important
+  .mat-header-row
+    padding: 0px !important
+  mat-header-cell.mat-column-pair
+    min-width: 150px
+    padding-left: 15px
+  .area-token-quotes-list
+    width: 100%
+    .token-quote-table-header
+      width: 100%
+      height: 40px
+      line-height: 40px
+      border-bottom: 1px solid #e0e0e8
+      padding-left: 15px
+      .title-pair, .title-price, .title-change
+        height: 100%
+        .wt-sorting1
+          &[class="wt-sorting1 sorting"]
+            background-image: url('/assets/img/web_wallet_list_arrow_off.png')
+          &[class="wt-sorting1 sorting-desc"]
+            background-image: url('/assets/img/web_wallet_list_arrow_top.png')
+          &[class="wt-sorting1 sorting-asc"]
+            background-image: url('/assets/img/web_wallet_list_arrow_bottom.png')
+          background-size: contain
+          background-repeat: no-repeat
+          background-position: center
+          width: 10px
+          height: 10px
+          padding-left: 5px
+          display: inline-block
+          position: relative
+          top: 2px
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+            top: 0px
+          @-moz-document url-prefix()
+            top: 0px !important
+          margin-left: 5px
+          cursor: pointer
+      .title-price, .title-change
+        p
+          text-align: right
+      .title-pair
+        float: left
+        width: 135px
+      .title-price
+        width: 110px
+        float: left
+      .title-change
+        width: 75px
+        float: right
+      .title-k
+        width: 40px
+        cursor: pointer
+      .k-price
+        margin-left: 70px
+      .k-change
+        margin-left: 35px
+      p
+        margin-bottom: 0px !important
+        font-size: 11px
+        color: #585858
+        user-select: none
+    .token-quote-list
+      width: 100%
+      height: 50px
+      border-bottom: 1px solid #f4f4f4
+
+      .favorite
+        line-height: 50px
+        input
+          position: relative
+          top: 3px
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+            top: 0px
+          @-moz-document url-prefix()
+            top: 11px !important
+      .token-name
+        width: 110px
+        padding: 10px 0
+        p
+          margin-bottom: 0px !important
+        p.above-name
+          font-size: 13px
+          font-weight: 500
+          color: #2e2e2e
+        p.below-name
+          font-size: 11px
+          color: #afb2be
+      .price, .change
+        line-height: 50px
+        font-size: 13px
+      .price
+        font-weight: 500
+        width: 110px
+        text-align: right !important
+      .change
+        width: 73px
+        text-align: right !important

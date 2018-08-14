@@ -42,17 +42,14 @@
       </mat-table-->
       <div class="row area-token-quotes-list">
         <div class="row token-quote-table-header">
-          <div class="title-pair" (click)="sorting('pair')">
-            <p>{{ 'W0010' | translate }}</p>
-            <span [appToggle] = "4" [state]="sortingOrder[sortingStateName]"><div class="wt-sorting1"></div></span>
+          <div class="title-pair">
+            <p class="title-k" (click)="sorting('pair')">{{ 'W0010' | translate }}<span class="wt-sorting1" [appToggle] = "4" [state]="sortingOrder[sortingStateName]"></span></p>
           </div>
-          <div class="title-price text-center" (click)="sorting('price')">
-            <p>{{ 'W0011' | translate }}</p>
-            <span [appToggle] = "4" [state]="sortingOrder[sortingStatePrice]"><div class="wt-sorting1"></div></span>
+          <div class="title-price text-center">
+            <p class="title-k k-price" (click)="sorting('price')">{{ 'W0011' | translate }}<span class="wt-sorting1" [appToggle] = "4" [state]="sortingOrder[sortingStatePrice]"></span></p>
           </div>
-          <div class="title-change text-center" (click)="sorting('change')">
-            <p>{{ 'W0012' | translate }}</p>
-            <span [appToggle] = "4" [state]="sortingOrder[sortingStateDiff]"><div class="wt-sorting1"></div></span>
+          <div class="title-change text-center">
+            <p class="title-k k-change" (click)="sorting('change')">{{ 'W0012' | translate }}<span class="wt-sorting1" [appToggle] = "4" [state]="sortingOrder[sortingStateDiff]"></span></p>
           </div>
         </div>
         <a class="row token-quote-list" *ngFor="let value of dataSource"
@@ -62,8 +59,8 @@
               class="favorite-button" [appToggle]='3' [isOn]="isFavorite(value.pair)">
           </div>
           <div class="token-name align-middle">
-            <p>{{ value.pair }}</p>
-            <p>{{ value.pair }}</p>
+            <p class="above-name">{{ value.pair }}</p>
+            <p class="below-name">{{ value.pair }}</p>
           </div>
           <div class="price text-center">{{ significantFig(value.price) }}</div>
           <div [appRealTimeColor]="value.changepct24" class="change text-center">{{ value.changepct24.toFixed(2) }}%</div>

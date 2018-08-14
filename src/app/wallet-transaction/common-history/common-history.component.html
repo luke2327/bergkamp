@@ -6,7 +6,9 @@
   <p class="col-1 cm-h-status">Status</p>
   <p class="col-4 cm-h-detail cm-h-header">Detail</p>
   <div class="cm-h-header-button">
+    <div *ngIf="seeAll" class="cm-h-seeall-div">
   <a id="cm-h-seeall" *ngIf="seeAll" class="col-1" [routerLink]="['/wallet/transaction', routerId]">SeeAll</a>
+  </div>
   <p id="cm-h-refresh" class="col-1" (click)="reloadHistory()"><img src="/assets/img/web_wallet_deposit_list_refresh.png" class="ref-image" /></p>
   </div>
 </div>
