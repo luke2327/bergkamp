@@ -45,8 +45,154 @@ div.wt-main
         padding-left: 18px
         font-size: 13px
         img
-          width: 15px
-          height: 15px
+          width: 12px
+          height: 12px
           float: left
-          margin-top: 2px
+          margin-top: 4px
           margin-right: 7px
+
+mat-card.wallet-crypto
+  padding: 0px
+  margin-bottom: 230px
+  border: none
+  // div:not(.wt-below-main):not(.table-header):last-child
+  //   margin-bottom: 25px
+  .wt-division
+    height: 25px
+    border-top: solid 1px #e0e0e8
+  .wt-division + div
+    border-top: solid 1px #e0e0e8
+  div.table-header
+    margin-right: 0px
+    border: solid 1px #e0e0e8
+    height: 58px
+    user-select: none
+    font-size: 13px
+    font-weight: 400
+    color: #989bab
+    cursor: default
+    & > div > p > span[class="sorting"] > div, & > div > p > span[ng-reflect-state*="default"] > div
+      background: url('/assets/img/web_wallet_list_arrow_off.png')
+    & > div > p > span[class*="asc"] > div, & > div > p > span[ng-reflect-state*="asc"] > div
+      background: url('/assets/img/web_wallet_list_arrow_bottom.png')
+    & > div > p > span[class*="desc"] > div, & > div > p > span[ng-reflect-state*="desc"] > div
+      background: url('/assets/img/web_wallet_list_arrow_top.png')
+    .wt-sorting1
+      width: 15px
+      height: 15px
+      background-position: center !important
+      background-size: contain !important
+      background-repeat: no-repeat !important
+      position: relative
+      top: 2px
+    .total, .available, .inorder, .btcvalue, .deposit, .withdrawal, .trade
+      min-width: 170px
+      text-align: right
+      padding: 0px
+    div
+      padding: 0px
+      line-height: 58px
+      p, span
+        display: inline-block
+        margin-bottom: 0px
+        cursor: pointer
+    .coin
+      margin-left: 25px
+      min-width: 144px
+  & > div:not(.table-header):not(.wt-border-helper):not(.wt-division)
+    border-bottom: 1px solid #f4f4f4
+    margin-right: 0px
+    & > div:not(.trade):last-child
+      border-bottom: none !important
+    .total, .available, .inorder, .btcvalue, .deposit, .withdrawal, .trade
+      min-width: 170px
+      text-align: right
+      padding: 0px
+      font-size: 15px
+      font-weight: 15px
+      color:
+      &:not(.btcvalue)
+        padding-top: 20px
+    .total
+      min-width: 150px
+    .btcvalue, .coin
+      padding-top: 12px
+    .btcvalue
+      .wt-below
+        color: #989bab
+    .coin
+      font-size: 15px
+      font-weight: 500
+      color: #2e2e2e
+      min-width: 137px !important
+      padding-right: 0px !important
+    .coin-img
+      width: 25px
+      height: 25px
+      margin-left: 25px
+      border: solid 1px #e0e0e8
+      margin-top: 21px
+    .wt-below
+      font-size: 13px
+      font-weight: 400
+    .deposit, .withdrawal, .trade
+      min-width: 100px
+      max-width: 100px
+      width: 100px
+      text-align: center
+      margin-right: 30px
+      &:not(.trade)
+        a
+          vertical-align: bottom
+          border: 1px solid #2e2e2e
+          border-radius: 2px
+          width: 100px
+          min-width: 100px
+          height: 25px
+          display: inline-block
+          font-size: 13px
+          font-weight: 400
+          line-height: 23px
+          color: #2e2e2e
+          text-decoration: none
+    .deposit
+      margin-left: 100px
+    .trade
+      button
+        border: none
+        border-radius: 2px
+        background: #3078ff
+        width: 100px
+        color: white
+        height: 25px
+        cursor: pointer
+      & > div
+        position: absolute
+        z-index: 1001
+        background-color: white
+        margin-top: 5px
+        width: 100px
+        line-height: 30px
+        div
+          border-left: 1px solid #989bab
+          border-right: 1px solid #989bab
+          &:first-child
+            border-top: 1px solid #989bab
+            border-top-left-radius: 2px
+            border-top-right-radius: 2px
+          &:last-child
+            border-bottom: 1px solid #989bab
+            border-bottom-left-radius: 2px
+            border-bottom-right-radius: 2px
+          a
+            text-decoration: none
+            color: #989bab
+            &:hover
+              color: #3978ff
+
+  div.table-body
+    height: 70px
+    border-left: 1px solid #e0e0e8
+    border-right: 1px solid #e0e0e8
+  .wt-border-helper
+    border-top: 1px solid #e0e0e8

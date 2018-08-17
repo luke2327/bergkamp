@@ -1,0 +1,219 @@
+.login-modulate
+  .auth-signup
+    height: 525px !important
+    min-height: 525px !important
+    .sg-inner-box
+      width: 340px
+      margin: 0 auto !important
+      .sg-header
+        margin-bottom: 45px
+        height: 30px
+        min-height: 30px
+        line-height: 30px
+        text-align: center
+        font-size: 23px
+        font-weight: 500
+        color: #2e2e2e
+      .sg-error
+        width: 13px
+        height: 13px
+      .sg-input-box
+        margin-bottom: 30px
+        .sg-input-img
+          width: 45px
+          height: 40px
+          position: relative
+          z-index: 1000
+        input
+          width: 340px
+          height: 40px
+          min-height: 40px
+          line-height: 40px
+          position: absolute
+          left: 40px
+          z-index: 0
+          padding-left: 50px
+          font-size: 13px
+          font-weight: 400
+          border: 1px solid #c4c8d7
+          &::placeholder
+            color: #c4c8d7
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+            line-height: 37px
+      .sg-email-error-box
+        top: 165px
+      .sg-passwd-error-box
+        top: 235px
+      .sg-passwd-confirm-error-box
+        top: 305px
+      .sg-agree-error-box
+        top: 360px
+      .sg-email-error-box, .sg-passwd-error-box, .sg-passwd-confirm-error-box, .sg-agree-error-box
+        text-align: right
+        height: 30px
+        line-height: 30px
+        position: absolute
+        width: 340px
+        min-width: 340px
+        .sg-error
+          width: 13px
+          height: 13px
+          margin-right: 5px
+        p
+          font-size: 12px
+          font-weight: 400
+          color: #f14d4e
+          display: inline
+      .sg-agree-box
+        margin-top: 10px
+        margin-bottom: 30px
+        user-select: none
+        display: flex
+        input
+          display: none
+        label[for="sg-agree-checkbox"]
+          margin: 0px
+          width: 18px
+          height: 18px
+          background-image: url('/assets/img/web_wallet_possessions_check_off.png')
+          background-position: center
+          background-size: contain
+          background-repeat: no-repeat
+          position: relative
+          top: 4px
+          user-select: none
+          cursor: pointer
+        label[class="checkbox-checked"]
+          background-image: url('/assets/img/web_wallet_possessions_check_on.png')
+        .sg-en-box, .sg-ko-box
+          height: 25px
+          min-height: 25px
+          line-height: 25px
+          display: inline-block
+          margin-left: 10px
+          .agree-msg
+            display: inline
+            margin-bottom: 0px
+            font-size: 13px
+            font-weight: 400
+            color: #989bab
+          .terms-msg
+            font-size: 13px
+            font-weight: 400
+            color: #2e2e2e
+            text-decoration: underline
+            cursor: pointer
+      .sg-signup-button
+        width: 340px
+        min-width: 340px
+        margin-top: 10px
+        height: 50px
+        min-height: 50px
+        line-height: 50px
+        font-size: 15px
+        font-weight: 500
+        color: #ffffff
+        text-align: center
+        background-color: #3078ff
+        cursor: pointer
+        user-select: none
+        border : none
+        border-radius: 2px
+        outline: 0px
+        outline-width: 0px
+        outline-offset: 0px
+  .auth-login
+    width: 420px
+    min-width: 420px
+    height: 460px
+    min-height: 460px
+    margin: 0 auto !important
+    margin-top: 75px !important
+    margin-bottom: 145px !important
+    border-top: 5px solid #2e2e2e
+    padding-top: 50px !important
+  .auth-email
+    width: 500px
+    height: auto !important
+    .sg-inner-box
+      width: 420px
+      margin: 0 auto
+      .em-icon
+        width: 50px
+        min-width: 50px
+        height: 50px
+        min-height: 50px
+        display: inherit
+        margin: 0 auto
+      .em-header
+        height: 30px
+        min-height: 30px
+        line-height: 30px
+        text-align: center
+        font-size: 23px
+        font-weight: 500
+        color: #2e2e2e
+        margin-bottom: 15px
+      .em-email-info
+        color: #3078ff
+      .em-msg
+        text-align: center
+        height: 40px
+        min-height: 40px
+        // line-height: 40px
+        font-size: 15px
+        font-weight: 400
+        color: #2e2e2e
+        margin-bottom: 50px
+      .em-division
+        width: 25px
+        min-width: 25px
+        height: 5px
+        min-height: 5px
+        background-color: #989bab
+        border-radius: 5px
+        margin-bottom: 10px
+        margin-left: auto
+        margin-right: auto
+      .em-below-msg
+        text-align: center
+        height: 20px
+        line-height: 20px
+        font-size: 15px
+        font-weight: 400
+        color: #2e2e2e
+        margin-bottom: 10px
+      .em-below-button
+        border: none
+        border-radius: 2px
+        width: 130px
+        min-width: 130px
+        height: 40px
+        min-height: 40px
+        line-height: 40px
+        background-color: #3078ff
+        color: white
+        font-size: 15px
+        font-weight: 400
+        text-align: center
+        margin-left: auto
+        margin-right: auto
+        margin-bottom: 25px
+        outline: 0px
+        outline-width: 0px
+        outline-offset: 0px
+        display: inherit
+        cursor: pointer
+      .mbt-20
+        margin-bottom: 20px !important
+      .em-divsion-line
+        height: 1px
+        max-height: 1px
+        background-color: #e0e0e8
+        margin-top: 20px
+        margin-bottom: 20px
+      .em-fn-msg
+        font-size: 13px
+        font-weight: 400
+        color: #989bab
+        margin-bottom: 30px !important

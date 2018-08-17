@@ -1,0 +1,149 @@
+.auth-2fa
+    height: 435px
+    label
+      margin-bottom: 0px !important
+    .au-header
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-size: 23px
+      font-weight: 500
+      color: #2e2e2e
+      margin-bottom: 45px !important
+    mat-tab-group
+      width: 340px
+      min-width: 340px
+      margin: 0 auto
+      // height: 45px
+      mat-tab-header
+        height: 45px
+      mat-ink-bar
+        display: none
+      .mat-tab-labels
+        height: 45px
+        .mat-tab-label
+          height: 45px
+          width: 170px
+      div[aria-selected="true"]
+        border-top: 1px solid #e0e0e8
+      div[aria-selected="false"]
+        border-top: 1px solid #e0e0e8
+        border-bottom: 1px solid #e0e0e8
+        background-color: #f4f4f4
+        &:focus
+          background-color: #f4f4f4 !important
+          background: #f4f4f4 !important
+          opacity: 0.5 !important
+        &:hover, &:active
+          background-color: white
+      div.mat-tab-label:first-child
+        border-left: 1px solid #e0e0e8
+        border-right: 1px solid #e0e0e8
+      div.mat-tab-label:last-child
+        border-right: 1px solid #e0e0e8
+    .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus
+      background-color: #fff
+    .mat-tab-label-content
+      font-size: 15px
+      font-weight: 500
+    .au-header-msg
+      margin-top: 30px !important
+      margin-bottom: 10px !important
+      height: 30px
+      min-height: 30px
+      line-height: 30px
+      font-size: 15px
+      font-weight: 500
+      color: #c4c8d7
+    .au-input
+      height: 40px
+      min-height: 40px
+      line-height: 40px
+      border: 1px solid #c4c8d7
+      border-radius: 2px
+      padding-left: 10px
+      font-size: 15px
+      font-weight: 400
+      color: #2e2e2e
+      margin-bottom: 30px
+    .au-ga-input
+      width: 340px
+      min-width: 340px
+    .au-email-input
+      width: 270px
+      min-width: 270px
+    .au-error-box
+      text-align: right
+      height: 30px
+      line-height: 30px
+      position: absolute
+      width: 340px
+      top: 110px
+      .au-error
+        width: 13px
+        height: 13px
+        margin-right: 5px
+      p
+        font-size: 12px
+        font-weight: 400
+        color: #f14d4e
+        display: inline
+    #au-verify-button
+      display: none
+    label[for="au-verify-button"]
+      width: 340px
+      min-width: 340px
+      height: 50px
+      min-height: 50px
+      line-height: 50px
+      border-radius: 2px
+      background-color: #3078ff
+      margin-top: 10px !important
+      font-size: 15px
+      font-weight: 500
+      color: white
+      text-align: center
+      cursor: pointer
+      user-select: none
+    #au-email-send-button
+      width: 60px
+      min-width: 60px
+      height: 39px
+      min-height: 39px
+      line-height: 39px
+      border-radius: 2px
+      background-color: #3078ff
+      font-size: 13px
+      font-weight: 400
+      color: #fff
+      text-align: center
+      cursor: pointer
+      margin-right: 6px
+      border: none
+      user-select: none
+      outline: 0px
+      outline-width: 0px
+      outline-offset: 0px
+
+    .au-email-count
+      display: inline-block
+      width: 60px
+      min-width: 60px
+      height: 39px
+      min-height: 39px
+      line-height: 39px
+      border-radius: 2px
+      background-color: #989bab
+      font-size: 13px
+      font-weight: 400
+      color: #fff
+      text-align: center
+      margin-right: 6px
+      border: none
+      margin-bottom: 0px !important
+      user-select: none
+
+    div[class*="mat-tab-label-active"]
+      opacity: 1
+      .mat-tab-label-content
+        color: #2e2e2e

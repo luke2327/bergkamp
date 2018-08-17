@@ -14,7 +14,7 @@
         </td>
         <td class="wt-transH-td">
           <a><div class="transH-box">
-            <img src="/assets/img/web_wallet_withdrawal_address_list.png" alt="">Transaction History
+            <img src="/assets/img/web_wallet_transaction-history.png" alt="">Transaction History
           </div></a>
         </td>
       </tr>
@@ -23,25 +23,25 @@
 </div>
 <mat-card class="wallet-crypto">
   <div class="row table-header">
-    <div class="coin col-1" (click) = "sortingTable(0)">
-      <p>COIN</p>
-      <span [appToggle] = "4" [state]="sorting[0].sortingType[sorting[0].sortingState]"><div class="wt-sorting1"></div></span>
+    <div class="coin col-1">
+      <p (click) = "sortingTable(0)">COIN
+      <span [appToggle] = "4" [state]="sorting[0].sortingType[sorting[0].sortingState]"><div class="wt-sorting1"></div></span></p>
     </div>
-    <div class="total col-1" (click) = "sortingTable(1)">
-      <p>TOTAL</p>
-      <span [appToggle] = "4" [state]="sorting[1].sortingType[sorting[1].sortingState]"><div class="wt-sorting1"></div></span>
+    <div class="total col-1">
+      <p (click) = "sortingTable(1)">TOTAL
+      <span [appToggle] = "4" [state]="sorting[1].sortingType[sorting[1].sortingState]"><div class="wt-sorting1"></div></span></p>
     </div>
-    <div class="available col-1" (click) = "sortingTable(2)">
-      <p>AVAILABLE</p>
-      <span [appToggle] = "4" [state]="sorting[2].sortingType[sorting[2].sortingState]"><div class="wt-sorting1"></div></span>
+    <div class="available col-1">
+      <p (click) = "sortingTable(2)">AVAILABLE
+      <span [appToggle] = "4" [state]="sorting[2].sortingType[sorting[2].sortingState]"><div class="wt-sorting1"></div></span></p>
     </div>
-    <div class="inorder col-1" (click) = "sortingTable(3)">
-      <p>INORDER</p>
-      <span [appToggle] = "4" [state]="sorting[3].sortingType[sorting[3].sortingState]"><div class="wt-sorting1"></div></span>
+    <div class="inorder col-1">
+      <p (click) = "sortingTable(3)">INORDER
+      <span [appToggle] = "4" [state]="sorting[3].sortingType[sorting[3].sortingState]"><div class="wt-sorting1"></div></span></p>
     </div>
-    <div class="btcvalue col-1" (click) = "sortingTable(4)">
-      <p>BTCVALUE</p>
-      <span [appToggle] = "4" [state]="sorting[4].sortingType[sorting[4].sortingState]"><div class="wt-sorting1"></div></span>
+    <div class="btcvalue col-1">
+      <p (click) = "sortingTable(4)">BTCVALUE
+      <span [appToggle] = "4" [state]="sorting[4].sortingType[sorting[4].sortingState]"><div class="wt-sorting1"></div></span></p>
     </div>
   </div>
 
