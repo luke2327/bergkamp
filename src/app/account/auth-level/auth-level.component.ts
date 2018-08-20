@@ -55,7 +55,7 @@ export class ViewModel {
     this.level = 2;
     this.levelName = "YouthTeam";
     this.levelMax = 5;
-    this.isVarifiedOtp = false;
+    this.isVarifiedOtp = true;
     this.isVarifiedSms = false;
     this.verifiedDocument = 0;
     this.verifiedContact = 0;
