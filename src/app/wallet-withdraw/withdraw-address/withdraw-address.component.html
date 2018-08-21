@@ -67,9 +67,9 @@
               </div>
       </div>
 
-      <div *ngIf="viewModel.isValidAmount">
-        <span>ErrImg</span>
-        <p>{{ viewModel.inputAmountErrMesage }}</p>
+      <div class="wd-below-error-area" *ngIf="viewModel.isValidAmount">
+        <span class="wd-below-error-img"></span>
+        <p class="wd-below-error-msg">{{ viewModel.inputAmountErrMesage }}</p>
       </div>
       <p class="wd-below-fee-msg">*Fee {{ viewModel.fee }} ETH</p>
       <div class="row wd-amount-rcv-box">
